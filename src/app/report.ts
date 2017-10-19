@@ -4,6 +4,7 @@ export interface Report {
   dataCreate: Date;
   whatDid: string[];
   toDoList: string[];
-  problems: string;
-  // deadline: boolean;
+  problems?: string;
+  deadline: boolean;
+  reason?: string;
 }

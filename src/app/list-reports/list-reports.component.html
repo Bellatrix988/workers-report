@@ -1,3 +1,33 @@
-<p>
-  list-reports works!
-</p>
+<div class="container" align="center">
+  <button class="btn btn-lg">Add report</button>
+</div>
+<div class="container">
+  <div *ngFor="let report of reports" class="panel panel-default"
+        [ngClass]="report.deadline ? 'panel-success' : 'panel-danger'">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-10">
+          <p>{{report.owner.name}}</p>
+          <p>{{report.created_at | date: 'dd/MM/yyyy'}}</p>
+        </div>
+        <div class="col-sm-1">
+          <span> Status: {{report.deadline ? 'OK' : 'NO'}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="container row">
+      <div class="panel-body">
+        <div class="col-sm-6"> What did:
+          <ul *ngFor="let did of report.what_did">
+            <li>{{did}}</li>
+          </ul>
+        </div>
+        <div class="col-sm-6">ToDo:
+          <ul *ngFor="let do of report.todo">
+            <li>{{do}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
