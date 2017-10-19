@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormCreateComponent implements OnInit {
 
+  // private userUrl = 'api/me';
+  name = 'Maria';
+  lastTask = ['last item1','last item2'];
   constructor() { }
 
   ngOnInit() {
   }
 
+  getLastTask(): string[] {
+    return;
+  }
 }

@@ -19,6 +19,7 @@ export class ListReportsComponent implements OnInit {
                       .then(items => this.reports = items);
   }
 
+
   ngOnInit() {
     this.getListReports();
   }
