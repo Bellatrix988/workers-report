@@ -1,36 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
-import { Report } from '../report';
+import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { Report } from '../models/report';
 
-import 'rxjs/add/operator/toPromise';
+import 'rxjs';
 
 @Injectable()
 export class ReportDataService {
 
-  // private date = new Date(2017,2,27).toString();
   private reportUrl = `api/reports`;
-  // private reportUrl = 'api/reports/?deadline=true';
-
-  private meUrl = 'api/me';
 
   constructor(private http: Http) { }
 
-  getReports(): Promise<Report[]> {
-    return this.http.get(this.reportUrl, {headers: this.headers})
-                    .toPromise()
-                    .then(repsonse => repsonse.json().data as Report[])
+  getReports(): Observable<Report[]> {
+    return this.http.get(this.reportUrl)
+                    .map(this.extractData)
                     .catch(this.handleError);
   }
 
-  create(): Promise<Report> {
-    return;
+  private handleError(error: any) {
+    console.error(error.message || error);
+    return Observable.throw(error.message || error);
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  private extractData(res: Response) {
+    return res.json() as Report[];
   }
-
-  private headers = new Headers({'Content-Type': 'application/json'});
 }
 

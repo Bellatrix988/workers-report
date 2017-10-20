@@ -9,7 +9,7 @@ export class FormCreateComponent implements OnInit {
 
   // private userUrl = 'api/me';
   name = 'Maria';
-  lastTask = ['last item1','last item2'];
+  lastTask = ['last item1', 'last item2'];
   constructor() { }
 
   ngOnInit() {

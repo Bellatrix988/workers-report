@@ -15,8 +15,8 @@ export class ListReportsComponent implements OnInit {
   constructor(private reportService: ReportDataService ) { }
 
   getListReports(): void {
-    this.reportService.getReports()
-                      .then(items => this.reports = items);
+    // this.reportService.getReports()
+                      // .then(items => this.reports = items);
   }
 
 

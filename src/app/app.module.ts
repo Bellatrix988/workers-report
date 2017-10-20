@@ -7,10 +7,10 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data-service.service';
 
 import { AppComponent } from './app.component';
-import { ListReportsComponent } from './list-reports/list-reports.component';
+import { ListReportsComponent } from './pages/list-reports/list-reports.component';
 import { ReportDataService } from './services/report-data.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { FormCreateComponent } from './form-create/form-create.component';
+import { FormCreateComponent } from './components/form-create/form-create.component';
 
 @NgModule({
   declarations: [
