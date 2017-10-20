@@ -3,19 +3,19 @@ import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angul
 import { Observable } from 'rxjs/Observable';
 import { Report } from '../models/report';
 
-import 'rxjs';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ReportDataService {
 
-  private reportUrl = `api/reports`;
+  private reportUrl = `http://localhost:3000/db`;
 
   constructor(private http: Http) { }
 
   getReports(): Observable<Report[]> {
     return this.http.get(this.reportUrl)
-                    .map(this.extractData)
-                    .catch(this.handleError);
+                    .map(this.extractData);
+                    // .catch(this.handleError);
   }
 
   private handleError(error: any) {
@@ -24,7 +24,9 @@ export class ReportDataService {
   }
 
   private extractData(res: Response) {
-    return res.json() as Report[];
+    const body = res.json();
+    console.log(body.data);
+    return body.data as Report[];
   }
 }
 

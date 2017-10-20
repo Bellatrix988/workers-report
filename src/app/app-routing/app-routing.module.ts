@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ListReportsComponent } from '../list-reports/list-reports.component';
-import { FormCreateComponent } from '../form-create/form-create.component';
+import { ListReportsComponent } from '../pages/list-reports/list-reports.component';
+import { FormCreateComponent } from '../components/form-create/form-create.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
