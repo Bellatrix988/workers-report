@@ -1,5 +1,5 @@
 {
-  "data": [
+  "updates": [
   {
     "id": 1,
     "owner":
@@ -8,18 +8,18 @@
       "name": "Alisa"
     },
     "created_at": "",
-    "what_did": [
+    "have_done": [
     {
       "id": 3,
       "title": "Create database",
-      "isActive": "false"
+      "is_active": "false"
     },
     {
       "id": 4,
       "title": "Add method update to database",
-      "isActive": "true"
+      "is_active": "true"
     }],
-    "toDoList": [
+    "todo": [
 
       {
         "id": 4,
@@ -29,7 +29,7 @@
       {
         "id": 6,
         "title": "Add methods delete to database",
-        "isActive": "true"
+        "is_active": "true"
       }
     ],
     "problems": "",
@@ -44,28 +44,28 @@
       "name": "Bob"
     },
     "created_at": "",
-    "what_did": [
+    "have_done": [
     {
       "id": 5,
       "title": "Describe architecture of project",
-      "isActive": "false"
+      "is_active": "false"
     },
     {
       "id": 7,
       "title": "Add class of objct Word",
-      "isActive": "false"
+      "is_active": "false"
     },
     {
       "id": 8,
       "title": "Add class of object Dictionary",
-      "isActive": "false"
+      "is_active": "false"
     }],
-    "toDoList": [
+    "todo": [
 
       {
         "id": 9,
         "title": "Update methods update to database",
-        "isActive": "true"
+        "is_active": "true"
       }
     ],
     "problems": "",
@@ -80,27 +80,27 @@
       "name": "Alisa"
     },
     "created_at": "",
-    "what_did": [
+    "have_done": [
     {
       "id": 4,
       "title": "Add methods update to database",
-      "isActive": "false"
+      "is_active": "false"
     },
     {
       "id": 6,
       "title": "Add methods delete to database",
-      "isActive": "true"
+      "is_active": "true"
     }],
-    "toDoList": [
+    "todo": [
     {
       "id": 6,
       "title": "Add methods delete to database",
-      "isActive": "true"
+      "is_active": "true"
     },
     {
       "id": 10,
       "title": "Add methods create to database",
-      "isActive": "true"
+      "is_active": "true"
     }],
     "problems": "",
     "deadline": true,
@@ -114,17 +114,17 @@
       "name": "Bob"
     },
     "created_at": "",
-    "what_did": [
+    "have_done": [
     {
       "id": 9,
       "title": "Update methods update to database",
-      "isActive": "false"
+      "is_active": "false"
     }],
-    "toDoList": [
+    "todo": [
     {
       "id": 666,
       "title": "Relax at weekand :)",
-      "isActive": "true"
+      "is_active": "true"
     }],
     "problems": "",
     "deadline": true,

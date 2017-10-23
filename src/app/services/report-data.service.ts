@@ -53,7 +53,7 @@ export class ReportDataService {
 
   private extractData(res: Response) {
     const body = res.json();
-    return body.data as Report[];
+    return body.updates as Report[];
   }
 
   private extractUsers(res: Response) {
