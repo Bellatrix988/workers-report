@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Report } from '../models/report';
+import { Worker } from '../models/worker';
+import { Task } from '../models/task';
 
 import 'rxjs/add/operator/map';
 
@@ -12,10 +14,36 @@ export class ReportDataService {
 
   constructor(private http: Http) { }
 
+
   getReports(): Observable<Report[]> {
     return this.http.get(this.reportUrl)
                     .map(this.extractData);
                     // .catch(this.handleError);
+  }
+
+  getCurrentUser(): Observable<Worker> {
+    return this.http.get(this.reportUrl)
+                    .map(this.extractCurrentUser);
+  }
+
+  getLastTask(id: number): Observable<Report> {
+    const data = this.getAllTasks(id);
+    console.log(data);
+    return data.sort((a,b)=> a.id - b.id)[data.length - 1];
+  }
+
+  // addReport(): void {
+
+  // }
+
+  private getAllTasks(id: number) {
+    let result = [];
+    const data = this.getReports().subscribe(
+       data => {
+         result = data.filter(item => item.owner.id === id);
+       }
+      );
+    return result;
   }
 
   private handleError(error: any) {
@@ -25,8 +53,15 @@ export class ReportDataService {
 
   private extractData(res: Response) {
     const body = res.json();
-    console.log(body.data);
     return body.data as Report[];
+  }
+
+  private extractUsers(res: Response) {
+    return res.json().users.data as Worker[];
+  }
+
+  private extractCurrentUser(res: Response) {
+    return res.json().users.me as Worker;
   }
 }
 

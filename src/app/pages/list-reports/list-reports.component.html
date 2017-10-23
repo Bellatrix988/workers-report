@@ -16,7 +16,7 @@
       <div>
         <div> What did:
           <ul *ngFor="let did of report.what_did">
-            <li [style.text-decoration]="did.status == 'deactive' ? 'line-through' : 'none'">
+            <li [style.text-decoration]="did.isActive === 'false' ? 'line-through' : 'none'">
             {{did.title}}</li>
           </ul>
         </div>
