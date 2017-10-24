@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReportDataService } from '../../services/report-data.service';
+import { UpdatesDataService } from '../../services/report-data.service';
 
 import { Report } from '../../models/report';
 
@@ -12,7 +12,7 @@ export class ListReportsComponent implements OnInit {
 
   reports: Report[];
 
-  constructor(private reportService: ReportDataService ) { }
+  constructor(private reportService: UpdatesDataService ) { }
 
   getListReports(): void {
     this.reportService.getReports()
