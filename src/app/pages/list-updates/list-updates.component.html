@@ -1,28 +1,28 @@
 <div class="container" align="center">
-  <button [routerLink]="['/create']">Add report</button>
+  <button [routerLink]="['/create']">Add update</button>
 </div>
 <section>
   <div class="container">
-    <div *ngFor="let report of reports">
+    <div *ngFor="let update of updates">
       <div>
         <div>
-          <p>{{report.owner.name}}</p>
-          <p>{{report.created_at | date: 'dd/MM/yyyy'}}</p>
+          <p>{{update.owner.name}}</p>
+          <p>{{update.created_at | date: 'dd/MM/yyyy'}}</p>
         </div>
         <div>
-          <span> Status: {{report.deadline ? 'OK' : 'NO'}}</span>
+          <span> Status: {{update.deadline ? 'OK' : 'NO'}}</span>
         </div>
       </div>
       <div class="container row">
         <div>
           <div> <span> Have done: </span>
-            <ul *ngFor="let did of report.haveDone">
-              <li [style.text-decoration]="did.isActive === 'false' ? 'line-through' : 'none'">
+            <ul *ngFor="let did of update.haveDone">
+              <li [style.text-decoration]="did.active === 'false' ? 'line-through' : 'none'">
                 {{did.title}}</li>
             </ul>
           </div>
           <div> <span> Do you have next tasks? </span>
-            <ul *ngFor="let do of report.toDo">
+            <ul *ngFor="let do of update.toDo">
               <li>{{do.title}}</li>
             </ul>
           </div>
@@ -32,3 +32,4 @@
     </div>
   </div>
 </section>
+

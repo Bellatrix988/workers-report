@@ -2,10 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ListReportsComponent } from './pages/list-reports/list-reports.component';
-import { UpdatesDataService } from './services/report-data.service';
+import { ListUpdatesComponent } from './pages/list-updates/list-updates.component';
+import { UpdatesDataService } from './services/updates-data.service';
 import { UsersDataService } from './services/users-data.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { FormCreateComponent } from './components/form-create/form-create.component';
@@ -13,10 +14,11 @@ import { FormCreateComponent } from './components/form-create/form-create.compon
 @NgModule({
   declarations: [
     AppComponent,
-    ListReportsComponent,
+    ListUpdatesComponent,
     FormCreateComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     FormsModule,
     HttpModule,

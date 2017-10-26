@@ -1,6 +1,6 @@
 <div class="container">
   <form class="form-horizontal">
-   <!--  <div class="form-group">
+   <!-- <div class="form-group">
       <label for="nameInput" class="col-sm-2 control-label">Name</label>
       <div class="col-sm-10">
         <input class="form-control" id="nameInput" type="text" value="{{currentUser.name}}" disabled>
@@ -9,7 +9,7 @@
     <div class="form-group">
       <label for="nameInput" class="col-sm-2 control-label">Have done?</label>
       <div class="col-sm-10">
-        <div *ngFor="let item of lastTask">
+        <div *ngFor="let item of lastUpdate">
           <label>
             <input type="checkbox" id="{{item.id}}" [checked]="!item.isActive" (change)="onCheck($event, item)">
              <span>{{item.title}}</span>
@@ -46,3 +46,4 @@
   </form>
 </div>
 <button class="btn" onclick="window.history.back()">Back</button>
+
