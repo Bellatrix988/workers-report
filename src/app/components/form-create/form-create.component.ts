@@ -12,11 +12,12 @@ import { User } from '../../models/user';
   styleUrls: ['./form-create.component.css']
 })
 
-export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
+export class FormCreateComponent implements OnInit, OnDestroy {
 
   private sub: any;
 
-  currentUser: User;
+  currentUpdate: Update;
+
   lastUpadate: Update;
   lastTask: Task[];
   todoTask: Task[];
@@ -29,11 +30,9 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
               private userService: UsersDataService) { }
 
   ngOnInit() {
-    this.currentUser = this.userService.currentUser;
-    console.log(this.currentUser);
-    this.getCurrentUser();
     this.getLastTask();
 
+    this.currentUpdate = new Update();
     this.todoTask = [];
     this.problems = '';
     this.deadline = true;
@@ -41,14 +40,6 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnDestroy() {
-    console.log(this.currentUser);
-    console.log(this.lastUpadate);
-    // this.sub.unsubscribe();
-  }
-
-  ngOnChanges() {
-    if(this.lastUpadate != undefined)
-      this.lastTask = this.lastUpadate.toDo;
   }
 
   onCheck(e, item: Task) {
@@ -72,15 +63,13 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   getLastTask(): void {
-    // if(this.currentUser != undefined)
-      this.service.getLastTasksOfCurrentUser(this.currentUser.id)
-                  .subscribe(update => this.lastUpadate = update);
-  if(this.lastUpadate != undefined)
-      this.lastTask = this.lastUpadate.toDo;
+    this.service.getLastTasksOfCurrentUser()
+                .subscribe(update => this.lastTask = update);
   }
 
-  getCurrentUser() {
-    this.userService.getCurrentUser()
-                    .subscribe(user => this.currentUser = user);
-  }
+  // getCurrentUser() {
+  //   this.userService.getCurrentUser()
+  //                   .subscribe(user => this.service.getLastTasksOfCurrentUser(user.id)
+  //                                               .subscribe(update => this.lastTask = update));
+  // }
 }

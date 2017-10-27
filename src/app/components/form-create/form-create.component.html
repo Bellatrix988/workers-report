@@ -9,7 +9,7 @@
     <div class="form-group">
       <label for="nameInput" class="col-sm-2 control-label">Have done?</label>
       <div class="col-sm-10">
-        <div *ngFor="let item of lastUpdate">
+        <div *ngFor="let item of lastTask">
           <label>
             <input type="checkbox" id="{{item.id}}" [checked]="!item.isActive" (change)="onCheck($event, item)">
              <span>{{item.title}}</span>
