@@ -32,11 +32,28 @@ export class UpdatesDataService {
   private extractLastTasks(data: Update[]): Task[] {
     return data[0].toDo as Task[];
   }
+//get last update => get last id and get last id task
+  private getLastUpdate(){
+     return Observable.create((observer: Observer<Update>) => {
+           this
+             .http
+             .get(this.updateUrl + `?_sort=created_at&_order=desc`)
+             .subscribe(
+               (res: Response) => {
+                 let data = this.extractData(res);
+                 observer.next(data[data.length - 1]);
+                 observer.complete();
+                },
+                error => observer.error(error)
+              );
+            });
+  }
 
   getLastTasksOfCurrentUser(): Observable<Task[]> {
     return Observable.create((observer: Observer<Task[]>) => {
       this.userService.getCurrentUser().subscribe(
          user => {
+           this.currentUser = user;
            this
              .http
              .get(this.updateUrl + `?owner.id=${user.id}&_sort=created_at&_order=desc`)
@@ -47,18 +64,21 @@ export class UpdatesDataService {
                  observer.complete();
                 },
                 error => observer.error(error)
-              )
-         }
+              );
+            }
        );
     });
-    // return this.http.get(this.updateUrl + `?owner.id=${idUser}&_sort=created_at&_order=desc`)
-    //                   .map(this.extractData)
-    //                    .map(this.extractLastTasks);
-
   }
 
   getUpdates(): Observable<Update[]> {
     return this.http.get(this.updateUrl)
                       .map(this.extractData);
   }
+
+  addUpdates(body) {
+    body.owner = this.currentUser;
+    body.id = 29;
+    return this.http.post(this.updateUrl, body);
+  }
+
 }

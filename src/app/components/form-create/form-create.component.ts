@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { UpdatesDataService } from '../../services/updates-data.service';
 import { UsersDataService } from '../../services/users-data.service';
+import { Router } from '@angular/router';
 
 import { Task } from '../../models/task';
 import { Update } from '../../models/update';
@@ -16,27 +17,31 @@ export class FormCreateComponent implements OnInit, OnDestroy {
 
   private sub: any;
 
-  currentUpdate: Update;
+  currentUpdate: Update[];
 
   lastUpadate: Update;
   lastTask: Task[];
   todoTask: Task[];
+  reason: string;
   problems: string;
   deadline: boolean;
   flagShow: boolean;
-  textDone: string;
+  private idTask: number;
+  message: string;
 
-  constructor(private service: UpdatesDataService,
-              private userService: UsersDataService) { }
+  constructor(private router: Router,
+              private service: UpdatesDataService) { }
 
   ngOnInit() {
     this.getLastTask();
 
-    this.currentUpdate = new Update();
+    this.currentUpdate = [];
     this.todoTask = [];
     this.problems = '';
+    this.reason = '';
     this.deadline = true;
     this.flagShow = false;
+    this.idTask = 100;
   }
 
   ngOnDestroy() {
@@ -47,18 +52,19 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   }
 
   addDone(text: string) {
-    if(this.flagShow == false)
-      this.flagShow = true;
-    else {
-      let done = { id: 9, title: text, active: false };
+    if(this.flagShow){
+      let done = { id: this.idTask, title: text, active: false };
+      this.idTask++;
       console.log(done);
-      if(text != undefined && text != null)
-        this.lastTask.push(done);
+      this.lastTask.push(done);
     }
+    else
+      this.flagShow = true;
   }
 
   addToDo(text: string) {
-    const item: Task = { id: 8, title: text, active: true };
+    const item: Task = { id: this.idTask, title: text, active: true };
+    this.idTask++;
     this.todoTask.push(item);
   }
 
@@ -66,10 +72,15 @@ export class FormCreateComponent implements OnInit, OnDestroy {
     this.service.getLastTasksOfCurrentUser()
                 .subscribe(update => this.lastTask = update);
   }
-
-  // getCurrentUser() {
-  //   this.userService.getCurrentUser()
-  //                   .subscribe(user => this.service.getLastTasksOfCurrentUser(user.id)
-  //                                               .subscribe(update => this.lastTask = update));
-  // }
+  private gotoIndex() {
+    this.router.navigate(['/index']);
+  }
+  addUpdate() {
+    const body = {id: -1, owner: {},
+                  created_at: new Date().toJSON(), have_done: this.lastTask, todo: this.todoTask,
+                   problems: this.problems, deadline: this.deadline, reason: this.reason};
+    this.service.addUpdates(body).subscribe(
+        successful => {this.message = 'Updated successfully add!'; this.gotoIndex()},
+        err => this.message = err);
+  }
 }
