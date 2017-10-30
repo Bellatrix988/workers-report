@@ -118,7 +118,7 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate() {
-    if (this.textDone.length != 0 || this.textToDo.length !== 0) {
+    if (this.textDone !== undefined || this.textToDo !== undefined) {
       return window.confirm('Есть несохраненные изменения. Удалить их?');
     }
     return true;
