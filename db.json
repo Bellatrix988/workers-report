@@ -148,37 +148,6 @@
       "problems": "",
       "deadline": true,
       "reason": ""
-    },
-    {
-      "owner": {
-        "id": 2,
-        "name": "Bob"
-      },
-      "created_at": "2017-10-30T09:50:31.781Z",
-      "have_done": [
-        {
-          "title": "d,msdms",
-          "active": false
-        }
-      ],
-      "todo": [],
-      "problems": "",
-      "deadline": true,
-      "reason": "",
-      "id": 6
-    },
-    {
-      "owner": {
-        "id": 2,
-        "name": "Bob"
-      },
-      "created_at": "2017-10-30T09:52:52.238Z",
-      "have_done": [],
-      "todo": [],
-      "problems": "sdsd",
-      "deadline": true,
-      "reason": "",
-      "id": 7
     }
   ],
   "profile": {
