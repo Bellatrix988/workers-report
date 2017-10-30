@@ -1,34 +1,43 @@
-<div class="container" align="center">
-  <button [routerLink]="['/create']">Add update</button>
-</div>
-<section>
-  <div class="container">
-    <div *ngFor="let update of updates">
+<div class="container">
+  <div class="grid__header" align="center">
+    <button [routerLink]="['/create']">Add update</button>
+    <select name="filter" id="">
+      <option>Date</option>
+      <option>Only self </option>
+    </select>
+  </div>
+  <div class="block__main">
+    <div *ngFor="let update of updates" class="block" [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
+      <div class="block__user">
+        <figure>
+          <img src="../../../assets/img/user.svg" alt="" width="30px">
+          <i>{{update.owner.name}}</i>
+        </figure>
+        <p>{{update.createdAt | date: 'dd/MM/yyyy'}}</p>
+      </div>
       <div>
         <div>
-          <p>{{update.owner.name}}</p>
-          <p>{{update.created_at | date: 'dd/MM/yyyy'}}</p>
-        </div>
-        <div>
-          <span> Status: {{update.deadline ? 'OK' : 'NO'}}</span>
-        </div>
-      </div>
-      <div class="container row">
-        <div>
-          <div> <span> Have done: </span>
-            <ul *ngFor="let did of update.haveDone">
-              <li [style.text-decoration]="did.active === 'false' ? 'line-through' : 'none'">
-                {{did.title}}</li>
+          <div>
+            <span> Have done: </span>
+            <div *ngFor="let did of update.haveDone"
+                [ngClass]="did.active ? 'todo__active' : 'todo__deactive'" class="item_todo">
+              <label class="tasks-list-item">
+                <input type="checkbox" class="tasks-list-cb" [checked]="!did.active" (change)="onCheck($event, did)">
+                <span class="tasks-list-mark"></span>
+                <span>{{did.title}}</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <span> Do you have next tasks? </span>
+            <ul>
+              <li class="item_todo" *ngFor="let do of update.toDo">{{do.title}}</li>
             </ul>
           </div>
-          <div> <span> Do you have next tasks? </span>
-            <ul *ngFor="let do of update.toDo">
-              <li>{{do.title}}</li>
-            </ul>
-          </div>
+          <p> <span>Problem:</span> {{update.problems}}</p>
         </div>
       </div>
       <hr>
     </div>
   </div>
-</section>
+</div>

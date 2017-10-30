@@ -22,65 +22,93 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   lastUpadate: Update;
   lastTask: Task[];
   todoTask: Task[];
+
+  deadline: boolean;
+  private idTask: number;
+  private idUpdates: number;
+  message: string;
+  textDone: string;
+  textToDo: string;
   reason: string;
   problems: string;
-  deadline: boolean;
-  flagShow: boolean;
-  private idTask: number;
-  message: string;
 
   constructor(private router: Router,
               private service: UpdatesDataService) { }
 
   ngOnInit() {
     this.getLastTask();
+    this.getCurrentId();
 
     this.currentUpdate = [];
     this.todoTask = [];
     this.problems = '';
     this.reason = '';
     this.deadline = true;
-    this.flagShow = false;
-    this.idTask = 100;
   }
 
   ngOnDestroy() {
+  }
+
+  keyDownHaveDone(event) {
+    if(event.keyCode == 13) {
+      this.addDone(this.textDone);
+      this.textDone = null;
+    }
+  }
+
+  keyDownToDo(event) {
+    if(event.keyCode == 13) {
+      this.addToDo();
+      this.textToDo = null;
+    }
   }
 
   onCheck(e, item: Task) {
     item.active = !e.target.checked;
   }
 
-  addDone(text: string) {
-    if(this.flagShow){
+  private addDone(text: string) {
       let done = { id: this.idTask, title: text, active: false };
       this.idTask++;
       console.log(done);
       this.lastTask.push(done);
-    }
-    else
-      this.flagShow = true;
   }
 
-  addToDo(text: string) {
-    const item: Task = { id: this.idTask, title: text, active: true };
+  private addToDo() {
+    const item: Task = { id: this.idTask, title: this.textToDo, active: true };
     this.idTask++;
     this.todoTask.push(item);
+  }
+
+  putProblem() {
+    alert(this.problems);
   }
 
   getLastTask(): void {
     this.service.getLastTasksOfCurrentUser()
                 .subscribe(update => this.lastTask = update);
   }
-  private gotoIndex() {
-    this.router.navigate(['/index']);
-  }
+
   addUpdate() {
-    const body = {id: -1, owner: {},
+    const body = {id: this.idUpdates, owner: {},
                   created_at: new Date().toJSON(), have_done: this.lastTask, todo: this.todoTask,
                    problems: this.problems, deadline: this.deadline, reason: this.reason};
     this.service.addUpdates(body).subscribe(
         successful => {this.message = 'Updated successfully add!'; this.gotoIndex()},
         err => this.message = err);
+  }
+
+  private getCurrentId() {
+    this.service
+         .getLastUpdate()
+           .subscribe(
+              item =>
+              {
+                this.idTask = item.toDo[item.toDo.length - 1].id + 1;
+                this.idUpdates = item.id + 1});
+  }
+
+  private gotoIndex() {
+    this.router.navigate(['/index']);
   }
 }

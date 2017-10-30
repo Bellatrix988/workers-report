@@ -1,11 +1,52 @@
-section {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 5px;
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-p {
-  font-weight: bold;
+.grid__header {
+  width:  60%;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.15);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  height: 50px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  /*padding-left: 30px;*/
+  position: relative;
+  z-index: 100;
+}
+
+
+.block__user {
+  font-size: 14pt;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.verticalLine_red {
+  border-left: thick solid red;
+}
+
+.verticalLine_green {
+  border-left: thick solid green;
 }
 
 span {
@@ -16,4 +57,51 @@ button {
   border: none;
   padding: 6px 8px;
   margin: 10px;
+}
+
+select {
+  -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   margin: 20px;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
+
+.todo__active {
+  text-decoration: none;
+}
+
+.todo__deactive {
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 0, 0, 0.5);
+}
+
+.todo__deactive:before {
+  content: '';
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -5px 0 0 -6px;
+  height: 4px;
+  width: 8px;
+  border: solid #39ca74;
+  border-width: 0 0 4px 4px;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }

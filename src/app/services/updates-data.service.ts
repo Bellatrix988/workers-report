@@ -33,7 +33,7 @@ export class UpdatesDataService {
     return data[0].toDo as Task[];
   }
 //get last update => get last id and get last id task
-  private getLastUpdate(){
+  getLastUpdate(){
      return Observable.create((observer: Observer<Update>) => {
            this
              .http
@@ -41,7 +41,7 @@ export class UpdatesDataService {
              .subscribe(
                (res: Response) => {
                  let data = this.extractData(res);
-                 observer.next(data[data.length - 1]);
+                 observer.next(data[0]);
                  observer.complete();
                 },
                 error => observer.error(error)
@@ -77,7 +77,6 @@ export class UpdatesDataService {
 
   addUpdates(body) {
     body.owner = this.currentUser;
-    body.id = 29;
     return this.http.post(this.updateUrl, body);
   }
 
