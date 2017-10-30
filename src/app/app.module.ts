@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { FormCreateComponent } from './components/form-create/form-create.component';
 import { ListUpdatesComponent } from './components/list-updates/list-updates.component';
 import { TabsNavigateComponent } from './pages/tabs-navigate/tabs-navigate.component';
+import { CanDeactivateGuardService } from './services/can-deactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { TabsNavigateComponent } from './pages/tabs-navigate/tabs-navigate.compo
     HttpModule,
     AppRoutingModule
   ],
-  providers: [UpdatesDataService, UsersDataService],
+  providers: [UpdatesDataService, UsersDataService, CanDeactivateGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

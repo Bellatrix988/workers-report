@@ -1,11 +1,4 @@
 <div class="container">
-  <div class="grid__header" align="center">
-    <button [routerLink]="['/create']">Add update</button>
-    <select name="filter" id="">
-      <option>Date</option>
-      <option>Only self </option>
-    </select>
-  </div>
   <div class="block__main">
     <div *ngFor="let update of updates" class="block" [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
       <div class="block__user">
@@ -19,10 +12,11 @@
         <div>
           <div>
             <span> Have done: </span>
-            <div *ngFor="let did of update.haveDone"
-                [ngClass]="did.active ? 'todo__active' : 'todo__deactive'" class="item_todo">
-              <label class="tasks-list-item">
-                <input type="checkbox" class="tasks-list-cb" [checked]="!did.active" (change)="onCheck($event, did)">
+            <div>
+              <label class="tasks-list-item" *ngFor="let did of update.haveDone"
+                      [ngClass]="did.active ? 'todo__active' : 'todo__deactive'">
+                <input type="checkbox" class="tasks-list-cb" [checked]="!did.active"
+                        disabled>
                 <span class="tasks-list-mark"></span>
                 <span>{{did.title}}</span>
               </label>
@@ -30,9 +24,14 @@
           </div>
           <div>
             <span> Do you have next tasks? </span>
-            <ul>
-              <li class="item_todo" *ngFor="let do of update.toDo">{{do.title}}</li>
-            </ul>
+            <div >
+              <label *ngFor="let do of update.toDo" class="tasks-list-item">
+                <input type="checkbox" class="tasks-list-cb" [checked]="!do.active"
+                        disabled>
+                <span class="tasks-list-mark"></span>
+                <span>{{do.title}}</span>
+              </label>
+            </div>
           </div>
           <p> <span>Problem:</span> {{update.problems}}</p>
         </div>

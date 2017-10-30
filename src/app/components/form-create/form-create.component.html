@@ -1,6 +1,6 @@
 <div class="container">
-  <form class="block block__main">
-    <div name="haveDone">
+  <form class="block__main">
+    <div name="haveDone" class="block">
       <label for="nameInput" class="col-sm-2 control-label">Have done?</label>
       <div>
         <div *ngFor="let item of lastTask">
@@ -17,7 +17,7 @@
                (keydown)="keyDownHaveDone($event)">
       </div>
     </div>
-    <div name="toDo">
+    <div name="toDo" class="block">
       <label for="nameInput" class="col-sm-2 control-label">What are you doing next?</label>
       <div *ngFor="let item of todoTask" >
         <label class="tasks-list-item">
@@ -33,14 +33,14 @@
                 placeholder="Write to do" (keydown)="keyDownToDo($event)">
       </div>
     </div>
-    <div name="problems">
+    <div name="problems" class="block">
       <label for="nameInput" class="col-sm-2 control-label">Did you have problem?</label>
       <div class="col-sm-10">
         <input type="text" [(ngModel)]="problems" name="problemInput"
                 (change)="putProblems()">
       </div>
     </div>
-    <div name="deadline">
+    <div name="deadline" class="block">
       <label for="nameInput" class="col-sm-2 control-label">deadline?</label>
       <div class="col-sm-10">
         <input type="radio" name="deadline" [checked]="deadline" (change)="deadline = !deadline">
@@ -50,8 +50,9 @@
         <input type="text" placeholder="reason" *ngIf="!deadline">
       </div>
     </div>
-    <button (click)="addUpdate()">Send</button>
-    <div [hidden]=" message == undefined">
+    <input type="button" (click)="addUpdate()" value="Send"
+          >
+    <div [hidden]=" message == undefined" class="block">
       {{message}}
     </div>
   </form>

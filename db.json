@@ -136,15 +136,417 @@
         "id": 2,
         "name": "Bob"
       },
-      "created_at": "2017-10-30T09:22:14.738Z",
+      "created_at": "2017-10-30T12:26:28.483Z",
       "have_done": [
         {
           "id": 11,
           "title": "Relax at weekend :)",
           "active": true
+        },
+        {
+          "id": 12,
+          "title": "Hard Worked",
+          "active": false
         }
       ],
       "todo": [],
+      "problems": "",
+      "deadline": true,
+      "reason": ""
+    },
+    {
+      "owner": {
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-10-30T12:32:54.417Z",
+      "have_done": [
+        {
+          "title": "weww",
+          "active": false
+        },
+        {
+          "id": null,
+          "title": "wew",
+          "active": false
+        }
+      ],
+      "todo": [
+        {
+          "id": null,
+          "title": "ewwop43irew",
+          "active": true
+        },
+        {
+          "id": null,
+          "title": "wewopewoper",
+          "active": true
+        },
+        {
+          "id": null,
+          "title": "rkwleperikimrgfpvfd",
+          "active": true
+        },
+        {
+          "id": null,
+          "title": "kswioweopwe",
+          "active": true
+        }
+      ],
+      "problems": "kjfjiuref",
+      "deadline": false,
+      "reason": "",
+      "id": 6
+    },
+    {
+      "id": 7,
+      "owner": {
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-10-30T12:33:20.604Z",
+      "have_done": [
+        {
+          "id": null,
+          "title": "ewwop43irew",
+          "active": false
+        },
+        {
+          "id": null,
+          "title": "wewopewoper",
+          "active": false
+        },
+        {
+          "id": null,
+          "title": "rkwleperikimrgfpvfd",
+          "active": true
+        },
+        {
+          "id": null,
+          "title": "kswioweopwe",
+          "active": false
+        },
+        {
+          "id": 1,
+          "title": "ssdwelkkwd",
+          "active": false
+        }
+      ],
+      "todo": [
+        {
+          "id": 2,
+          "title": "jkwjkwewlwk",
+          "active": true
+        },
+        {
+          "id": 3,
+          "title": "kjwekwe",
+          "active": true
+        },
+        {
+          "id": 4,
+          "title": "wekjwekjwekjwekjwejew",
+          "active": true
+        }
+      ],
+      "problems": "",
+      "deadline": true,
+      "reason": ""
+    },
+    {
+      "id": 8,
+      "owner": {
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-10-30T12:45:18.439Z",
+      "have_done": [
+        {
+          "id": 2,
+          "title": "jkwjkwewlwk",
+          "active": true
+        },
+        {
+          "id": 3,
+          "title": "kjwekwe",
+          "active": true
+        },
+        {
+          "id": 4,
+          "title": "wekjwekjwekjwekjwejew",
+          "active": true
+        }
+      ],
+      "todo": [],
+      "problems": "",
+      "deadline": false,
+      "reason": ""
+    },
+    {
+      "owner": {
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-10-30T13:09:42.947Z",
+      "have_done": [
+        {
+          "title": "sdds",
+          "active": false
+        }
+      ],
+      "todo": [
+        {
+          "id": null,
+          "title": "sdsds",
+          "active": true
+        }
+      ],
+      "problems": "",
+      "deadline": true,
+      "reason": "",
+      "id": 9
+    },
+    {
+      "id": 10,
+      "owner": {
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-10-30T13:36:24.068Z",
+      "have_done": [
+        {
+          "id": null,
+          "title": "sdsds",
+          "active": false
+        },
+        {
+          "id": 2,
+          "title": "wewel;welk",
+          "active": false
+        },
+        {
+          "id": 3,
+          "title": "weklkwle",
+          "active": false
+        },
+        {
+          "id": 4,
+          "title": "weklwelk",
+          "active": false
+        },
+        {
+          "id": 5,
+          "title": "we;owepoep",
+          "active": false
+        }
+      ],
+      "todo": [
+        {
+          "id": 1,
+          "title": "dsdss",
+          "active": true
+        }
+      ],
+      "problems": "",
+      "deadline": true,
+      "reason": ""
+    },
+    {
+      "id": 11,
+      "owner": {
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-10-30T13:39:13.209Z",
+      "have_done": [
+        {
+          "id": 1,
+          "title": "dsdss",
+          "active": true
+        },
+        {
+          "id": 2,
+          "title": "sdd;lsl",
+          "active": false
+        },
+        {
+          "id": 3,
+          "title": "sdds",
+          "active": false
+        },
+        {
+          "id": 4,
+          "title": "lsdldsl",
+          "active": false
+        }
+      ],
+      "todo": [
+        {
+          "id": 5,
+          "title": "lks;dl",
+          "active": true
+        }
+      ],
+      "problems": "",
+      "deadline": true,
+      "reason": ""
+    },
+    {
+      "id": 12,
+      "owner": {
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-10-30T13:40:40.673Z",
+      "have_done": [
+        {
+          "id": 5,
+          "title": "lks;dl",
+          "active": true
+        },
+        {
+          "id": 6,
+          "title": "sdksdkskd",
+          "active": false
+        },
+        {
+          "id": 7,
+          "title": "ksdlksdkl",
+          "active": false
+        },
+        {
+          "id": 8,
+          "title": "sdksdlk",
+          "active": false
+        }
+      ],
+      "todo": [
+        {
+          "id": 9,
+          "title": "lkdslksdk",
+          "active": true
+        },
+        {
+          "id": 10,
+          "title": "sdksldlksd",
+          "active": true
+        },
+        {
+          "id": 11,
+          "title": "ksdldksksd",
+          "active": true
+        }
+      ],
+      "problems": "",
+      "deadline": true,
+      "reason": ""
+    },
+    {
+      "id": 13,
+      "owner": {
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-10-30T13:46:26.470Z",
+      "have_done": [
+        {
+          "id": 9,
+          "title": "lkdslksdk",
+          "active": true
+        },
+        {
+          "id": 10,
+          "title": "sdksldlksd",
+          "active": true
+        },
+        {
+          "id": 11,
+          "title": "ksdldksksd",
+          "active": true
+        },
+        {
+          "id": 12,
+          "title": "wlkwklkdlkdkl",
+          "active": false
+        }
+      ],
+      "todo": [
+        {
+          "id": 13,
+          "title": "dsklkdlkds",
+          "active": true
+        },
+        {
+          "id": 14,
+          "title": "ksdklkds",
+          "active": true
+        },
+        {
+          "id": 15,
+          "title": "sdlsdlkds",
+          "active": true
+        }
+      ],
+      "problems": "",
+      "deadline": true,
+      "reason": ""
+    },
+    {
+      "id": 14,
+      "owner": {
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-10-30T13:47:29.625Z",
+      "have_done": [
+        {
+          "id": 13,
+          "title": "dsklkdlkds",
+          "active": true
+        },
+        {
+          "id": 14,
+          "title": "ksdklkds",
+          "active": true
+        },
+        {
+          "id": 15,
+          "title": "sdlsdlkds",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 16,
+          "title": "ewklweklkew",
+          "active": true
+        }
+      ],
+      "problems": "",
+      "deadline": true,
+      "reason": ""
+    },
+    {
+      "id": 15,
+      "owner": {
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-10-30T13:47:54.057Z",
+      "have_done": [
+        {
+          "id": 16,
+          "title": "ewklweklkew",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 17,
+          "title": "kldlkslks",
+          "active": true
+        }
+      ],
       "problems": "",
       "deadline": true,
       "reason": ""

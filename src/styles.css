@@ -1,5 +1,6 @@
 body {
   background: #f2f2f2;
+  margin-top: 50px;
 }
 
 .block__main {
@@ -44,6 +45,7 @@ body {
 .tasks-list-cb {
   display: none;
 }
+
 
 .tasks-list-mark {
   position: relative;
@@ -91,3 +93,4 @@ body {
   color: #34bf6e;
   text-decoration: line-through;
 }
+

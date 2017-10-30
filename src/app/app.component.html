@@ -1,15 +1,6 @@
 <header class="navbar navbar-default">
-  <div align="center">
-    <h2>{{title}}</h2>
-  </div>
-  <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'London')">London</button>
-    <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
-  </div>
+    <app-tabs-navigate></app-tabs-navigate>
 </header>
-<div class="container">
-  <div class="row">
+<div>
     <router-outlet></router-outlet>
-  </div>
 </div>

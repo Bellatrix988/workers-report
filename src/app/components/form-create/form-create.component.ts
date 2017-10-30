@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Validators, NgForm } from '@angular/forms';
 import { UpdatesDataService } from '../../services/updates-data.service';
 import { UsersDataService } from '../../services/users-data.service';
 import { Router } from '@angular/router';
@@ -90,12 +91,16 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   }
 
   addUpdate() {
-    const body = {id: this.idUpdates, owner: {},
-                  created_at: new Date().toJSON(), have_done: this.lastTask, todo: this.todoTask,
-                   problems: this.problems, deadline: this.deadline, reason: this.reason};
-    this.service.addUpdates(body).subscribe(
-        successful => {this.message = 'Updated successfully add!'; this.gotoIndex()},
-        err => this.message = err);
+    if(this.todoTask.length === 0)
+      this.message = 'You most add todo';
+    else{
+      const body = {id: this.idUpdates, owner: {},
+                    created_at: new Date().toJSON(), have_done: this.lastTask, todo: this.todoTask,
+                     problems: this.problems, deadline: this.deadline, reason: this.reason};
+      this.service.addUpdates(body).subscribe(
+          successful => {this.message = 'Updated successfully add!'; this.gotoIndex()},
+          err => this.message = err);
+      }
   }
 
   private getCurrentId() {
@@ -110,5 +115,12 @@ export class FormCreateComponent implements OnInit, OnDestroy {
 
   private gotoIndex() {
     this.router.navigate(['/index']);
+  }
+
+  canDeactivate() {
+    if (this.textDone.length != 0 || this.textToDo.length !== 0) {
+      return window.confirm('Есть несохраненные изменения. Удалить их?');
+    }
+    return true;
   }
 }

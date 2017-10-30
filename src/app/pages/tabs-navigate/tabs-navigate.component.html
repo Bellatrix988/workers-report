@@ -1,3 +1,16 @@
-<p>
-  tabs-navigate works!
-</p>
+<div class="container">
+  <div class="grid__header tab">
+    <button [routerLink]="['/create']" class="tablinks">Add</button>
+    <button [routerLink]="['/index']" class="tablinks active" onclick="openCity(event, 'Paris')">All</button>
+    <button class="tablinks" onclick="openCity(event, 'Tokyo')">My</button>
+    <button class="tablinks" onclick="openCity(event, 'London')">Date</button>
+  </div>
+ <!--   <div class="grid__header" align="center">
+    <button [routerLink]="['/create']">Add update</button>
+    <select name="filter" id="">
+      <option>Date</option>
+      <option>Only self </option>
+    </select>
+  </div>
+  -->
+</div>
