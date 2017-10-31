@@ -10,16 +10,36 @@ import { Update } from '../../models/update';
 export class ListUpdatesComponent implements OnInit {
 
   updates: Update[];
+  flagBtnShow: boolean;
+  flagShowDetail: boolean;
+
+  private allUpdates: Update[];
+  private showMore: number;
 
   constructor(private UpdateService: UpdatesDataService ) { }
 
   getListUpdates(): void {
     this.UpdateService.getUpdates()
-                      .subscribe(items => this.updates = items);
+                      .subscribe(items => {
+                        this.allUpdates = items;
+                        this.updates = this.allUpdates.slice(0,this.showMore)});
+  }
+
+  showUpdates() {
+    let len = this.updates.length;
+    this.updates = this.updates.concat(this.allUpdates.slice(len, len + this.showMore));
+    this.flagBtnShow = len == this.allUpdates.length;
+  }
+
+  showDetail() {
+    console.log(this.flagShowDetail);
+    this.flagShowDetail = !this.flagShowDetail;
   }
 
   ngOnInit() {
     this.getListUpdates();
+    this.updates = [];
+    this.showMore = 10;
   }
 
 }

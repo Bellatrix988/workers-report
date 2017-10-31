@@ -1,14 +1,14 @@
 <div class="container">
   <div class="block__main">
-    <div *ngFor="let update of updates" class="block" [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
-      <div class="block__user">
+    <div *ngFor=" let update of updates" class="block" [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
+      <div class="block__user" (click)="showDetail()">
         <figure>
           <img src="../../../assets/img/user.svg" alt="" width="30px">
           <i>{{update.owner.name}}</i>
         </figure>
         <p>{{update.createdAt | date: 'dd/MM/yyyy'}}</p>
       </div>
-      <div>
+      <div *ngIf="flagShowDetail">
         <div>
           <div>
             <span> Have done: </span>
@@ -39,4 +39,5 @@
       <hr>
     </div>
   </div>
+  <button *ngIf="!flagBtnShow" (click)="showUpdates()" class="btn__more">Show More</button>
 </div>

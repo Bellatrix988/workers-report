@@ -91,16 +91,21 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   }
 
   addUpdate() {
-    if(this.todoTask.length === 0)
-      this.message = 'You most add todo';
-    else{
+
+    if(this.todoTask.length != 0 && this.canDeactivate()){
       const body = {id: this.idUpdates, owner: {},
                     created_at: new Date().toJSON(), have_done: this.lastTask, todo: this.todoTask,
                      problems: this.problems, deadline: this.deadline, reason: this.reason};
+      this.textToDo = undefined;
       this.service.addUpdates(body).subscribe(
-          successful => {this.message = 'Updated successfully add!'; this.gotoIndex()},
+          successful => {
+            this.message = 'Updated successfully add!';
+            this.gotoIndex()
+          },
           err => this.message = err);
       }
+      else
+        this.message = 'You most add todo';
   }
 
   private getCurrentId() {
@@ -118,6 +123,11 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate() {
+    // if(this.todoTask.length == 0) {
+    //   this.message = 'You most add todo';
+    //   return false;
+    // }
+
     if (this.textDone !== undefined || this.textToDo !== undefined) {
       return window.confirm('Есть несохраненные изменения. Удалить их?');
     }

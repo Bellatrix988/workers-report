@@ -30,7 +30,7 @@ span {
 button {
   border: none;
   padding: 6px 8px;
-  margin: 10px;
+  /*margin: 10px;*/
 }
 
 select {
@@ -60,4 +60,20 @@ select {
 .todo__deactive {
   text-decoration: line-through;
   text-decoration-color: rgba(255, 0, 0, 0.5);
+}
+.btn__more {
+  text-transform: uppercase;
+  background: #FFF;
+  height: 30px;
+  width: 175px;
+  border: 1px solid #bfbfbf;
+  border-top: 1px dashed #bfbfbf;
+  -webkit-border-bottom-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+  color: #5a5a5a;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 100;
 }
