@@ -1,16 +1,8 @@
 <div class="container">
   <div class="grid__header tab">
-    <button [routerLink]="['/create']" class="tablinks">Add</button>
-    <button [routerLink]="['/index']" class="tablinks active">All</button>
-    <button class="tablinks">My</button>
-    <button class="tablinks">Date</button>
+    <button class="tablinks" *ngFor="let tab of tabs" [routerLink]="[tab.path]"
+            [ngClass]="tab.active ? 'active' : ''" (click)="onActive(tab)">
+      {{tab.title}}
+    </button>
   </div>
- <!--   <div class="grid__header" align="center">
-    <button [routerLink]="['/create']">Add update</button>
-    <select name="filter" id="">
-      <option>Date</option>
-      <option>Only self </option>
-    </select>
-  </div>
-  -->
 </div>
