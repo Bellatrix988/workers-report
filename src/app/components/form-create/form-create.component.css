@@ -6,6 +6,31 @@
   align-items: center;
 }
 
+.small {
+  font-size: 10pt;
+  color:#bfbfbf;
+}
+
+.ng-invalid[required] {
+  border-bottom: 2px solid #a94442; /* red */
+}
+
+.msg {
+  width: 60%;
+  border-radius: 5px;
+  padding: 10px 10px;
+  margin-top: 30px;
+}
+
+.msg__danger {
+  background-color: rgba(169, 68, 66, 0.8);
+  border: #a94442;
+}
+
+.msg__successful {
+  background-color: #42A948;
+}
+
 form {
   padding: 10px 0;
 }
@@ -35,12 +60,15 @@ input[type=submit] {
 input[type=button] {
   background-color: #336600;
   color: white;
-
   text-decoration: none;
   margin: 2px 4px;
   padding: 8px 18px;
   cursor: pointer;
   border: none;
+}
+
+input[type=button]:disabled {
+  background-color: #4CAF50;
 }
 
 input[type=submit]:hover {

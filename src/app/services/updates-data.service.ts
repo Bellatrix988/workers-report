@@ -16,6 +16,8 @@ export class UpdatesDataService {
 
   private updateUrl = `http://localhost:3000/updates`;
   private currentUser: User;
+  lastUpdate: Update;
+  // public lastTaskCurrentUser: Task[];
 
   constructor(private http: Http, private userService: UsersDataService) {}
 
@@ -32,7 +34,6 @@ export class UpdatesDataService {
   private extractLastTasks(data: Update[]): Task[] {
     return data[0].toDo as Task[];
   }
-//get last update => get last id and get last id task
   getLastUpdate(){
      return Observable.create((observer: Observer<Update>) => {
            this
@@ -41,6 +42,7 @@ export class UpdatesDataService {
              .subscribe(
                (res: Response) => {
                  let data = this.extractData(res);
+                 // this.lastTaskCurrentUser = this.extractLastTasks(data);
                  observer.next(data[0]);
                  observer.complete();
                 },
@@ -59,8 +61,9 @@ export class UpdatesDataService {
              .get(this.updateUrl + `?owner.id=${user.id}&_sort=created_at&_order=desc`)
              .subscribe(
                (res: Response) => {
-                 let data = this.extractLastTasks(this.extractData(res));
-                 observer.next(data);
+                 let data = this.extractData(res);
+                 this.lastUpdate = data[0];
+                 observer.next(this.extractLastTasks(data));
                  observer.complete();
                 },
                 error => observer.error(error)

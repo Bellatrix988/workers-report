@@ -11,5 +11,14 @@ export class Update extends AppModel {
   @Alias('problems') public problems?: string;
   @Alias('deadline') public deadline: boolean;
   @Alias('reason') public reason?: string;
+
+  constructor() {
+    super();
+    this.toDo = [];
+    this.haveDone = [];
+    this.createdAt = new Date();
+    this.owner = undefined;
+    this.deadline = true;
+  }
 }
 

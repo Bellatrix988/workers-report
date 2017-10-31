@@ -22,12 +22,13 @@ export class ListUpdatesComponent implements OnInit {
     this.UpdateService.getUpdates()
                       .subscribe(items => {
                         this.allUpdates = items;
-                        this.updates = this.allUpdates.slice(0,this.showMore)});
+                        this.showUpdates()});
   }
 
   showUpdates() {
     let len = this.updates.length;
     this.updates = this.updates.concat(this.allUpdates.slice(len, len + this.showMore));
+    len = this.updates.length;
     this.flagBtnShow = len == this.allUpdates.length;
   }
 

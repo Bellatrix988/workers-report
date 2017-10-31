@@ -1,9 +1,11 @@
 <div class="container">
-  <form class="block__main">
+  <form class="block__main" #createForm="ngForm">
     <div name="haveDone" class="block">
-      <label for="nameInput" class="col-sm-2 control-label">Have done?</label>
+      <p>Have done?
+        <span class="small">Check task, if you had done its.</span>
+      </p>
       <div>
-        <div *ngFor="let item of lastTask">
+        <div *ngFor="let item of currentUpdate.haveDone">
           <label class="tasks-list-item">
             <input type="checkbox" id="{{item.id}}"
                   class="tasks-list-cb" [checked]="!item.active"
@@ -18,42 +20,37 @@
       </div>
     </div>
     <div name="toDo" class="block">
-      <label for="nameInput" class="col-sm-2 control-label">What are you doing next?</label>
-      <div *ngFor="let item of todoTask" >
+      <label for="nameInput">What are you doing next?</label>
+      <div *ngFor="let item of currentUpdate.toDo" >
         <label class="tasks-list-item">
-            <input type="checkbox" id="{{item.id}}"
-                  class="tasks-list-cb" [checked]="!item.active"
-                   (change)="onCheck($event, item)" disabled>
-            <span class="tasks-list-mark"></span>
             <span>{{item.title}}</span>
-          </label>
+        </label>
       </div>
-      <div class="col-sm-10">
-        <input type="text"  [(ngModel)]="textToDo" name="toDoInput"
-                placeholder="Write to do" (keydown)="keyDownToDo($event)">
+      <div>
+        <input type="text" [(ngModel)]="textToDo" name="toDoInput"
+                placeholder="Write to do" (keydown)="keyDownToDo($event)"
+                #toDoInput="ngModel" [required]="currentUpdate.toDo.length == 0">
       </div>
     </div>
     <div name="problems" class="block">
-      <label for="nameInput" class="col-sm-2 control-label">Did you have problem?</label>
-      <div class="col-sm-10">
-        <input type="text" [(ngModel)]="problems" name="problemInput"
-                (change)="putProblems()">
+      <label for="nameInput">Did you have problem?</label>
+      <div>
+        <input type="text" [(ngModel)]="currentUpdate.problems" name="problemInput">
       </div>
     </div>
     <div name="deadline" class="block">
-      <label for="nameInput" class="col-sm-2 control-label">deadline?</label>
-      <div class="col-sm-10">
+      <label for="nameInput">deadline?</label>
+      <div>
         <input type="radio" name="deadline" [checked]="deadline" (change)="deadline = !deadline">
         <label for="deadline">Yes</label>
         <input type="radio" name="deadline" [checked]="!deadline" (change)="deadline = !deadline">
         <label for="deadline">No</label>
-        <input type="text" placeholder="reason" *ngIf="!deadline">
+        <input type="text" placeholder="currentUpdates.reason" *ngIf="!deadline">
       </div>
     </div>
-    <input type="button" (click)="addUpdate()" value="Send"
-          >
-    <div [hidden]=" message == undefined" class="block">
+    <input type="button" (click)="addUpdate()" value="Send" [hidden]="!createForm.valid">
+  </form>
+  <div [hidden]=" message == undefined" class="block msg msg__danger">
       {{message}}
     </div>
-  </form>
 </div>

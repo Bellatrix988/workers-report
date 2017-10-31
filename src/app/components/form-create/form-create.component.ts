@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
-import { Validators, NgForm } from '@angular/forms';
 import { UpdatesDataService } from '../../services/updates-data.service';
 import { UsersDataService } from '../../services/users-data.service';
 import { Router } from '@angular/router';
@@ -17,33 +16,23 @@ import { User } from '../../models/user';
 export class FormCreateComponent implements OnInit, OnDestroy {
 
   private sub: any;
+  private idTask: number;
 
-  currentUpdate: Update[];
+  currentUpdate: Update;
 
-  lastUpadate: Update;
-  lastTask: Task[];
-  todoTask: Task[];
+  public textDone: string;
+  public textToDo: string;
 
   deadline: boolean;
-  private idTask: number;
-  private idUpdates: number;
   message: string;
-  textDone: string;
-  textToDo: string;
-  reason: string;
-  problems: string;
 
   constructor(private router: Router,
               private service: UpdatesDataService) { }
 
   ngOnInit() {
-    this.getLastTask();
-    this.getCurrentId();
+    this.getData();
 
-    this.currentUpdate = [];
-    this.todoTask = [];
-    this.problems = '';
-    this.reason = '';
+    this.currentUpdate = new Update();
     this.deadline = true;
   }
 
@@ -51,86 +40,78 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   }
 
   keyDownHaveDone(event) {
-    if(event.keyCode == 13) {
-      this.addDone(this.textDone);
-      this.textDone = null;
-    }
+    if(event.keyCode == 13)
+      this.addDone();
   }
 
   keyDownToDo(event) {
-    if(event.keyCode == 13) {
+    if(event.keyCode == 13)
       this.addToDo();
-      this.textToDo = null;
-    }
   }
 
   onCheck(e, item: Task) {
     item.active = !e.target.checked;
   }
 
-  private addDone(text: string) {
-      let done = { id: this.idTask, title: text, active: false };
-      this.idTask++;
-      console.log(done);
-      this.lastTask.push(done);
-  }
-
-  private addToDo() {
-    const item: Task = { id: this.idTask, title: this.textToDo, active: true };
-    this.idTask++;
-    this.todoTask.push(item);
-  }
-
-  putProblem() {
-    alert(this.problems);
-  }
-
-  getLastTask(): void {
-    this.service.getLastTasksOfCurrentUser()
-                .subscribe(update => this.lastTask = update);
-  }
 
   addUpdate() {
+    console.log(this.currentUpdate);
+    if(this.currentUpdate.toDo.length === 0) {
+      this.message = 'You must add todo';
+      return;
+    }
+    let activeTasks = this.currentUpdate.haveDone.filter(item => item.active == true);
+    this.currentUpdate.toDo = this.currentUpdate.toDo
+                                    .concat(activeTasks);
 
-    if(this.todoTask.length != 0 && this.canDeactivate()){
-      const body = {id: this.idUpdates, owner: {},
-                    created_at: new Date().toJSON(), have_done: this.lastTask, todo: this.todoTask,
-                     problems: this.problems, deadline: this.deadline, reason: this.reason};
-      this.textToDo = undefined;
-      this.service.addUpdates(body).subscribe(
-          successful => {
-            this.message = 'Updated successfully add!';
-            this.gotoIndex()
-          },
-          err => this.message = err);
-      }
-      else
-        this.message = 'You most add todo';
+    this.currentUpdate.deadline = this.deadline;
+
+    this.service.addUpdates(this.currentUpdate._toJSON()).subscribe(
+        successful => {
+          this.message = 'Updated successfully add!';
+          this.gotoIndex()
+        },
+        err => this.message = err);
   }
 
-  private getCurrentId() {
-    this.service
-         .getLastUpdate()
-           .subscribe(
-              item =>
-              {
-                this.idTask = item.toDo[item.toDo.length - 1].id + 1;
-                this.idUpdates = item.id + 1});
+  canDeactivate() {
+    if (this.textDone !== undefined || this.textToDo !== undefined) {
+      return window.confirm('Есть несохраненные изменения. Удалить их?');
+    }
+    return true;
+  }
+
+  //get data from server
+  private getData(): void {
+    this.sub =
+              this.service
+                .getLastTasksOfCurrentUser()
+                  .subscribe(data => {
+                    this.currentUpdate.haveDone = data;
+                    let item = this.service.lastUpdate;
+                    this.idTask = item.toDo[item.toDo.length - 1].id + 1;
+                    this.currentUpdate.id = item.id + 1;
+                  });
   }
 
   private gotoIndex() {
     this.router.navigate(['/index']);
   }
 
-  canDeactivate() {
-    // if(this.todoTask.length == 0) {
-    //   this.message = 'You most add todo';
-    //   return false;
-    // }
+  private addDone() {
+    if(this.textDone == null)
+      return;
+    this.currentUpdate.haveDone.push({ id: this.idTask, title: this.textDone, active: false });
+    this.idTask++;
+    this.textDone = undefined;
+  }
 
-    if (this.textDone !== undefined || this.textToDo !== undefined) {
-      return window.confirm('Есть несохраненные изменения. Удалить их?');
-    }
-    return true;
+  private addToDo() {
+    if(this.textToDo == null)
+      return;
+    this.currentUpdate.toDo.push({ id: this.idTask, title: this.textToDo, active: true });
+    this.idTask++;
+    this.textToDo = undefined;
+
   }
 }

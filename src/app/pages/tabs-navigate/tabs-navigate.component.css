@@ -29,6 +29,7 @@
   -webkit-justify-content: flex-start;
   -ms-flex-pack: justify;
   justify-content: flex-start;
+  /*position: fixed;*/
   position: relative;
   z-index: 100;
 }
