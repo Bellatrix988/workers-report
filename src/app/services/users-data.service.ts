@@ -26,8 +26,8 @@ export class UsersDataService {
   getCurrentUser(): Observable<User> {
     if(this.currentUser === undefined)
       this. currentUser = this.http
-                                .get(this.reportUrl)
-                                  .map(this.extractCurrentUser);
+                            .get(this.reportUrl)
+                              .map(this.extractCurrentUser);
     return this.currentUser;
   }
 }

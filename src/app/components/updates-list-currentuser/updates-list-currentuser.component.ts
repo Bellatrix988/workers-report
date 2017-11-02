@@ -4,7 +4,6 @@ import { Update } from './../../models/update.model';
 
 @Component({
   selector: 'app-updates-list-currentuser',
-  // templateUrl: './updates-list-currentuser.component.html',
   templateUrl: './../list-updates/list-updates.component.html',
   styleUrls: ['./updates-list-currentuser.component.css',
               './../list-updates/list-updates.component.css']
@@ -12,11 +11,14 @@ import { Update } from './../../models/update.model';
 export class UpdatesListCurrentUserComponent implements OnInit {
 
   updates: Update[];
+  flagBtnShow: Boolean = true;
   constructor(private service: UpdatesDataService) { }
 
   ngOnInit() {
-    this.updates = [];
-    this.updates.push(this.service.lastUpdate);
+    this.service.getDataCurrentUser()
+      .subscribe(
+        data =>
+        this.updates = data);
   }
 
 }

@@ -26,18 +26,43 @@ export class UpdatesDataService {
              .map(this.extractData);
   }
 
-  // get(): Observable<Update[]> {
-  //   let id = this.currentUser.id;
-  //   return this.http
-  //                .get(this.updateUrl + `updates?owner.id=${id}`)
-  //                  .map(this.extractData);
-  // }
-
   create(update: Update) {
     update.owner = this.currentUser;
     return this.http.post(this.updateUrl, update._toJSON());
   }
 
+  private getLastTask(updates: Update[]) {
+     this.updatesCurrentUser = updates;
+     let data = this.updatesCurrentUser[0];
+     this.lastUpdate = data;
+  }
+
+
+  getDataCurrentUser(): Observable<Update[]> {
+    return this._wrapGetData(function(){});
+  }
+
+  private _wrapGetData(func: Function): Observable<Update[]> {
+    return Observable.create((observer: Observer<Update[]>) => {
+      this.userService.getCurrentUser().subscribe(
+         user => {
+           this.currentUser = user;
+           this
+             .http
+             .get(this.updateUrl + `?owner.id=${this.currentUser.id}&_sort=created_at&_order=desc`)
+             .subscribe(
+               (res: Response) => {
+                 let data =  this.extractData(res);
+                 func(data);
+                 observer.next(data);
+                 observer.complete();
+                },
+                error => observer.error(error)
+              );
+            }
+       );
+    });
+  }
 
   getLastTasksOfCurrentUser(): Observable<Task[]> {
     return Observable.create((observer: Observer<Task[]>) => {

@@ -11,25 +11,22 @@
       <div>
         <div>
           <div>
-            <span> Have done: </span>
+            <span><b> Have done: </b></span>
             <div>
               <label class="tasks-list-item" *ngFor="let did of update.haveDone"
                       [ngClass]="did.active ? 'todo__active' : 'todo__deactive'">
                 <input type="checkbox" class="tasks-list-cb" [checked]="!did.active"
                         disabled>
                 <span class="tasks-list-mark"></span>
-                <span>{{did.title}}</span>
+                {{did.title}}
               </label>
             </div>
           </div>
           <div>
-            <span> Do you have next tasks? </span>
-            <div >
+            <span><b> Do you have next tasks? </b></span>
+            <div>
               <label *ngFor="let do of update.toDo" class="tasks-list-item">
-                <input type="checkbox" class="tasks-list-cb" [checked]="!do.active"
-                        disabled>
-                <span class="tasks-list-mark"></span>
-                <span>{{do.title}}</span>
+                {{do.title}}
               </label>
             </div>
           </div>
