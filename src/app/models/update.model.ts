@@ -1,6 +1,6 @@
-import { User } from './user';
-import { Task } from './task';
 import { Alias, AppModel } from 'tsmodels';
+import { User } from './user.model';
+import { Task } from './task.model';
 
 export class Update extends AppModel {
   @Alias('id') public id: number;

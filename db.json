@@ -129,6 +129,78 @@
       "problems": "",
       "deadline": false,
       "reason": ""
+    },
+    {
+      "id": 5,
+      "owner": {
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-02T08:18:12.953Z",
+      "have_done": [
+        {
+          "id": 11,
+          "title": "Relax at weekend :)",
+          "active": false
+        },
+        {
+          "id": 12,
+          "title": "Hard worked",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 13,
+          "title": "Research guard",
+          "active": true
+        },
+        {
+          "id": 12,
+          "title": "Hard worked",
+          "active": true
+        }
+      ],
+      "problems": "No",
+      "deadline": true
+    },
+    {
+      "id": 6,
+      "owner": {
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-02T10:01:14.863Z",
+      "have_done": [
+        {
+          "id": 13,
+          "title": "Research guard",
+          "active": true
+        },
+        {
+          "id": 12,
+          "title": "Hard worked",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 13,
+          "title": "Убрать кругляшки от todo где вывод тудушек",
+          "active": true
+        },
+        {
+          "id": 13,
+          "title": "Research guard",
+          "active": true
+        },
+        {
+          "id": 12,
+          "title": "Hard worked",
+          "active": true
+        }
+      ],
+      "deadline": true
     }
   ],
   "profile": {

@@ -3,9 +3,9 @@ import { UpdatesDataService } from '../../services/updates-data.service';
 import { UsersDataService } from '../../services/users-data.service';
 import { Router } from '@angular/router';
 
-import { Task } from '../../models/task';
-import { Update } from '../../models/update';
-import { User } from '../../models/user';
+import { Task } from '../../models/task.model';
+import { Update } from '../../models/update.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-form-create',
@@ -66,7 +66,7 @@ export class FormCreateComponent implements OnInit, OnDestroy {
 
     this.currentUpdate.deadline = this.deadline;
 
-    this.service.addUpdates(this.currentUpdate._toJSON()).subscribe(
+    this.service.create(this.currentUpdate).subscribe(
         successful => {
           this.message = 'Updated successfully add!';
           this.gotoIndex()

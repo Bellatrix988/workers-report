@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Tab } from '../../models/tab';
+import { Tab } from '../../models/tab.model';
 
 @Component({
   selector: 'app-tabs-navigate',
@@ -9,6 +9,7 @@ import { Tab } from '../../models/tab';
 })
 export class TabsNavigateComponent implements OnInit {
 
+  private currentPath: string;
   tabs: Tab[];
   constructor(private router: Router) { }
 
@@ -18,10 +19,11 @@ export class TabsNavigateComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.router.url);
+
+    this.currentPath = this.router.url;
+
     this.tabs = [{ id: 1, title: 'Add', path: '/create', active: false },
                  { id: 2, title: 'All', path: '/index', active: true },
-                 { id: 3, title: 'My', path: '/index', active: false },
-                 { id: 4, title: 'Bla', path: '/index', active: false }];
+                 { id: 3, title: 'My', path: '/my', active: false }];
   }
 }

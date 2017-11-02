@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UpdatesDataService } from '../../services/updates-data.service';
-import { Update } from '../../models/update';
+import { Update } from '../../models/update.model';
 
 @Component({
   selector: 'app-list-updates',
@@ -15,14 +15,21 @@ export class ListUpdatesComponent implements OnInit {
 
   private allUpdates: Update[];
   private showMore: number;
+  private myUpdates: Update[];
 
   constructor(private UpdateService: UpdatesDataService ) { }
 
   getListUpdates(): void {
-    this.UpdateService.getUpdates()
+    this.UpdateService.getAll()
                       .subscribe(items => {
                         this.allUpdates = items;
+                        this.myUpdates = this.UpdateService.updatesCurrentUser;
                         this.showUpdates()});
+  }
+
+  showMyUpdates() {
+    this.allUpdates = this.myUpdates;
+    this.showUpdates();
   }
 
   showUpdates() {

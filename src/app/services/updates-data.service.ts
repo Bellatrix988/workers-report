@@ -4,9 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { UsersDataService } from './users-data.service';
 
-import { Update } from '../models/update';
-import { User } from '../models/user';
-import { Task } from '../models/task';
+import { Update } from '../models/update.model';
+import { User } from '../models/user.model';
+import { Task } from '../models/task.model';
 
 import 'rxjs/add/operator/map';
 
@@ -17,39 +17,27 @@ export class UpdatesDataService {
   private updateUrl = `http://localhost:3000/updates`;
   private currentUser: User;
   lastUpdate: Update;
-  // public lastTaskCurrentUser: Task[];
+  updatesCurrentUser: Update[];
 
   constructor(private http: Http, private userService: UsersDataService) {}
 
-  private extractData(res: Response): Update[] {
-    const body = res.json();
-    let result: Update[] = [];
-    body.forEach(item => {
-      let record: Update = new Update();
-      record._fromJSON(item);
-      result.push(record)});
-    return result;
+  getAll(): Observable<Update[]> {
+    return this.http.get(this.updateUrl)
+             .map(this.extractData);
   }
 
-  private extractLastTasks(data: Update[]): Task[] {
-    return data[0].toDo as Task[];
+  // get(): Observable<Update[]> {
+  //   let id = this.currentUser.id;
+  //   return this.http
+  //                .get(this.updateUrl + `updates?owner.id=${id}`)
+  //                  .map(this.extractData);
+  // }
+
+  create(update: Update) {
+    update.owner = this.currentUser;
+    return this.http.post(this.updateUrl, update._toJSON());
   }
-  getLastUpdate(){
-     return Observable.create((observer: Observer<Update>) => {
-           this
-             .http
-             .get(this.updateUrl + `?_sort=created_at&_order=desc`)
-             .subscribe(
-               (res: Response) => {
-                 let data = this.extractData(res);
-                 // this.lastTaskCurrentUser = this.extractLastTasks(data);
-                 observer.next(data[0]);
-                 observer.complete();
-                },
-                error => observer.error(error)
-              );
-            });
-  }
+
 
   getLastTasksOfCurrentUser(): Observable<Task[]> {
     return Observable.create((observer: Observer<Task[]>) => {
@@ -61,9 +49,10 @@ export class UpdatesDataService {
              .get(this.updateUrl + `?owner.id=${user.id}&_sort=created_at&_order=desc`)
              .subscribe(
                (res: Response) => {
-                 let data = this.extractData(res);
-                 this.lastUpdate = data[0];
-                 observer.next(this.extractLastTasks(data));
+                 this.updatesCurrentUser = this.extractData(res);
+                 let data = this.updatesCurrentUser[0];
+                 this.lastUpdate = data;
+                 observer.next(data.toDo);
                  observer.complete();
                 },
                 error => observer.error(error)
@@ -73,14 +62,14 @@ export class UpdatesDataService {
     });
   }
 
-  getUpdates(): Observable<Update[]> {
-    return this.http.get(this.updateUrl)
-                      .map(this.extractData);
-  }
-
-  addUpdates(body) {
-    body.owner = this.currentUser;
-    return this.http.post(this.updateUrl, body);
+  private extractData(res: Response): Update[] {
+    const body = res.json();
+    let result: Update[] = [];
+    body.forEach(item => {
+      let record: Update = new Update();
+      record._fromJSON(item);
+      result.push(record)});
+    return result;
   }
 
 }
