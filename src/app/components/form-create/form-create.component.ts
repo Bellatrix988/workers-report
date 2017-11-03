@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { UpdatesDataService } from '../../services/updates-data.service';
-import { UsersDataService } from '../../services/users-data.service';
 import { Router } from '@angular/router';
 
 import { Task } from '../../models/task.model';
@@ -40,13 +39,15 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   }
 
   keyDownHaveDone(event) {
-    if(event.keyCode == 13)
+    if (event.keyCode === 13) {
       this.addDone();
+    }
   }
 
   keyDownToDo(event) {
-    if(event.keyCode == 13)
+    if (event.keyCode === 13) {
       this.addToDo();
+    }
   }
 
   onCheck(e, item: Task) {
@@ -56,20 +57,19 @@ export class FormCreateComponent implements OnInit, OnDestroy {
 
   addUpdate() {
     console.log(this.currentUpdate);
-    if(this.currentUpdate.toDo.length === 0) {
+    if (this.currentUpdate.toDo.length === 0) {
       this.message = 'You must add todo';
       return;
     }
-    let activeTasks = this.currentUpdate.haveDone.filter(item => item.active == true);
+    const activeTasks = this.currentUpdate.haveDone
+                        .filter(item => item.active === true);
     this.currentUpdate.toDo = this.currentUpdate.toDo
-                                    .concat(activeTasks);
-
+                                .concat(activeTasks);
     this.currentUpdate.deadline = this.deadline;
-
     this.service.create(this.currentUpdate).subscribe(
         successful => {
           this.message = 'Updated successfully add!';
-          this.gotoIndex()
+          this.gotoIndex();
         },
         err => this.message = err);
   }
@@ -81,14 +81,13 @@ export class FormCreateComponent implements OnInit, OnDestroy {
     return true;
   }
 
-  //get data from server
   private getData(): void {
     this.sub =
               this.service
                 .getLastTasksOfCurrentUser()
                   .subscribe(data => {
                     this.currentUpdate.haveDone = data;
-                    let item = this.service.lastUpdate;
+                    const item = this.service.lastUpdate;
                     this.idTask = item.toDo[item.toDo.length - 1].id + 1;
                     this.currentUpdate.id = item.id + 1;
                   });
@@ -99,16 +98,18 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   }
 
   private addDone() {
-    if(this.textDone == null)
+    if (this.textDone == null) {
       return;
+    }
     this.currentUpdate.haveDone.push({ id: this.idTask, title: this.textDone, active: false });
     this.idTask++;
     this.textDone = undefined;
   }
 
   private addToDo() {
-    if(this.textToDo == null)
+    if (this.textToDo == null) {
       return;
+    }
     this.currentUpdate.toDo.push({ id: this.idTask, title: this.textToDo, active: true });
     this.idTask++;
     this.textToDo = undefined;

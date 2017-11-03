@@ -12,12 +12,13 @@ export class TabsNavigateComponent implements OnInit {
 
   private currentPath: string;
   tabs: Tab[];
+
   constructor(private router: Router,
               private location: Location) { }
 
   onActive(tab?: Tab) {
-    this.tabs.forEach(item => item.active = item.path == this.currentPath);
-    // tab.active = true;
+    this.tabs.forEach(item => item.active = false);
+    tab.active = true;
   }
 
   ngOnInit() {
@@ -25,6 +26,6 @@ export class TabsNavigateComponent implements OnInit {
     this.tabs = [{ id: 1, title: 'Add', path: '/create', active: false },
                  { id: 2, title: 'All', path: '/index', active: true },
                  { id: 3, title: 'My', path: '/my', active: false }];
-    this.onActive();
+    this.tabs.forEach(item => item.active = item.path === this.currentPath);
   }
 }

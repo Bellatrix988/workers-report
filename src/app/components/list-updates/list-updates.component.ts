@@ -20,11 +20,13 @@ export class ListUpdatesComponent implements OnInit {
   constructor(private UpdateService: UpdatesDataService ) { }
 
   getListUpdates(): void {
-    this.UpdateService.getAll()
-                      .subscribe(items => {
-                        this.allUpdates = items;
-                        this.myUpdates = this.UpdateService.updatesCurrentUser;
-                        this.showUpdates()});
+    this.UpdateService
+      .getAll()
+        .subscribe(items => {
+          this.allUpdates = items;
+          this.myUpdates = this.UpdateService.updatesCurrentUser;
+          this.showUpdates();
+      });
   }
 
   showMyUpdates() {
@@ -36,7 +38,7 @@ export class ListUpdatesComponent implements OnInit {
     let len = this.updates.length;
     this.updates = this.updates.concat(this.allUpdates.slice(len, len + this.showMore));
     len = this.updates.length;
-    this.flagBtnShow = len == this.allUpdates.length;
+    this.flagBtnShow = len === this.allUpdates.length;
   }
 
   showDetail() {
