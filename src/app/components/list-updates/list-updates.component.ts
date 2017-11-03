@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { UpdatesDataService } from '../../services/updates-data.service';
 import { Update } from '../../models/update.model';
+export const SHOW_MORE = 10;
 
 @Component({
   selector: 'app-list-updates',
   templateUrl: './list-updates.component.html',
   styleUrls: ['./list-updates.component.css']
 })
+
+
 export class ListUpdatesComponent implements OnInit {
+
+
 
   updates: Update[];
   flagBtnShow: boolean;
   flagShowDetail: boolean;
 
   private allUpdates: Update[];
-  private showMore: number;
-  private myUpdates: Update[];
 
   constructor(private UpdateService: UpdatesDataService ) { }
 
@@ -24,19 +27,13 @@ export class ListUpdatesComponent implements OnInit {
       .getAll()
         .subscribe(items => {
           this.allUpdates = items;
-          this.myUpdates = this.UpdateService.updatesCurrentUser;
           this.showUpdates();
       });
   }
 
-  showMyUpdates() {
-    this.allUpdates = this.myUpdates;
-    this.showUpdates();
-  }
-
   showUpdates() {
     let len = this.updates.length;
-    this.updates = this.updates.concat(this.allUpdates.slice(len, len + this.showMore));
+    this.updates = this.updates.concat(this.allUpdates.slice(len, len + SHOW_MORE));
     len = this.updates.length;
     this.flagBtnShow = len === this.allUpdates.length;
   }
@@ -49,7 +46,6 @@ export class ListUpdatesComponent implements OnInit {
   ngOnInit() {
     this.getListUpdates();
     this.updates = [];
-    this.showMore = 10;
   }
 
 }

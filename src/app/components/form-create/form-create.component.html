@@ -1,22 +1,25 @@
 <div class="container">
   <form class="block__main" #createForm="ngForm">
     <div name="haveDone" class="block">
-      <p>Have done?
+      <p>
+        Have done?
         <span class="small">Check task, if you had done its.</span>
       </p>
       <div>
         <div *ngFor="let item of currentUpdate.haveDone">
           <label class="tasks-list-item">
             <input type="checkbox" id="{{item.id}}"
-                  class="tasks-list-cb" [checked]="!item.active"
-                   (change)="onCheck($event, item)">
+              class="tasks-list-cb" [checked]="!item.active"
+              (change)="onCheck($event, item)">
             <span class="tasks-list-mark"></span>
             <span>{{item.title}}</span>
           </label>
         </div>
-        <input type="text" [(ngModel)]="textDone" name="haveDoneInput"
-                placeholder="Write have done"
-               (keydown)="keyDownHaveDone($event)">
+        <input type="text"
+          [(ngModel)]="textDone"
+          name="haveDoneInput"
+          placeholder="Write have done"
+          (keydown)="keyDownHaveDone($event)">
       </div>
     </div>
     <div name="toDo" class="block">
@@ -27,9 +30,10 @@
         </label>
       </div>
       <div>
-        <input type="text" [(ngModel)]="textToDo" name="toDoInput"
-                placeholder="Write to do" (keydown)="keyDownToDo($event)"
-                #toDoInput="ngModel" [required]="currentUpdate.toDo.length == 0">
+        <input type="text"
+          [(ngModel)]="textToDo" name="toDoInput" placeholder="Write to do"
+          (keydown)="keyDownToDo($event)" #toDoInput="ngModel"
+          [required]="currentUpdate.toDo.length == 0">
       </div>
     </div>
     <div name="problems" class="block">
@@ -41,16 +45,20 @@
     <div name="deadline" class="block">
       <label for="nameInput">deadline?</label>
       <div>
-        <input type="radio" name="deadline" [checked]="deadline" (change)="deadline = !deadline">
+        <input type="radio" name="deadline"
+          [checked]="deadline" (change)="deadline = !deadline">
         <label for="deadline">Yes</label>
-        <input type="radio" name="deadline" [checked]="!deadline" (change)="deadline = !deadline">
+        <input type="radio" name="deadline"
+          [checked]="!deadline" (change)="deadline = !deadline">
         <label for="deadline">No</label>
         <input type="text" placeholder="currentUpdates.reason" *ngIf="!deadline">
       </div>
     </div>
-    <input type="button" (click)="addUpdate()" value="Send" [hidden]="!createForm.valid">
+    <input type="button" (click)="addUpdate()"
+      value="Send" [hidden]="!createForm.valid">
   </form>
-  <div [hidden]=" message == undefined" class="block msg msg__danger">
+  <div [hidden]=" message == undefined"
+    class="block msg msg__danger">
       {{message}}
     </div>
 </div>

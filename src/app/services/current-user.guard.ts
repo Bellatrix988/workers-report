@@ -16,7 +16,6 @@ export class CurrentUserGuard implements CanActivate {
       this.userService.load()
         .subscribe(
           user => {
-            console.log('User', user);
             observer.next(true);
             observer.complete();
           },

@@ -54,24 +54,23 @@ export class FormCreateComponent implements OnInit, OnDestroy {
     item.active = !e.target.checked;
   }
 
-
   addUpdate() {
-    console.log(this.currentUpdate);
     if (this.currentUpdate.toDo.length === 0) {
       this.message = 'You must add todo';
       return;
     }
     const activeTasks = this.currentUpdate.haveDone
-                        .filter(item => item.active === true);
+      .filter(item => item.active === true);
     this.currentUpdate.toDo = this.currentUpdate.toDo
-                                .concat(activeTasks);
+      .concat(activeTasks);
     this.currentUpdate.deadline = this.deadline;
-    this.service.create(this.currentUpdate).subscribe(
+    this.service.create(this.currentUpdate)
+      .subscribe(
         successful => {
           this.message = 'Updated successfully add!';
           this.gotoIndex();
         },
-        err => this.message = err);
+        err => this.message = err.message);
   }
 
   canDeactivate() {
@@ -81,16 +80,15 @@ export class FormCreateComponent implements OnInit, OnDestroy {
     return true;
   }
 
-  private getData(): void {
+  private getData() {
     this.sub =
-              this.service
-                .getLastTasksOfCurrentUser()
-                  .subscribe(data => {
-                    this.currentUpdate.haveDone = data;
-                    const item = this.service.lastUpdate;
-                    this.idTask = item.toDo[item.toDo.length - 1].id + 1;
-                    this.currentUpdate.id = item.id + 1;
-                  });
+      this.service
+        .getLastTask()
+          .subscribe(data => {
+            this.currentUpdate.haveDone = data.toDo;
+            this.idTask =
+              data.toDo[this.currentUpdate.haveDone.length - 1].id + 1;
+          });
   }
 
   private gotoIndex() {
@@ -113,6 +111,5 @@ export class FormCreateComponent implements OnInit, OnDestroy {
     this.currentUpdate.toDo.push({ id: this.idTask, title: this.textToDo, active: true });
     this.idTask++;
     this.textToDo = undefined;
-
   }
 }

@@ -1,6 +1,8 @@
 <div class="container">
   <div class="block__main">
-    <div *ngFor=" let update of updates" class="block" [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
+    <div *ngFor=" let update of updates"
+      class="block"
+      [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
       <div class="block__user" (click)="showDetail()">
         <figure>
           <img src="../../../assets/img/user.svg" alt="" width="30px">

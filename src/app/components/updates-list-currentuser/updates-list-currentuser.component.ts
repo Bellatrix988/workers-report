@@ -15,10 +15,8 @@ export class UpdatesListCurrentUserComponent implements OnInit {
   constructor(private service: UpdatesDataService) { }
 
   ngOnInit() {
-    this.service.getDataCurrentUser()
-      .subscribe(
-        data =>
-        this.updates = data);
+    this.service.getUpdatesCurrentUser()
+      .subscribe(data => this.updates = data);
   }
 
 }
