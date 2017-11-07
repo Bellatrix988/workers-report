@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 /*components*/
 import { FormCreateComponent } from './components/form-create/form-create.component';
 import { ListUpdatesComponent } from './components/list-updates/list-updates.component';
-import { UpdatesListCurrentUserComponent } from './components/updates-list-currentuser/updates-list-currentuser.component';
 
 /*pages*/
 import { TabsNavigateComponent } from './pages/tabs-navigate/tabs-navigate.component';
@@ -19,6 +18,7 @@ import { TabsNavigateComponent } from './pages/tabs-navigate/tabs-navigate.compo
 /*services*/
 import { UpdatesDataService } from './services/updates-data.service';
 import { CurrentUserService } from './services/current-user.service';
+import { UsersService } from './services/users.service';
 import { CanDeactivateGuardService } from './services/create-form-deactivate.guard.service';
 import { CurrentUserGuard } from './services/current-user.guard';
 
@@ -27,8 +27,7 @@ import { CurrentUserGuard } from './services/current-user.guard';
     AppComponent,
     ListUpdatesComponent,
     FormCreateComponent,
-    TabsNavigateComponent,
-    UpdatesListCurrentUserComponent
+    TabsNavigateComponent
   ],
   imports: [
     RouterModule,
@@ -38,7 +37,7 @@ import { CurrentUserGuard } from './services/current-user.guard';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [UpdatesDataService, CurrentUserService,
+  providers: [UpdatesDataService, CurrentUserService, UsersService,
     CanDeactivateGuardService, CurrentUserGuard],
   bootstrap: [AppComponent]
 })

@@ -16,17 +16,65 @@ export const URL = `http://localhost:3000/updates`;
 export class UpdatesDataService {
 
   _id: number;
-  constructor(private http: HttpClient, private userService: CurrentUserService) {}
+  constructor(private http: HttpClient,
+              private userService: CurrentUserService) {}
 
-  // Get updates all users
-  getAll(): Observable<Update[]> {
-    const params = new HttpParams()
-      .set('_order', 'desc')
-      .set('_sort', 'created_at');
-    return this.http
+  getBy(param?: any): Observable<Update[]> {
+    if (!!param) {
+    let params = new HttpParams();
+      param.forEach(item => {
+        if (item.value === 'my') {
+          params = new HttpParams()
+            .set('owner.id', `${this.userService.id}`)
+            .set('_order', 'desc')
+            .set('_sort', 'created_at');
+        }
+        else {
+          params = new HttpParams()
+            .set(`owner.id`, `${item.value}`)
+            .set('_order', 'desc')
+            .set('_sort', 'created_at');
+        }
+      });
+      return this.http
       .get(URL, {params})
       .map(this._getUpdates);
+    }
+    return this.http
+      .get(URL)
+      .map(this._getUpdates);
+
+
   }
+
+  // private _setParams(params): HttpParams {
+  //   params.forEach(item => {
+
+  //   });
+  // }
+
+ //  // Get updates all users
+ //  getAll(): Observable<Update[]> {
+ //    const params = new HttpParams()
+ //      .set('_order', 'desc')
+ //      .set('_sort', 'created_at');
+ //    return this.http
+ //      .get(URL, {params})
+ //      .map(this._getUpdates);
+ //  }
+
+
+ // // get updates current user's
+ //  getUpdatesCurrentUser(): Observable<Update[]> {
+ //    const params = new HttpParams()
+ //      .set('owner.id', `${this.userService.id}`)
+ //      .set('_order', 'desc')
+ //      .set('_sort', 'created_at');
+ //    return this.http
+ //      .get(URL, {params})
+ //      .map(this._getUpdates);
+ //  }
+
 
   // add new Update form currentUser
   create(update: Update) {
@@ -36,20 +84,10 @@ export class UpdatesDataService {
     return this.http.post(URL, update._toJSON());
   }
 
-  // get updates current user's
-  getUpdatesCurrentUser(): Observable<Update[]> {
-    const params = new HttpParams()
-      .set('owner.id', `${this.userService.id}`)
-      .set('_order', 'desc')
-      .set('_sort', 'created_at');
-    return this.http
-      .get(URL, {params})
-      .map(this._getUpdates);
-  }
 
   // get last task in DB
   getLastTask(): Observable<Update> {
-    return this.getUpdatesCurrentUser()
+    return this.getBy([{'key': '', 'value': 'my'}])
       .map(item => this._getTasks(item));
   }
 

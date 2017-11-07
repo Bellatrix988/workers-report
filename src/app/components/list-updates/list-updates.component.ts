@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UpdatesDataService } from '../../services/updates-data.service';
 import { Update } from '../../models/update.model';
+import { ActivatedRoute, Route, Params } from '@angular/router';
+
 export const SHOW_MORE = 10;
 
 @Component({
@@ -9,10 +11,7 @@ export const SHOW_MORE = 10;
   styleUrls: ['./list-updates.component.css']
 })
 
-
 export class ListUpdatesComponent implements OnInit {
-
-
 
   updates: Update[];
   flagBtnShow: boolean;
@@ -20,16 +19,25 @@ export class ListUpdatesComponent implements OnInit {
 
   private allUpdates: Update[];
 
-  constructor(private UpdateService: UpdatesDataService ) { }
+  constructor(private updateService: UpdatesDataService,
+              private route: ActivatedRoute) { }
 
   getListUpdates(): void {
-    this.UpdateService
-      .getAll()
+    const id = this.route.snapshot.paramMap.get('id');
+    let params;
+    if (!!id) {
+      params = [{'key': 'owner.id', 'value': `${id}`}];
+    } else{
+      params = null;
+    }
+    this.updateService
+      .getBy(params)
         .subscribe(items => {
-          this.allUpdates = items;
-          this.showUpdates();
+          this.updates = items;
       });
   }
+
+  // start -- limit
 
   showUpdates() {
     let len = this.updates.length;
@@ -44,8 +52,9 @@ export class ListUpdatesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getListUpdates();
-    this.updates = [];
+    this.route.params.subscribe((params: Params) => {
+        console.log('Route subscribe');
+        this.getListUpdates();
+      });
   }
-
 }

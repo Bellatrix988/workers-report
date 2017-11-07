@@ -4,5 +4,10 @@
             [ngClass]="tab.active ? 'active' : ''" (click)="onActive(tab)">
       {{tab.title}}
     </button>
+    <select name="filter" [(ngModel)]="customUser" (change)="onChange()">
+    <option *ngFor="let user of users" [value]="user.id">
+      {{user.name}} - {{user.id}}
+    </option>
+  </select>
   </div>
 </div>
