@@ -43,38 +43,7 @@ export class UpdatesDataService {
     return this.http
       .get(URL)
       .map(this._getUpdates);
-
-
   }
-
-  // private _setParams(params): HttpParams {
-  //   params.forEach(item => {
-
-  //   });
-  // }
-
- //  // Get updates all users
- //  getAll(): Observable<Update[]> {
- //    const params = new HttpParams()
- //      .set('_order', 'desc')
- //      .set('_sort', 'created_at');
- //    return this.http
- //      .get(URL, {params})
- //      .map(this._getUpdates);
- //  }
-
-
- // // get updates current user's
- //  getUpdatesCurrentUser(): Observable<Update[]> {
- //    const params = new HttpParams()
- //      .set('owner.id', `${this.userService.id}`)
- //      .set('_order', 'desc')
- //      .set('_sort', 'created_at');
- //    return this.http
- //      .get(URL, {params})
- //      .map(this._getUpdates);
- //  }
-
 
   // add new Update form currentUser
   create(update: Update) {
@@ -84,6 +53,13 @@ export class UpdatesDataService {
     return this.http.post(URL, update._toJSON());
   }
 
+  update() { }
+
+  deleteUpdate(id: number): void {
+    const params = new HttpParams()
+      .set(`id`, `${id}`);
+    this.http.delete(URL, {params});
+  }
 
   // get last task in DB
   getLastTask(): Observable<Update> {

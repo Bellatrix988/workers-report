@@ -51,6 +51,10 @@ export class ListUpdatesComponent implements OnInit {
     this.flagShowDetail = !this.flagShowDetail;
   }
 
+  deleteUpdate(item) {
+    this.updateService.deleteUpdate(item.id);
+  }
+
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
         console.log('Route subscribe');

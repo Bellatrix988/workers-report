@@ -4,33 +4,37 @@ body {
 }
 
 .block__main {
-    width: 60%;
-    border-radius: 2px;
-    background: #fff;
-    box-shadow: 0px 5px 5px 0 rgba(0,0,0,0.15);
-    position: relative;
+  width: 60%;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0px 5px 5px 0 rgba(0,0,0,0.15);
+  position: relative;
 }
 
 .block {
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 .item_todo {
   width: 100%;
-  padding: 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 
 :active, :hover, :focus {
-    outline: 0;
-    outline-offset: 0;
+  outline: 0;
+  outline-offset: 0;
+}
+
+.item-task {
+  width: 100%;
 }
 
 .tasks-list-item {
   display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   line-height: 24px;
-  padding: 12px 15px;
+  padding: 2px 5px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -51,7 +55,7 @@ body {
   position: relative;
   display: inline-block;
   vertical-align: top;
-  margin-right: 12px;
+  margin-right: 8px;
   width: 20px;
   height: 20px;
   border: 2px solid #c4cbd2;

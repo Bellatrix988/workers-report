@@ -25,6 +25,8 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   deadline: boolean;
   message: string;
 
+  flagHaveDone: boolean;
+
   constructor(private router: Router,
               private service: UpdatesDataService) { }
 
@@ -54,15 +56,19 @@ export class FormCreateComponent implements OnInit, OnDestroy {
     item.active = !e.target.checked;
   }
 
+  deleteTaskHaveDone(task: Task) {
+    const index = this.currentUpdate.haveDone.indexOf(task);
+    console.log(index);
+    if (index !== -1) {
+      this.currentUpdate.haveDone.splice(index, 1);
+    }
+  }
+
   addUpdate() {
     if (this.currentUpdate.toDo.length === 0) {
       this.message = 'You must add todo';
       return;
     }
-    const activeTasks = this.currentUpdate.haveDone
-      .filter(item => item.active === true);
-    this.currentUpdate.toDo = this.currentUpdate.toDo
-      .concat(activeTasks);
     this.currentUpdate.deadline = this.deadline;
     this.service.create(this.currentUpdate)
       .subscribe(
@@ -85,9 +91,11 @@ export class FormCreateComponent implements OnInit, OnDestroy {
       this.service
         .getLastTask()
           .subscribe(data => {
-            this.currentUpdate.haveDone = data.toDo;
+            const activeTasks = data.haveDone
+              .filter(item => item.active === true);
+            this.currentUpdate.haveDone = data.toDo.concat(activeTasks);
             this.idTask =
-              data.toDo[this.currentUpdate.haveDone.length - 1].id + 1;
+              data.toDo[data.toDo.length - 1].id + 1;
           });
   }
 
