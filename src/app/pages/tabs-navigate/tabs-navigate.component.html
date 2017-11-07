@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="grid__header tab">
+    <button class="tablinks" *ngFor="let tab of tabs" [routerLink]="[tab.path]"
+            [ngClass]="tab.active ? 'active' : ''" (click)="onActive(tab)">
+      {{tab.title}}
+    </button>
+  </div>
+</div>

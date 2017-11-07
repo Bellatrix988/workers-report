@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="block__main">
+    <div *ngFor=" let update of updates"
+      class="block"
+      [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
+      <div class="block__user" (click)="showDetail()">
+        <figure>
+          <img src="../../../assets/img/user.svg" alt="" width="30px">
+          <i>{{update.owner.name}}</i>
+        </figure>
+        <p>{{update.createdAt | date: 'dd/MM/yyyy'}}</p>
+      </div>
+      <div>
+        <div>
+          <div>
+            <span><b> Have done: </b></span>
+            <div>
+              <label class="tasks-list-item" *ngFor="let did of update.haveDone"
+                      [ngClass]="did.active ? 'todo__active' : 'todo__deactive'">
+                <input type="checkbox" class="tasks-list-cb" [checked]="!did.active"
+                        disabled>
+                <span class="tasks-list-mark"></span>
+                {{did.title}}
+              </label>
+            </div>
+          </div>
+          <div>
+            <span><b> Do you have next tasks? </b></span>
+            <div>
+              <label *ngFor="let do of update.toDo" class="tasks-list-item">
+                {{do.title}}
+              </label>
+            </div>
+          </div>
+          <p> <span>Problem:</span> {{update.problems}}</p>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <button *ngIf="!flagBtnShow" (click)="showUpdates()" class="btn__more">Show More</button>
+</div>

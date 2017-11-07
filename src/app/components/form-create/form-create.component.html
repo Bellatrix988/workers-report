@@ -1,0 +1,64 @@
+<div class="container">
+  <form class="block__main" #createForm="ngForm">
+    <div name="haveDone" class="block">
+      <p>
+        Have done?
+        <span class="small">Check task, if you had done its.</span>
+      </p>
+      <div>
+        <div *ngFor="let item of currentUpdate.haveDone">
+          <label class="tasks-list-item">
+            <input type="checkbox" id="{{item.id}}"
+              class="tasks-list-cb" [checked]="!item.active"
+              (change)="onCheck($event, item)">
+            <span class="tasks-list-mark"></span>
+            <span>{{item.title}}</span>
+          </label>
+        </div>
+        <input type="text"
+          [(ngModel)]="textDone"
+          name="haveDoneInput"
+          placeholder="Write have done"
+          (keydown)="keyDownHaveDone($event)">
+      </div>
+    </div>
+    <div name="toDo" class="block">
+      <label for="nameInput">What are you doing next?</label>
+      <div *ngFor="let item of currentUpdate.toDo" >
+        <label class="tasks-list-item">
+            <span>{{item.title}}</span>
+        </label>
+      </div>
+      <div>
+        <input type="text"
+          [(ngModel)]="textToDo" name="toDoInput" placeholder="Write to do"
+          (keydown)="keyDownToDo($event)" #toDoInput="ngModel"
+          [required]="currentUpdate.toDo.length == 0">
+      </div>
+    </div>
+    <div name="problems" class="block">
+      <label for="nameInput">Did you have problem?</label>
+      <div>
+        <input type="text" [(ngModel)]="currentUpdate.problems" name="problemInput">
+      </div>
+    </div>
+    <div name="deadline" class="block">
+      <label for="nameInput">deadline?</label>
+      <div>
+        <input type="radio" name="deadline"
+          [checked]="deadline" (change)="deadline = !deadline">
+        <label for="deadline">Yes</label>
+        <input type="radio" name="deadline"
+          [checked]="!deadline" (change)="deadline = !deadline">
+        <label for="deadline">No</label>
+        <input type="text" placeholder="currentUpdates.reason" *ngIf="!deadline">
+      </div>
+    </div>
+    <input type="button" (click)="addUpdate()"
+      value="Send" [hidden]="!createForm.valid">
+  </form>
+  <div [hidden]=" message == undefined"
+    class="block msg msg__danger">
+      {{message}}
+    </div>
+</div>
