@@ -55,10 +55,16 @@ export class UpdatesDataService {
 
   update() { }
 
-  deleteUpdate(id: number): void {
+  deleteUpdate(update: Update): void {
     const params = new HttpParams()
-      .set(`id`, `${id}`);
-    this.http.delete(URL, {params});
+      .set(`id`, `${update.id}`);
+
+    if (update.owner.id === this.userService.id) {
+      this.http
+        .delete(URL + `/${update.id}`)
+        .subscribe(successful => console.log('DELETE'),
+                   error => console.log(error));
+    }
   }
 
   // get last task in DB

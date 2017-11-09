@@ -5,7 +5,7 @@
       class="block"
       [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
       <div>
-        <input type="button" (click)="deleteUpdate(update)">delete
+        <input type="button" (click)="deleteUpdate(update)">delete {{update.id}}
       </div>
       <div class="block__user" (click)="showDetail()">
         <figure>

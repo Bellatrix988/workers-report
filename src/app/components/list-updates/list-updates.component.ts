@@ -52,12 +52,12 @@ export class ListUpdatesComponent implements OnInit {
   }
 
   deleteUpdate(item) {
-    this.updateService.deleteUpdate(item.id);
+    this.updateService.deleteUpdate(item);
+    this.getListUpdates();
   }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-        console.log('Route subscribe');
         this.getListUpdates();
       });
   }
