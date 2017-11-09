@@ -23,18 +23,19 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   public textToDo: string;
 
   deadline: boolean;
+  sucsMsg: boolean;
+  flagDelay: boolean;
   message: string;
 
   flagHaveDone: boolean;
-
   constructor(private router: Router,
               private service: UpdatesDataService) { }
 
   ngOnInit() {
     this.getData();
-
-    this.currentUpdate = new Update();
     this.deadline = true;
+    this.flagDelay = false;
+    // this.showMessage('HELLO',true);
   }
 
   ngOnDestroy() {
@@ -58,35 +59,42 @@ export class FormCreateComponent implements OnInit, OnDestroy {
 
   deleteTaskHaveDone(task: Task) {
     const index = this.currentUpdate.haveDone.indexOf(task);
-    console.log(index);
     if (index !== -1) {
       this.currentUpdate.haveDone.splice(index, 1);
     }
   }
 
+  deleteTaskToDo(task: Task) {
+    const index = this.currentUpdate.toDo.indexOf(task);
+    console.log(task);
+    if (index !== -1) {
+      this.currentUpdate.toDo.splice(index, 1);
+    }
+  }
+
   addUpdate() {
-    if (this.currentUpdate.toDo.length === 0) {
-      this.message = 'You must add todo';
+    if (this.currentUpdate.haveDone.length === 0) {
+      this.showMessage('You must add todo', false);
       return;
     }
     this.currentUpdate.deadline = this.deadline;
     this.service.create(this.currentUpdate)
       .subscribe(
         successful => {
-          this.message = 'Updated successfully add!';
-          this.gotoIndex();
+          this.showMessage('Updated successfully add!', true);
+          this.getData();
         },
-        err => this.message = err.message);
+        err => this.showMessage(err.message, false));
   }
 
-  canDeactivate() {
-    if (this.textDone !== undefined || this.textToDo !== undefined) {
-      return window.confirm('Есть несохраненные изменения. Удалить их?');
-    }
-    return true;
+  showMessage(text, type) {
+    this.message = text;
+    this.sucsMsg = type;
+    setTimeout(() => {this.flagDelay = true}, 4000);
   }
 
   private getData() {
+    this.currentUpdate = new Update();
     this.sub =
       this.service
         .getLastTask()
@@ -97,10 +105,6 @@ export class FormCreateComponent implements OnInit, OnDestroy {
             this.idTask =
               data.toDo[data.toDo.length - 1].id + 1;
           });
-  }
-
-  private gotoIndex() {
-    this.router.navigate(['/index']);
   }
 
   private addDone() {

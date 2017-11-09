@@ -23,6 +23,7 @@ export class ListUpdatesComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   getListUpdates(): void {
+    // Get params from route, set these params to query.
     const id = this.route.snapshot.paramMap.get('id');
     let params;
     if (!!id) {
@@ -52,8 +53,15 @@ export class ListUpdatesComponent implements OnInit {
   }
 
   deleteUpdate(item) {
-    this.updateService.deleteUpdate(item);
-    this.getListUpdates();
+    this.updateService
+      .deleteUpdate(item)
+        .subscribe(
+          successful => {
+            console.log('DELETE');
+            this.getListUpdates();
+          },
+          error => console.log(error)
+        );
   }
 
   ngOnInit() {

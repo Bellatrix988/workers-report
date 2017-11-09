@@ -15,11 +15,17 @@
   border-bottom: 2px solid #a94442; /* red */
 }
 
+.msg>span {
+  padding: 0 20px;
+  color: white;
+  font-size: 13pt;
+}
+
 .msg {
-  width: 50%;
+  padding: 10px 0;
+  width: 60%;
+  height: 30px;
   border-radius: 5px;
-  /*padding: 0 -10px;*/
-  /*margin-top: 30px;*/
 }
 
 .msg__danger {
@@ -37,6 +43,7 @@ p.title {
 
 form {
   padding: 4px 0;
+  margin-bottom: 10px;
 }
 
 input[type=text], select {
@@ -49,6 +56,12 @@ input[type=text], select {
     border-bottom: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+label>input[type=text] {
+  border: 0;
+  width: 80%;
+  padding: 2px;
 }
 
 input[type=submit] {
@@ -79,3 +92,17 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 
+.btn__send {
+  align-content: center;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  border: 0;
+  width: 80px;
+  height: 35px;
+  margin-bottom: 5px;
+}
+
+.container__form {
+  background-color: #fff;
+}

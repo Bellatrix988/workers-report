@@ -55,15 +55,13 @@ export class UpdatesDataService {
 
   update() { }
 
-  deleteUpdate(update: Update): void {
+  deleteUpdate(update: Update) {
     const params = new HttpParams()
       .set(`id`, `${update.id}`);
 
     if (update.owner.id === this.userService.id) {
-      this.http
-        .delete(URL + `/${update.id}`)
-        .subscribe(successful => console.log('DELETE'),
-                   error => console.log(error));
+      return this.http
+        .delete(URL + `/${update.id}`);
     }
   }
 

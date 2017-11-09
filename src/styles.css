@@ -50,7 +50,6 @@ body {
   display: none;
 }
 
-
 .tasks-list-mark {
   position: relative;
   display: inline-block;
@@ -98,3 +97,34 @@ body {
   text-decoration: line-through;
 }
 
+.close {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+}
+
+.close:before, .close:after {
+  position: absolute;
+  left: 50%;
+  content: '';
+  height: 16px;
+  width: 2px;
+  margin: -8px 0 0 -5px;
+  background-color: #B22222;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+.btn__delete {
+  background-color: #fff;
+  float: right;
+}
+
+button {
+  border: none;
+}

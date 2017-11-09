@@ -37,7 +37,7 @@ export class TabsNavigateComponent implements OnInit {
       .subscribe(
         items =>  this.users = items
       );
-    this.customUser = 2;
+    this.customUser = 1;
     this.currentPath = this.location.path();
     this.tabs = [{ id: 2, title: 'All', path: '/index', active: true },
                  { id: 3, title: 'My', path: '/index/my', active: false },

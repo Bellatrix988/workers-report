@@ -4,8 +4,10 @@
     <div *ngFor=" let update of updates"
       class="block"
       [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
-      <div>
-        <input type="button" (click)="deleteUpdate(update)">delete {{update.id}}
+      <div class="update__header">
+        <button class="btn__delete" (click)="deleteUpdate(update)">
+          <span class="tasks-list-mark"><span class="close"></span></span>
+        </button>
       </div>
       <div class="block__user" (click)="showDetail()">
         <figure>
@@ -42,5 +44,5 @@
       <hr>
     </div>
   </div>
-  <button *ngIf="!flagBtnShow" (click)="showUpdates()" class="btn__more">Show More</button>
+  <!-- <button *ngIf="!flagBtnShow" (click)="showUpdates()" class="btn__more">Show More</button> -->
 </div>
