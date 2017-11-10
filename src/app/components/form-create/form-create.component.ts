@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChange } from '@angular/core';
 import { UpdatesDataService } from '../../services/updates-data.service';
 import { Router } from '@angular/router';
 
@@ -12,34 +12,45 @@ import { User } from '../../models/user.model';
   styleUrls: ['./form-create.component.css']
 })
 
-export class FormCreateComponent implements OnInit, OnDestroy {
+export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
 
   private sub: any;
   private idTask: number;
 
-  currentUpdate: Update;
-
   public textDone: string;
   public textToDo: string;
+  private _update: Update;
 
   deadline: boolean;
   sucsMsg: boolean;
   flagDelay: boolean;
   message: string;
-
   flagHaveDone: boolean;
-  constructor(private router: Router,
-              private service: UpdatesDataService) { }
+
+  constructor(private router?: Router,
+              private service?: UpdatesDataService) { }
+
+  @Input() update: Update;
+
+  ngOnChanges() { }
+
+  // set update(update: Update) {
+  //   this._update = update;
+  // }
+
+  // get update(): Update { return this._update; }
 
   ngOnInit() {
-    this.getData();
+    if (this.update === undefined)
+      this.getData();
     this.deadline = true;
     this.flagDelay = false;
-    // this.showMessage('HELLO',true);
   }
 
   ngOnDestroy() {
+    this.sub.unsubscribeClosingNotification();
   }
+
 
   keyDownHaveDone(event) {
     if (event.keyCode === 13) {
@@ -57,28 +68,24 @@ export class FormCreateComponent implements OnInit, OnDestroy {
     item.active = !e.target.checked;
   }
 
-  deleteTaskHaveDone(task: Task) {
-    const index = this.currentUpdate.haveDone.indexOf(task);
-    if (index !== -1) {
-      this.currentUpdate.haveDone.splice(index, 1);
-    }
+
+  public setUpdate(update: Update) {
+    console.log(this.update);
+    this.update = new Update(update);
+    console.log(this.update);
   }
 
-  deleteTaskToDo(task: Task) {
-    const index = this.currentUpdate.toDo.indexOf(task);
-    console.log(task);
-    if (index !== -1) {
-      this.currentUpdate.toDo.splice(index, 1);
-    }
+  setTEST() {
+    this.update.toDo = [ { id: 666, title: '666-TEST-666', active: false} ];
   }
 
   addUpdate() {
-    if (this.currentUpdate.haveDone.length === 0) {
+    if (this.update.haveDone.length === 0) {
       this.showMessage('You must add todo', false);
       return;
     }
-    this.currentUpdate.deadline = this.deadline;
-    this.service.create(this.currentUpdate)
+    this.update.deadline = this.deadline;
+    this.service.create(this.update)
       .subscribe(
         successful => {
           this.showMessage('Updated successfully add!', true);
@@ -94,33 +101,45 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   }
 
   private getData() {
-    this.currentUpdate = new Update();
+    this.update = new Update();
     this.sub =
       this.service
         .getLastTask()
           .subscribe(data => {
             const activeTasks = data.haveDone
               .filter(item => item.active === true);
-            this.currentUpdate.haveDone = data.toDo.concat(activeTasks);
+            this.update.haveDone = data.toDo.concat(activeTasks);
             this.idTask =
               data.toDo[data.toDo.length - 1].id + 1;
           });
   }
 
+  //
+  deleteTaskHaveDone(task: Task) {
+    this.update.deleteTaskHaveDone(task);
+  }
+
+  //
+  deleteTaskToDo(task: Task) {
+    this.update.deleteTaskToDo(task);
+  }
+
+
+//
   private addDone() {
     if (this.textDone == null) {
       return;
     }
-    this.currentUpdate.haveDone.push({ id: this.idTask, title: this.textDone, active: false });
+    this.update.addTaskHaveDone({ id: this.idTask, title: this.textDone, active: false });
     this.idTask++;
     this.textDone = undefined;
   }
-
+//
   private addToDo() {
     if (this.textToDo == null) {
       return;
     }
-    this.currentUpdate.toDo.push({ id: this.idTask, title: this.textToDo, active: true });
+    this.update.addTaskToDo({ id: this.idTask, title: this.textToDo, active: true });
     this.idTask++;
     this.textToDo = undefined;
   }

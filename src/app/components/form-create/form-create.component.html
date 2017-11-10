@@ -1,16 +1,22 @@
-<div class="container">
+<div>
   <div [hidden]="message == undefined || flagDelay == true"
     class="msg" [ngClass]="sucsMsg? 'msg__successful' : 'msg__danger'">
     <span>{{message}}</span>
   </div>
+  <button type="button" class="btn__delete" (click)="hiddenForm = true">
+    <span class="tasks-list-mark"><span class="close"></span></span>
+  </button>
+  fdkfdss
+  dsd
   <form class="block__main" #createForm="ngForm">
+    <button (click)="setTEST()">SET</button>
     <div name="haveDone" class="block">
       <p class="title">
         Have done?
         <span class="small">Check task, if you had done its.</span>
       </p>
       <div class="block__focus">
-        <div *ngFor="let item of currentUpdate.haveDone" class="item-task">
+        <div *ngFor="let item of update.haveDone" class="item-task">
         <button type="button" class="btn__delete" (click)="deleteTaskHaveDone(item)">
           <span class="tasks-list-mark"><span class="close"></span></span>
         </button>
@@ -27,12 +33,12 @@
           name="haveDoneInput"
           placeholder="Write have done"
           (keydown)="keyDownHaveDone($event)"
-          [required]="currentUpdate.haveDone.length == 0">
+          [required]="update.haveDone.length == 0">
       </div>
     </div>
     <div name="toDo" class="block">
       <p class="title">What are you doing next?</p>
-      <div class="block__focus" *ngFor="let item of currentUpdate.toDo" >
+      <div class="block__focus" *ngFor="let item of update.toDo" >
         <button type="button" class="btn__delete" (click)="deleteTaskToDo(item)">
           <span class="tasks-list-mark"><span class="close"></span></span>
         </button>
@@ -50,7 +56,7 @@
       <p class="title">Did you have problem?</p>
       <div>
         <input type="text"
-          [(ngModel)]="currentUpdate.problems"
+          [(ngModel)]="update.problems"
           name="problemInput"
           placeholder="Write your problem with task, if you have their">
       </div>
@@ -67,7 +73,7 @@
         <input type="text" placeholder="Write reason" *ngIf="!deadline">
       </div>
     </div>
-    <div class="container">
+    <div class="">
       <input type="button" class="btn__send" (click)="addUpdate()"
         value="Send" [hidden]="!createForm.valid">
     </div>

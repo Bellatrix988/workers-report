@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Tab } from '../../models/tab.model';
+
 import { User } from '../../models/user.model';
 import { UsersService } from '../../services/users.service';
 
@@ -29,14 +30,14 @@ export class TabsNavigateComponent implements OnInit {
 
   onChange() {
     this.tabs[2].path = this.url + `${this.customUser}`;
-    console.log(this.tabs[2].path);
+    // this.location.
   }
 
   ngOnInit() {
     this.service.getUsers()
       .subscribe(
         items =>  this.users = items
-      );
+    );
     this.customUser = 1;
     this.currentPath = this.location.path();
     this.tabs = [{ id: 2, title: 'All', path: '/index', active: true },

@@ -12,13 +12,46 @@ export class Update extends AppModel {
   @Alias('deadline') public deadline: boolean;
   @Alias('reason') public reason?: string;
 
-  constructor() {
+  constructor(update?) {
     super();
-    this.toDo = [];
-    this.haveDone = [];
-    this.createdAt = new Date();
-    this.owner = undefined;
-    this.deadline = true;
+    if (update) {
+      this.id = update.id;
+      this.owner = update.owner;
+      this.createdAt = update.createdAt;
+      this.haveDone = update.haveDone;
+      this.toDo = update.toDo;
+      this.problems = update.problems;
+      this.deadline = update.deadline;
+      this.reason = update.reason;
+    } else {
+      this.toDo = [];
+      this.haveDone = [];
+      this.createdAt = new Date();
+      this.owner = undefined;
+      this.deadline = true;
+    }
+  }
+
+  public addTaskHaveDone(task: Task) {
+    this.haveDone.push(task);
+  }
+
+  public addTaskToDo(task: Task) {
+    this.toDo.push(task);
+  }
+
+  public deleteTaskHaveDone(task: Task) {
+    const index = this.haveDone.indexOf(task);
+    if (index !== -1) {
+      this.haveDone.splice(index, 1);
+    }
+  }
+
+  public deleteTaskToDo(task: Task) {
+    const index = this.toDo.indexOf(task);
+    if (index !== -1) {
+      this.toDo.splice(index, 1);
+    }
   }
 }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UpdatesDataService } from '../../services/updates-data.service';
 import { Update } from '../../models/update.model';
 import { ActivatedRoute, Route, Params } from '@angular/router';
+import { FormCreateComponent } from '../../components/form-create/form-create.component';
 
 export const SHOW_MORE = 10;
 
@@ -16,11 +17,15 @@ export class ListUpdatesComponent implements OnInit {
   updates: Update[];
   flagBtnShow: boolean;
   flagShowDetail: boolean;
+  editUpdateVar: Update;
 
   private allUpdates: Update[];
 
   constructor(private updateService: UpdatesDataService,
               private route: ActivatedRoute) { }
+
+
+  getTemplate() {}
 
   getListUpdates(): void {
     // Get params from route, set these params to query.
@@ -28,7 +33,7 @@ export class ListUpdatesComponent implements OnInit {
     let params;
     if (!!id) {
       params = [{'key': 'owner.id', 'value': `${id}`}];
-    } else{
+    } else {
       params = null;
     }
     this.updateService
@@ -52,12 +57,17 @@ export class ListUpdatesComponent implements OnInit {
     this.flagShowDetail = !this.flagShowDetail;
   }
 
+  editUpdate(item: Update) {
+    // const form = new FormCreateComponent();
+    // form.setUpdate(item);
+    this.editUpdateVar = item;
+  }
+
   deleteUpdate(item) {
     this.updateService
       .deleteUpdate(item)
         .subscribe(
           successful => {
-            console.log('DELETE');
             this.getListUpdates();
           },
           error => console.log(error)
