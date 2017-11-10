@@ -5,9 +5,8 @@ body {
   padding-left: 30px;
   margin-right: auto;
   margin-left: auto;
-  /*width: calc(80% - 60px);*/
   width: calc(100% - 60px);
-
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
 
 button {

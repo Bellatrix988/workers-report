@@ -34,23 +34,16 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges() { }
 
-  // set update(update: Update) {
-  //   this._update = update;
-  // }
-
-  // get update(): Update { return this._update; }
-
   ngOnInit() {
-    if (this.update === undefined)
+    if (this.update === undefined) {
       this.getData();
+    }
     this.deadline = true;
     this.flagDelay = false;
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribeClosingNotification();
   }
-
 
   keyDownHaveDone(event) {
     if (event.keyCode === 13) {
@@ -68,22 +61,12 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
     item.active = !e.target.checked;
   }
 
-
-  public setUpdate(update: Update) {
-    console.log(this.update);
-    this.update = new Update(update);
-    console.log(this.update);
-  }
-
-  setTEST() {
-    this.update.toDo = [ { id: 666, title: '666-TEST-666', active: false} ];
-  }
-
-  addUpdate() {
+  public addUpdate() {
     if (this.update.haveDone.length === 0) {
       this.showMessage('You must add todo', false);
       return;
     }
+    if (this.update.id === undefined) {
     this.update.deadline = this.deadline;
     this.service.create(this.update)
       .subscribe(
@@ -92,12 +75,26 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
           this.getData();
         },
         err => this.showMessage(err.message, false));
+    } else {
+    this.service.update(this.update)
+      .subscribe(
+        sucss => {},
+        err => this.showMessage(err.message, false));
+    }
   }
 
-  showMessage(text, type) {
+  public showMessage(text, type) {
     this.message = text;
     this.sucsMsg = type;
-    setTimeout(() => {this.flagDelay = true}, 4000);
+    setTimeout(() => { this.flagDelay = true; }, 4000);
+  }
+
+  public deleteTaskHaveDone(task: Task) {
+    this.update.deleteTaskHaveDone(task);
+  }
+
+  public deleteTaskToDo(task: Task) {
+    this.update.deleteTaskToDo(task);
   }
 
   private getData() {
@@ -114,18 +111,6 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
           });
   }
 
-  //
-  deleteTaskHaveDone(task: Task) {
-    this.update.deleteTaskHaveDone(task);
-  }
-
-  //
-  deleteTaskToDo(task: Task) {
-    this.update.deleteTaskToDo(task);
-  }
-
-
-//
   private addDone() {
     if (this.textDone == null) {
       return;
@@ -134,7 +119,7 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
     this.idTask++;
     this.textDone = undefined;
   }
-//
+
   private addToDo() {
     if (this.textToDo == null) {
       return;

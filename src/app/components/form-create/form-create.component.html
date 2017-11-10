@@ -1,15 +1,17 @@
 <div>
+  <div class="header__form">
+    <!-- <div>{{update.owner.name}}</div> -->
+    <div>
+      <button type="button" class="btn__delete" (click)="hiddenForm = true">
+        <span class="tasks-list-mark"><span class="close"></span></span>
+      </button>
+    </div>
+  </div>
   <div [hidden]="message == undefined || flagDelay == true"
     class="msg" [ngClass]="sucsMsg? 'msg__successful' : 'msg__danger'">
     <span>{{message}}</span>
   </div>
-  <button type="button" class="btn__delete" (click)="hiddenForm = true">
-    <span class="tasks-list-mark"><span class="close"></span></span>
-  </button>
-  fdkfdss
-  dsd
   <form class="block__main" #createForm="ngForm">
-    <button (click)="setTEST()">SET</button>
     <div name="haveDone" class="block">
       <p class="title">
         Have done?

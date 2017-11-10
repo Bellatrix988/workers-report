@@ -1,3 +1,9 @@
+.header__form{
+  display: flex;
+  flex-direction: column;
+  background-color: orange;
+}
+
 .small {
   font-size: 10pt;
   color:#bfbfbf;

@@ -1,4 +1,4 @@
-import { Update } from '../../models/update.model';
+/*import { Update } from '../../models/update.model';
 import { Component, Input } from '@angular/core';
 
 export class DisplayUpdate {
@@ -8,10 +8,10 @@ export class DisplayUpdate {
   constructor() { }
 
   @Input()
-  set update(update: Update) {
-    this._update = update;
-  }
-  get update(): Update { return this._update; }
+  // set update(update: Update) {
+  //   this._update = update;
+  // }
+  // get update(): Update { return this._update; }
 
 }
 
@@ -29,3 +29,4 @@ export class FormUpate extends DisplayUpdate {
     super();
   }
 }
+*/

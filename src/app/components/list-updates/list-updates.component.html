@@ -1,9 +1,13 @@
+<!--
+  TODO: time line
+  TODO: show more
+-->
 <div class="container">
   <div class="list__update">
     <div *ngFor=" let update of updates"
       class="block"
-      [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
-        <button type="button" (click)="editUpdate(update)">Edit</button>
+      [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'"
+      (click)="editUpdate(update)">
         <update-view [update]="update"></update-view>
        <hr>
     </div>

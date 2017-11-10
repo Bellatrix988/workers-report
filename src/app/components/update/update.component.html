@@ -3,7 +3,7 @@
     <span class="tasks-list-mark"><span class="close"></span></span>
   </button>
 </div>
-<div class="block__user" (click)="showDetail()">
+<div class="block__user">
   <figure>
     <img src="../../../assets/img/user.svg" alt="" width="30px">
     <i>{{update.owner.name}}</i>
@@ -15,7 +15,9 @@
     <div>
       <span><b> Have done: </b></span>
       <div>
-        <label class="tasks-list-item" *ngFor="let did of update.haveDone" [ngClass]="did.active ? 'todo__active' : 'todo__deactive'">
+        <label class="tasks-list-item"
+          *ngFor="let did of update.haveDone"
+          [ngClass]="did.active ? 'todo__active' : 'todo__deactive'">
           <input type="checkbox" class="tasks-list-cb" [checked]="!did.active" disabled>
           <span class="tasks-list-mark"></span> {{did.title}}
         </label>

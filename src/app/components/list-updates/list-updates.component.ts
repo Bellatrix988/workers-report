@@ -43,8 +43,6 @@ export class ListUpdatesComponent implements OnInit {
       });
   }
 
-  // start -- limit
-
   showUpdates() {
     let len = this.updates.length;
     this.updates = this.updates.concat(this.allUpdates.slice(len, len + SHOW_MORE));
@@ -53,13 +51,10 @@ export class ListUpdatesComponent implements OnInit {
   }
 
   showDetail() {
-    console.log(this.flagShowDetail);
     this.flagShowDetail = !this.flagShowDetail;
   }
 
   editUpdate(item: Update) {
-    // const form = new FormCreateComponent();
-    // form.setUpdate(item);
     this.editUpdateVar = item;
   }
 
