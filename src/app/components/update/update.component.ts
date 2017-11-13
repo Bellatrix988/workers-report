@@ -16,7 +16,6 @@ export class UpdateComponent extends UpdateDisplay implements OnInit  {
   constructor(private service: UpdatesDataService)  { super(service); }
 
   public delete(item: Update): void {
-    console.log(item);
     super.delete(item);
   }
 

@@ -19,19 +19,17 @@ export class UpdatesDataService {
   constructor(private http: HttpClient,
               private userService: CurrentUserService) {}
 
-  getBy(param?: any): Observable<Update[]> {
+  getBy(routeParams?: any): Observable<Update[]> {
     let params = new HttpParams()
       .set('_order', 'desc')
       .set('_sort', 'created_at');
-    if (!!param) {
-      param.forEach(item => {
-        if (item.value === 'my') {
+    if (!!routeParams) {
+        if (routeParams.id === 'my') {
           params = params.set('owner.id', `${this.userService.id}`);
         }
-        else {
-          params = params.set(`owner.id`, `${item.value}`);
+        if (!!+routeParams.id) {
+          params = params.set(`owner.id`, `${routeParams.id}`);
         }
-      });
     }
     return this.http
       .get(URL, {params})
@@ -54,19 +52,11 @@ export class UpdatesDataService {
       return this.http
         .delete<Update>(`${URL}/${update.id}`);
     } else {
-      // new Error('You don\'t have permissin');
       return;
     }
   }
 
-  // get last task in DB
-  getLastTask(): Observable<Update> {
-    return this.getBy([{'key': '', 'value': 'my'}])
-      .map(item => this._getTasks(item));
-  }
-
   private _getTasks(updates: Update[]): Update {
-     this._id = updates[0].id;
      return updates[0];
   }
 

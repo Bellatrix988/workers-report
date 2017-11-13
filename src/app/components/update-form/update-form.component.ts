@@ -108,15 +108,14 @@ export class UpdateFormComponent extends UpdateDisplay implements OnInit, OnDest
     this.update = new Update();
     this.sub =
       this.service
-        .getLastTask()
-          .subscribe(data => {
-            console.log(data);
+        .getBy()
+          .subscribe(response => {
+            let data = response[response.length - 1];
             const activeTasks = data.haveDone
               .filter(item => item.active === true);
             this.update.haveDone = data.toDo.concat(activeTasks);
             const arr = !!this.update.toDo.length ?  this.update.toDo : this.update.haveDone;
             this._id = arr[arr.length - 1].id + 1;
-            console.log(this._id);
           });
   }
 

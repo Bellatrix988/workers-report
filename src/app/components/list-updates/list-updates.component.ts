@@ -19,19 +19,12 @@ export class ListUpdatesComponent implements OnInit {
   constructor(private updateService: UpdatesDataService,
               private route: ActivatedRoute) { }
 
-  getListUpdates(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    let params;
-    if (!!id) {
-      params = [{'key': 'owner.id', 'value': `${id}`}];
-    } else {
-      params = null;
-    }
+  get(params?: Params): void {
     this.updateService
       .getBy(params)
         .subscribe(items => {
           this.updates = items;
-      });
+    });
   }
 
   editUpdate(item: Update) {
@@ -39,14 +32,12 @@ export class ListUpdatesComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.updateService
-    //      .getBy()
-    //       .subscribe(items => {
-    //         console.log(items);
-    //         this.updates = items;
-    //       });
     this.route.params.subscribe((params: Params) => {
-      this.getListUpdates();
+      this.updateService
+      .getBy(params)
+        .subscribe(items => {
+          this.updates = items;
+       });
       });
   }
 }

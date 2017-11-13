@@ -6,7 +6,6 @@ body {
   margin-right: auto;
   margin-left: auto;
   width: calc(100% - 60px);
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
 
 button {
