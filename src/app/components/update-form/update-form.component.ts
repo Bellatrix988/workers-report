@@ -1,11 +1,8 @@
-import { Component, OnInit, OnDestroy, Input, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { UpdatesDataService } from '../../services/updates-data.service';
-import { Router } from '@angular/router';
-
 import { Task } from '../../models/task.model';
 import { Update } from '../../models/update.model';
 import { User } from '../../models/user.model';
-import { UpdateDisplay } from '../../models/update-display.model';
 
 @Component({
   selector: 'update-form',
@@ -13,11 +10,10 @@ import { UpdateDisplay } from '../../models/update-display.model';
   styleUrls: ['./update-form.component.css']
 })
 
-export class UpdateFormComponent extends UpdateDisplay implements OnInit, OnDestroy, OnChanges {
+export class UpdateFormComponent implements OnInit, OnDestroy {
 
   private sub: any;
   private _id: number;
-  private _update: Update;
 
   public textDone: string;
   public textToDo: string;
@@ -28,16 +24,34 @@ export class UpdateFormComponent extends UpdateDisplay implements OnInit, OnDest
   public message: string;
   public flagHaveDone: boolean;
   private timer;
+  private _changedModel: boolean;
 
-  constructor(private router: Router,
-              private service: UpdatesDataService) { super(service); }
+  constructor(private service: UpdatesDataService) { }
 
   @Input() update: Update;
+  @Output() onHiddenForm = new EventEmitter<boolean>();
 
-  ngOnChanges() { }
+  @Output() changedForm = new EventEmitter<boolean>();
+  @Input()
+
+  get changedModel(): boolean { return this._changedModel; }
+
+  set changedModel(value: boolean) {
+    this._changedModel = value;
+    if (value) {
+      this.getData();
+    }
+  }
+
+  public hiddenForm() {
+    this.onHiddenForm.emit(true);
+  }
 
   ngOnInit() {
     if (this.update === undefined) {
+      this.getData();
+    }
+    if (this.changedModel) {
       this.getData();
     }
     this.deadline = true;
@@ -47,7 +61,6 @@ export class UpdateFormComponent extends UpdateDisplay implements OnInit, OnDest
   ngOnDestroy() {
   }
 
-  public delete(item: Update): void { super.delete(item); }
 
   public deleteTaskHaveDone(task: Task) {
     this.update.deleteTaskHaveDone(task);
@@ -68,13 +81,14 @@ export class UpdateFormComponent extends UpdateDisplay implements OnInit, OnDest
       .subscribe(
         successful => {
           this.showMessage('Updated successfully add!', true);
+          this.changedForm.emit(true);
           this.getData();
         },
         err => this.showMessage(err.message, false));
     } else {
     this.service.update(this.update)
       .subscribe(
-        sucss => { },
+        sucss => { this.changedForm.emit(true); },
         err => this.showMessage(err.message, false));
     }
   }
@@ -108,9 +122,9 @@ export class UpdateFormComponent extends UpdateDisplay implements OnInit, OnDest
     this.update = new Update();
     this.sub =
       this.service
-        .getBy()
+        .getBy({'id': 'my'})
           .subscribe(response => {
-            let data = response[response.length - 1];
+            let data = response[0];
             const activeTasks = data.haveDone
               .filter(item => item.active === true);
             this.update.haveDone = data.toDo.concat(activeTasks);

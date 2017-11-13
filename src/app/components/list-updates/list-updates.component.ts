@@ -15,15 +15,37 @@ export class ListUpdatesComponent implements OnInit {
 
   updates: Update[];
   editUpdateVar: Update;
+  flagHiddenForm: boolean;
+  changedModel: boolean;
 
-  constructor(private updateService: UpdatesDataService,
-              private route: ActivatedRoute) { }
+  constructor(private updateService?: UpdatesDataService,
+              private route?: ActivatedRoute) { }
 
-  get(params?: Params): void {
+
+  public delete(item: Update): void {
     this.updateService
+      .delete(item)
+        .subscribe(
+          successful => {
+            this.changedModel = true;
+            this.get();
+          },
+          error => console.log(error)
+        );
+  }
+  public onHiddenForm(value: boolean): void {
+    this.flagHiddenForm = value;
+  }
+  public add() { }
+
+  public get(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.updateService
       .getBy(params)
         .subscribe(items => {
           this.updates = items;
+          this.changedModel = false;
+       });
     });
   }
 
@@ -32,12 +54,6 @@ export class ListUpdatesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.updateService
-      .getBy(params)
-        .subscribe(items => {
-          this.updates = items;
-       });
-      });
+    this.get();
   }
 }

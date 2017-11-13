@@ -30,7 +30,6 @@ export class TabsNavigateComponent implements OnInit {
 
   onChange() {
     this.tabs[2].path = this.url + `${this.customUser}`;
-    // this.location.
   }
 
   ngOnInit() {

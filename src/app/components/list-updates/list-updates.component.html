@@ -6,14 +6,21 @@
   <div class="list__update">
     <div *ngFor=" let update of updates"
       class="block"
-      [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'"
-      >
-        <update-view  (click)="editUpdate(update)" [update]="update"></update-view>
+      [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
+      <div>
+        <button class="btn__delete" (click)="delete(update)">
+          <span class="tasks-list-mark"><span class="close"></span></span>
+        </button>
+        <update-view [update]="update" (click)="editUpdate(update)"></update-view>
+      </div>
        <hr>
     </div>
   </div>
-  <div class="form__update" [hidden]="">
-    <update-form [update]="editUpdateVar"></update-form>
+  <div class="form__update" [hidden]="flagHiddenForm">
+    <update-form [update]="editUpdateVar"
+    [changedModel]="changedModel"
+    (onHiddenForm)="onHiddenForm($event)"
+    (changedForm)="get()">
+    </update-form>
   </div>
-
 </div>
