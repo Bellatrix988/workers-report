@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListUpdatesComponent } from '../components/list-updates/list-updates.component';
-import { FormCreateComponent } from '../components/form-create/form-create.component';
 import { CurrentUserGuard } from './../services/current-user.guard';
 
 const routes: Routes = [

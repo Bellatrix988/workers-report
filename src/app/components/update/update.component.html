@@ -1,5 +1,5 @@
 <div class="update__header">
-  <button class="btn__delete" (click)="deleteUpdate(update)">
+  <button class="btn__delete" (click)="delete(update)">
     <span class="tasks-list-mark"><span class="close"></span></span>
   </button>
 </div>
@@ -7,6 +7,7 @@
   <figure>
     <img src="../../../assets/img/user.svg" alt="" width="30px">
     <i>{{update.owner.name}}</i>
+    <i>{{update.id}}</i>
   </figure>
   <p>{{update.createdAt | date: 'dd/MM/yyyy'}}</p>
 </div>

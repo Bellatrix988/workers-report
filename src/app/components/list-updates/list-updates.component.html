@@ -11,10 +11,9 @@
         <update-view [update]="update"></update-view>
        <hr>
     </div>
-  <!-- <button *ngIf="!flagBtnShow" (click)="showUpdates()" class="btn__more">Show More</button> -->
   </div>
   <div class="form__update" [hidden]="">
-    <app-form-create [update]="editUpdateVar"></app-form-create>
+    <update-form [update]="editUpdateVar"></update-form>
   </div>
 
 </div>

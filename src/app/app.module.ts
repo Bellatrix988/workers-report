@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
 /*components*/
-import { FormCreateComponent } from './components/form-create/form-create.component';
+import { UpdateFormComponent } from './components/update-form/update-form.component';
 import { UpdateComponent } from './components/update/update.component';
 import { ListUpdatesComponent } from './components/list-updates/list-updates.component';
 
@@ -27,7 +27,7 @@ import { CurrentUserGuard } from './services/current-user.guard';
   declarations: [
     AppComponent,
     ListUpdatesComponent,
-    FormCreateComponent,
+    UpdateFormComponent,
     TabsNavigateComponent,
     UpdateComponent
   ],

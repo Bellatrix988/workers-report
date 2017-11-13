@@ -368,80 +368,6 @@
       "deadline": true
     },
     {
-      "id": 12,
-      "owner": {
-        "_http": {
-          "handler": {
-            "next": {
-              "xhrFactory": {}
-            },
-            "interceptor": {
-              "tokenService": {
-                "doc": {
-                  "location": {
-                    "href": "http://localhost:4200/index/my",
-                    "ancestorOrigins": {},
-                    "origin": "http://localhost:4200",
-                    "protocol": "http:",
-                    "host": "localhost:4200",
-                    "hostname": "localhost",
-                    "port": "4200",
-                    "pathname": "/index/my",
-                    "search": "",
-                    "hash": ""
-                  }
-                },
-                "platform": "browser",
-                "cookieName": "XSRF-TOKEN",
-                "lastCookieString": "",
-                "lastToken": null,
-                "parseCount": 0
-              },
-              "headerName": "X-XSRF-TOKEN"
-            }
-          }
-        },
-        "id": 2,
-        "name": "Bob"
-      },
-      "created_at": "2017-11-10T12:26:32.315Z",
-      "have_done": [
-        {
-          "id": 23,
-          "title": "TEST",
-          "active": true
-        },
-        {
-          "id": 24,
-          "title": "dskldslksd",
-          "active": false
-        },
-        {
-          "id": 667,
-          "title": "lklklksd",
-          "active": true
-        },
-        {
-          "id": 667,
-          "title": "lkjdsklds",
-          "active": false
-        },
-        {
-          "id": 668,
-          "title": "ksdksd",
-          "active": false
-        }
-      ],
-      "todo": [
-        {
-          "id": 666,
-          "title": "666-TEST-666",
-          "active": false
-        }
-      ],
-      "deadline": true
-    },
-    {
       "id": 13,
       "owner": {
         "_http": {
@@ -513,6 +439,934 @@
       ],
       "todo": [],
       "deadline": true
+    },
+    {
+      "owner": {
+        "_http": {
+          "handler": {
+            "next": {
+              "xhrFactory": {}
+            },
+            "interceptor": {
+              "tokenService": {
+                "doc": {
+                  "location": {
+                    "href": "http://localhost:4200/index/my",
+                    "ancestorOrigins": {},
+                    "origin": "http://localhost:4200",
+                    "protocol": "http:",
+                    "host": "localhost:4200",
+                    "hostname": "localhost",
+                    "port": "4200",
+                    "pathname": "/index/my",
+                    "search": "",
+                    "hash": ""
+                  }
+                },
+                "platform": "browser",
+                "cookieName": "XSRF-TOKEN",
+                "lastCookieString": "",
+                "lastToken": null,
+                "parseCount": 0
+              },
+              "headerName": "X-XSRF-TOKEN"
+            }
+          }
+        },
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-13T07:34:20.303Z",
+      "have_done": [
+        {
+          "id": 23,
+          "title": "TEST",
+          "active": true
+        },
+        {
+          "id": 669,
+          "title": "sdklks",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 670,
+          "title": "kldskkds",
+          "active": true
+        },
+        {
+          "id": 671,
+          "title": "skdslkdslk",
+          "active": true
+        },
+        {
+          "id": 672,
+          "title": "skllksdks",
+          "active": true
+        }
+      ],
+      "deadline": true,
+      "id": 14
+    },
+    {
+      "owner": {
+        "_http": {
+          "handler": {
+            "next": {
+              "xhrFactory": {}
+            },
+            "interceptor": {
+              "tokenService": {
+                "doc": {
+                  "location": {
+                    "href": "http://localhost:4200/index/my",
+                    "ancestorOrigins": {},
+                    "origin": "http://localhost:4200",
+                    "protocol": "http:",
+                    "host": "localhost:4200",
+                    "hostname": "localhost",
+                    "port": "4200",
+                    "pathname": "/index/my",
+                    "search": "",
+                    "hash": ""
+                  }
+                },
+                "platform": "browser",
+                "cookieName": "XSRF-TOKEN",
+                "lastCookieString": "",
+                "lastToken": null,
+                "parseCount": 0
+              },
+              "headerName": "X-XSRF-TOKEN"
+            }
+          }
+        },
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-13T07:47:54.776Z",
+      "have_done": [
+        {
+          "id": 670,
+          "title": "kldskkds",
+          "active": true
+        },
+        {
+          "id": 671,
+          "title": "skdslkdslk",
+          "active": true
+        },
+        {
+          "id": 672,
+          "title": "skllksdks",
+          "active": true
+        },
+        {
+          "id": 23,
+          "title": "TEST",
+          "active": true
+        },
+        {
+          "id": 669,
+          "title": "sdklks",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 673,
+          "title": "sjsdkkjds",
+          "active": true
+        },
+        {
+          "id": 674,
+          "title": "slklsd",
+          "active": true
+        }
+      ],
+      "deadline": true,
+      "id": 15
+    },
+    {
+      "owner": {
+        "_http": {
+          "handler": {
+            "next": {
+              "xhrFactory": {}
+            },
+            "interceptor": {
+              "tokenService": {
+                "doc": {
+                  "location": {
+                    "href": "http://localhost:4200/index/my",
+                    "ancestorOrigins": {},
+                    "origin": "http://localhost:4200",
+                    "protocol": "http:",
+                    "host": "localhost:4200",
+                    "hostname": "localhost",
+                    "port": "4200",
+                    "pathname": "/index/my",
+                    "search": "",
+                    "hash": ""
+                  }
+                },
+                "platform": "browser",
+                "cookieName": "XSRF-TOKEN",
+                "lastCookieString": "",
+                "lastToken": null,
+                "parseCount": 0
+              },
+              "headerName": "X-XSRF-TOKEN"
+            }
+          }
+        },
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-13T07:48:55.991Z",
+      "have_done": [
+        {
+          "id": 673,
+          "title": "sjsdkkjds",
+          "active": true
+        },
+        {
+          "id": 674,
+          "title": "slklsd",
+          "active": true
+        },
+        {
+          "id": 670,
+          "title": "kldskkds",
+          "active": true
+        },
+        {
+          "id": 671,
+          "title": "skdslkdslk",
+          "active": true
+        },
+        {
+          "id": 672,
+          "title": "skllksdks",
+          "active": true
+        },
+        {
+          "id": 23,
+          "title": "TEST",
+          "active": true
+        },
+        {
+          "id": 669,
+          "title": "sdklks",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 675,
+          "title": "skjsdkjds",
+          "active": true
+        },
+        {
+          "id": 676,
+          "title": "sdkjdskj",
+          "active": true
+        }
+      ],
+      "deadline": true,
+      "id": 16
+    },
+    {
+      "owner": {
+        "_http": {
+          "handler": {
+            "next": {
+              "xhrFactory": {}
+            },
+            "interceptor": {
+              "tokenService": {
+                "doc": {
+                  "location": {
+                    "href": "http://localhost:4200/index/my",
+                    "ancestorOrigins": {},
+                    "origin": "http://localhost:4200",
+                    "protocol": "http:",
+                    "host": "localhost:4200",
+                    "hostname": "localhost",
+                    "port": "4200",
+                    "pathname": "/index/my",
+                    "search": "",
+                    "hash": ""
+                  }
+                },
+                "platform": "browser",
+                "cookieName": "XSRF-TOKEN",
+                "lastCookieString": "",
+                "lastToken": null,
+                "parseCount": 0
+              },
+              "headerName": "X-XSRF-TOKEN"
+            }
+          }
+        },
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-13T08:04:51.631Z",
+      "have_done": [
+        {
+          "id": 675,
+          "title": "skjsdkjds",
+          "active": true
+        },
+        {
+          "id": 676,
+          "title": "sdkjdskj",
+          "active": true
+        },
+        {
+          "id": 673,
+          "title": "sjsdkkjds",
+          "active": true
+        },
+        {
+          "id": 674,
+          "title": "slklsd",
+          "active": true
+        },
+        {
+          "id": 670,
+          "title": "kldskkds",
+          "active": true
+        },
+        {
+          "id": 671,
+          "title": "skdslkdslk",
+          "active": true
+        },
+        {
+          "id": 672,
+          "title": "skllksdks",
+          "active": true
+        },
+        {
+          "id": 23,
+          "title": "TEST",
+          "active": true
+        },
+        {
+          "id": 669,
+          "title": "sdklks",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 677,
+          "title": "sd,s.,d.ds",
+          "active": true
+        }
+      ],
+      "deadline": true,
+      "id": 17
+    },
+    {
+      "owner": {
+        "_http": {
+          "handler": {
+            "next": {
+              "xhrFactory": {}
+            },
+            "interceptor": {
+              "tokenService": {
+                "doc": {
+                  "location": {
+                    "href": "http://localhost:4200/index/my",
+                    "ancestorOrigins": {},
+                    "origin": "http://localhost:4200",
+                    "protocol": "http:",
+                    "host": "localhost:4200",
+                    "hostname": "localhost",
+                    "port": "4200",
+                    "pathname": "/index/my",
+                    "search": "",
+                    "hash": ""
+                  }
+                },
+                "platform": "browser",
+                "cookieName": "XSRF-TOKEN",
+                "lastCookieString": "",
+                "lastToken": null,
+                "parseCount": 0
+              },
+              "headerName": "X-XSRF-TOKEN"
+            }
+          }
+        },
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-13T08:05:53.248Z",
+      "have_done": [
+        {
+          "id": 672,
+          "title": "skllksdks",
+          "active": true
+        },
+        {
+          "id": 23,
+          "title": "TEST",
+          "active": true
+        },
+        {
+          "id": 669,
+          "title": "sdklks",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 678,
+          "title": "wl;dl;sd;l",
+          "active": true
+        },
+        {
+          "id": 679,
+          "title": "sdls;d",
+          "active": true
+        },
+        {
+          "id": 680,
+          "title": "sdls;d;ld",
+          "active": true
+        }
+      ],
+      "deadline": true,
+      "id": 18
+    },
+    {
+      "owner": {
+        "_http": {
+          "handler": {
+            "next": {
+              "xhrFactory": {}
+            },
+            "interceptor": {
+              "tokenService": {
+                "doc": {
+                  "location": {
+                    "href": "http://localhost:4200/index/my",
+                    "ancestorOrigins": {},
+                    "origin": "http://localhost:4200",
+                    "protocol": "http:",
+                    "host": "localhost:4200",
+                    "hostname": "localhost",
+                    "port": "4200",
+                    "pathname": "/index/my",
+                    "search": "",
+                    "hash": ""
+                  }
+                },
+                "platform": "browser",
+                "cookieName": "XSRF-TOKEN",
+                "lastCookieString": "",
+                "lastToken": null,
+                "parseCount": 0
+              },
+              "headerName": "X-XSRF-TOKEN"
+            }
+          }
+        },
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-13T08:06:04.551Z",
+      "have_done": [
+        {
+          "id": 678,
+          "title": "wl;dl;sd;l",
+          "active": true
+        },
+        {
+          "id": 679,
+          "title": "sdls;d",
+          "active": true
+        },
+        {
+          "id": 680,
+          "title": "sdls;d;ld",
+          "active": true
+        },
+        {
+          "id": 672,
+          "title": "skllksdks",
+          "active": true
+        },
+        {
+          "id": 23,
+          "title": "TEST",
+          "active": true
+        },
+        {
+          "id": 669,
+          "title": "sdklks",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 681,
+          "title": "sslkdlksdlk",
+          "active": true
+        },
+        {
+          "id": 682,
+          "title": "sdlksdlds",
+          "active": true
+        }
+      ],
+      "deadline": true,
+      "id": 19
+    },
+    {
+      "owner": {
+        "_http": {
+          "handler": {
+            "next": {
+              "xhrFactory": {}
+            },
+            "interceptor": {
+              "tokenService": {
+                "doc": {
+                  "location": {
+                    "href": "http://localhost:4200/index/my",
+                    "ancestorOrigins": {},
+                    "origin": "http://localhost:4200",
+                    "protocol": "http:",
+                    "host": "localhost:4200",
+                    "hostname": "localhost",
+                    "port": "4200",
+                    "pathname": "/index/my",
+                    "search": "",
+                    "hash": ""
+                  }
+                },
+                "platform": "browser",
+                "cookieName": "XSRF-TOKEN",
+                "lastCookieString": "",
+                "lastToken": null,
+                "parseCount": 0
+              },
+              "headerName": "X-XSRF-TOKEN"
+            }
+          }
+        },
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-13T08:08:59.884Z",
+      "have_done": [
+        {
+          "id": 681,
+          "title": "sslkdlksdlk",
+          "active": false
+        },
+        {
+          "id": 680,
+          "title": "sdls;d;ld",
+          "active": false
+        },
+        {
+          "id": 672,
+          "title": "skllksdks",
+          "active": false
+        },
+        {
+          "id": 23,
+          "title": "TEST",
+          "active": true
+        },
+        {
+          "id": 669,
+          "title": "sdklks",
+          "active": false
+        }
+      ],
+      "todo": [
+        {
+          "id": 683,
+          "title": "sksdksd",
+          "active": true
+        },
+        {
+          "id": 684,
+          "title": "skdlksld",
+          "active": true
+        }
+      ],
+      "deadline": true,
+      "id": 20
+    },
+    {
+      "owner": {
+        "_http": {
+          "handler": {
+            "next": {
+              "xhrFactory": {}
+            },
+            "interceptor": {
+              "tokenService": {
+                "doc": {
+                  "location": {
+                    "href": "http://localhost:4200/index/my",
+                    "ancestorOrigins": {},
+                    "origin": "http://localhost:4200",
+                    "protocol": "http:",
+                    "host": "localhost:4200",
+                    "hostname": "localhost",
+                    "port": "4200",
+                    "pathname": "/index/my",
+                    "search": "",
+                    "hash": ""
+                  }
+                },
+                "platform": "browser",
+                "cookieName": "XSRF-TOKEN",
+                "lastCookieString": "",
+                "lastToken": null,
+                "parseCount": 0
+              },
+              "headerName": "X-XSRF-TOKEN"
+            }
+          }
+        },
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-13T08:09:13.167Z",
+      "have_done": [
+        {
+          "id": 683,
+          "title": "sksdksd",
+          "active": false
+        },
+        {
+          "id": 684,
+          "title": "skdlksld",
+          "active": true
+        },
+        {
+          "id": 23,
+          "title": "TEST",
+          "active": true
+        }
+      ],
+      "todo": [],
+      "problems": "sdklkds",
+      "deadline": true,
+      "id": 21
+    },
+    {
+      "owner": {
+        "_http": {
+          "handler": {
+            "next": {
+              "xhrFactory": {}
+            },
+            "interceptor": {
+              "tokenService": {
+                "doc": {
+                  "location": {
+                    "href": "http://localhost:4200/index/my",
+                    "ancestorOrigins": {},
+                    "origin": "http://localhost:4200",
+                    "protocol": "http:",
+                    "host": "localhost:4200",
+                    "hostname": "localhost",
+                    "port": "4200",
+                    "pathname": "/index/my",
+                    "search": "",
+                    "hash": ""
+                  }
+                },
+                "platform": "browser",
+                "cookieName": "XSRF-TOKEN",
+                "lastCookieString": "",
+                "lastToken": null,
+                "parseCount": 0
+              },
+              "headerName": "X-XSRF-TOKEN"
+            }
+          }
+        },
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-13T08:12:29.033Z",
+      "have_done": [
+        {
+          "id": 684,
+          "title": "skdlksld",
+          "active": true
+        },
+        {
+          "id": 23,
+          "title": "TEST",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 24,
+          "title": "dskllksd",
+          "active": true
+        },
+        {
+          "id": 25,
+          "title": "skslkd",
+          "active": true
+        }
+      ],
+      "deadline": true,
+      "id": 22
+    },
+    {
+      "owner": {
+        "_http": {
+          "handler": {
+            "next": {
+              "xhrFactory": {}
+            },
+            "interceptor": {
+              "tokenService": {
+                "doc": {
+                  "location": {
+                    "href": "http://localhost:4200/index/my",
+                    "ancestorOrigins": {},
+                    "origin": "http://localhost:4200",
+                    "protocol": "http:",
+                    "host": "localhost:4200",
+                    "hostname": "localhost",
+                    "port": "4200",
+                    "pathname": "/index/my",
+                    "search": "",
+                    "hash": ""
+                  }
+                },
+                "platform": "browser",
+                "cookieName": "XSRF-TOKEN",
+                "lastCookieString": "",
+                "lastToken": null,
+                "parseCount": 0
+              },
+              "headerName": "X-XSRF-TOKEN"
+            }
+          }
+        },
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-13T08:12:37.426Z",
+      "have_done": [
+        {
+          "id": 24,
+          "title": "dskllksd",
+          "active": true
+        },
+        {
+          "id": 25,
+          "title": "skslkd",
+          "active": true
+        },
+        {
+          "id": 684,
+          "title": "skdlksld",
+          "active": true
+        },
+        {
+          "id": 23,
+          "title": "TEST",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 24,
+          "title": ";w;ls;la",
+          "active": true
+        }
+      ],
+      "problems": "lksl;dsl",
+      "deadline": true,
+      "id": 23
+    },
+    {
+      "owner": {
+        "_http": {
+          "handler": {
+            "next": {
+              "xhrFactory": {}
+            },
+            "interceptor": {
+              "tokenService": {
+                "doc": {
+                  "location": {
+                    "href": "http://localhost:4200/index/my",
+                    "ancestorOrigins": {},
+                    "origin": "http://localhost:4200",
+                    "protocol": "http:",
+                    "host": "localhost:4200",
+                    "hostname": "localhost",
+                    "port": "4200",
+                    "pathname": "/index/my",
+                    "search": "",
+                    "hash": ""
+                  }
+                },
+                "platform": "browser",
+                "cookieName": "XSRF-TOKEN",
+                "lastCookieString": "",
+                "lastToken": null,
+                "parseCount": 0
+              },
+              "headerName": "X-XSRF-TOKEN"
+            }
+          }
+        },
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-13T08:17:26.533Z",
+      "have_done": [
+        {
+          "id": 24,
+          "title": ";w;ls;la",
+          "active": true
+        },
+        {
+          "id": 24,
+          "title": "dskllksd",
+          "active": true
+        },
+        {
+          "id": 25,
+          "title": "skslkd",
+          "active": true
+        },
+        {
+          "id": 684,
+          "title": "skdlksld",
+          "active": true
+        },
+        {
+          "id": 23,
+          "title": "TEST",
+          "active": true
+        }
+      ],
+      "todo": [
+        {
+          "id": 24,
+          "title": "sdklkds",
+          "active": true
+        },
+        {
+          "id": 25,
+          "title": "skskls",
+          "active": true
+        },
+        {
+          "id": 26,
+          "title": "d",
+          "active": true
+        }
+      ],
+      "deadline": true,
+      "id": 24
+    },
+    {
+      "owner": {
+        "_http": {
+          "handler": {
+            "next": {
+              "xhrFactory": {}
+            },
+            "interceptor": {
+              "tokenService": {
+                "doc": {
+                  "location": {
+                    "href": "http://localhost:4200/index/my",
+                    "ancestorOrigins": {},
+                    "origin": "http://localhost:4200",
+                    "protocol": "http:",
+                    "host": "localhost:4200",
+                    "hostname": "localhost",
+                    "port": "4200",
+                    "pathname": "/index/my",
+                    "search": "",
+                    "hash": ""
+                  }
+                },
+                "platform": "browser",
+                "cookieName": "XSRF-TOKEN",
+                "lastCookieString": "",
+                "lastToken": null,
+                "parseCount": 0
+              },
+              "headerName": "X-XSRF-TOKEN"
+            }
+          }
+        },
+        "id": 2,
+        "name": "Bob"
+      },
+      "created_at": "2017-11-13T08:17:35.387Z",
+      "have_done": [
+        {
+          "id": 24,
+          "title": "sdklkds",
+          "active": true
+        },
+        {
+          "id": 25,
+          "title": "skskls",
+          "active": true
+        },
+        {
+          "id": 26,
+          "title": "d",
+          "active": true
+        },
+        {
+          "id": 24,
+          "title": ";w;ls;la",
+          "active": true
+        },
+        {
+          "id": 24,
+          "title": "dskllksd",
+          "active": true
+        },
+        {
+          "id": 25,
+          "title": "skslkd",
+          "active": true
+        },
+        {
+          "id": 684,
+          "title": "skdlksld",
+          "active": true
+        },
+        {
+          "id": 23,
+          "title": "TEST",
+          "active": true
+        }
+      ],
+      "todo": [],
+      "deadline": true,
+      "id": 25
     }
   ],
   "profile": {

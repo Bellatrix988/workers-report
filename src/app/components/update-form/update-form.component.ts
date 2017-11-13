@@ -5,30 +5,32 @@ import { Router } from '@angular/router';
 import { Task } from '../../models/task.model';
 import { Update } from '../../models/update.model';
 import { User } from '../../models/user.model';
+import { UpdateDisplay } from '../../models/update-display.model';
 
 @Component({
-  selector: 'app-form-create',
-  templateUrl: './form-create.component.html',
-  styleUrls: ['./form-create.component.css']
+  selector: 'update-form',
+  templateUrl: './update-form.component.html',
+  styleUrls: ['./update-form.component.css']
 })
 
-export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
+export class UpdateFormComponent extends UpdateDisplay implements OnInit, OnDestroy, OnChanges {
 
   private sub: any;
-  private idTask: number;
+  private _id: number;
+  private _update: Update;
 
   public textDone: string;
   public textToDo: string;
-  private _update: Update;
 
-  deadline: boolean;
-  sucsMsg: boolean;
-  flagDelay: boolean;
-  message: string;
-  flagHaveDone: boolean;
+  public deadline: boolean;
+  public sucsMsg: boolean;
+  public flagDelay: boolean;
+  public message: string;
+  public flagHaveDone: boolean;
+  private timer;
 
-  constructor(private router?: Router,
-              private service?: UpdatesDataService) { }
+  constructor(private router: Router,
+              private service: UpdatesDataService) { super(service); }
 
   @Input() update: Update;
 
@@ -45,20 +47,14 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
   ngOnDestroy() {
   }
 
-  keyDownHaveDone(event) {
-    if (event.keyCode === 13) {
-      this.addDone();
-    }
+  public delete(item: Update): void { super.delete(item); }
+
+  public deleteTaskHaveDone(task: Task) {
+    this.update.deleteTaskHaveDone(task);
   }
 
-  keyDownToDo(event) {
-    if (event.keyCode === 13) {
-      this.addToDo();
-    }
-  }
-
-  onCheck(e, item: Task) {
-    item.active = !e.target.checked;
+  public deleteTaskToDo(task: Task) {
+    this.update.deleteTaskToDo(task);
   }
 
   public addUpdate() {
@@ -78,23 +74,34 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
     } else {
     this.service.update(this.update)
       .subscribe(
-        sucss => {},
+        sucss => { },
         err => this.showMessage(err.message, false));
     }
   }
 
-  public showMessage(text, type) {
+/// ------------------------- methods for handler form.
+
+  public keyDownHaveDone(event) {
+    if (event.keyCode === 13) {
+      this.addDone();
+    }
+  }
+
+  public keyDownToDo(event) {
+    if (event.keyCode === 13) {
+      this.addToDo();
+    }
+  }
+
+  public onCheck(e, item: Task) {
+    item.active = !e.target.checked;
+  }
+
+  private showMessage(text, type) {
+    clearTimeout(this.timer);
     this.message = text;
     this.sucsMsg = type;
-    setTimeout(() => { this.flagDelay = true; }, 4000);
-  }
-
-  public deleteTaskHaveDone(task: Task) {
-    this.update.deleteTaskHaveDone(task);
-  }
-
-  public deleteTaskToDo(task: Task) {
-    this.update.deleteTaskToDo(task);
+    this.timer = setTimeout(() => { this.flagDelay = true; }, 4000);
   }
 
   private getData() {
@@ -103,11 +110,13 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
       this.service
         .getLastTask()
           .subscribe(data => {
+            console.log(data);
             const activeTasks = data.haveDone
               .filter(item => item.active === true);
             this.update.haveDone = data.toDo.concat(activeTasks);
-            this.idTask =
-              data.toDo[data.toDo.length - 1].id + 1;
+            const arr = !!this.update.toDo.length ?  this.update.toDo : this.update.haveDone;
+            this._id = arr[arr.length - 1].id + 1;
+            console.log(this._id);
           });
   }
 
@@ -115,8 +124,8 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
     if (this.textDone == null) {
       return;
     }
-    this.update.addTaskHaveDone({ id: this.idTask, title: this.textDone, active: false });
-    this.idTask++;
+    this.update.addTaskHaveDone({ id: this._id, title: this.textDone, active: false });
+    this._id++;
     this.textDone = undefined;
   }
 
@@ -124,8 +133,8 @@ export class FormCreateComponent implements OnInit, OnDestroy, OnChanges {
     if (this.textToDo == null) {
       return;
     }
-    this.update.addTaskToDo({ id: this.idTask, title: this.textToDo, active: true });
-    this.idTask++;
+    this.update.addTaskToDo({ id: this._id, title: this.textToDo, active: true });
+    this._id++;
     this.textToDo = undefined;
   }
 }

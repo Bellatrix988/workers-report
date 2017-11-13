@@ -20,12 +20,10 @@ export class UpdatesDataService {
               private userService: CurrentUserService) {}
 
   getBy(param?: any): Observable<Update[]> {
+    let params = new HttpParams()
+      .set('_order', 'desc')
+      .set('_sort', 'created_at');
     if (!!param) {
-    let params = new HttpParams();
-      params = new HttpParams()
-        .set('_order', 'desc')
-        .set('_sort', 'created_at');
-
       param.forEach(item => {
         if (item.value === 'my') {
           params = params.set('owner.id', `${this.userService.id}`);
@@ -34,35 +32,30 @@ export class UpdatesDataService {
           params = params.set(`owner.id`, `${item.value}`);
         }
       });
-      return this.http
-        .get(URL, {params})
-        .map(this._getUpdates);
     }
     return this.http
-      .get(URL)
+      .get(URL, {params})
       .map(this._getUpdates);
   }
 
-  // add new Update form currentUser
-  create(update: Update): Observable<Object> {
-    update.id = this._id + 1; // object return?
+  create(update: Update): Observable<Update> {
     update.owner = this.userService as User;
-    const obj = this.http.post(URL, update._toJSON());
-    console.log(obj);
-    return obj;
+    return this.http.post<Update>(URL, update._toJSON());
   }
 
-  update(update: Update) {
-    return this.http.put(`${URL}/${update.id}`, update._toJSON());
+  update(update: Update): Observable<Update> {
+    return this.http.put<Update>(`${URL}/${update.id}`, update._toJSON());
   }
 
- // TODO: delete rename
-  deleteUpdate(update: Update) {
+  delete(update: Update): Observable<Update> {
     const params = new HttpParams()
       .set(`id`, `${update.id}`);
     if (update.owner.id === this.userService.id) {
       return this.http
-        .delete(`${URL}/${update.id}`);
+        .delete<Update>(`${URL}/${update.id}`);
+    } else {
+      // new Error('You don\'t have permissin');
+      return;
     }
   }
 
