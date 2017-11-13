@@ -1,14 +1,12 @@
-<div class="container">
-  <div class="grid__header tab">
-    <button class="tablinks" *ngFor="let tab of tabs" [routerLink]="[tab.path]"
-            [ngClass]="tab.active ? 'active' : ''" (click)="onActive(tab)">
-      {{tab.title}}
-    </button>
-    <select name="filter" [(ngModel)]="customUser" (change)="onChange()">
-    <option *ngFor="let user of users" [value]="user.id">
-      {{user.name}} - {{user.id}}
-    </option>
-  </select>
-  <button type="button">Add</button>
-  </div>
+<div class="grid__header tab">
+  <button class="tablinks" *ngFor="let tab of tabs" [routerLink]="[tab.path]"
+          [ngClass]="tab.active ? 'active' : ''" (click)="onActive(tab)">
+    {{tab.title}}
+  </button>
+  <select name="filter" [(ngModel)]="customUser" (change)="onChange()">
+  <option *ngFor="let user of users" [value]="user.id">
+    {{user.name}} - {{user.id}}
+  </option>
+</select>
+<button type="button">Add</button>
 </div>

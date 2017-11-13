@@ -11,10 +11,10 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 /*components*/
 import { UpdateFormComponent } from './components/update-form/update-form.component';
 import { UpdateComponent } from './components/update/update.component';
-import { ListUpdatesComponent } from './components/list-updates/list-updates.component';
 
 /*pages*/
 import { TabsNavigateComponent } from './pages/tabs-navigate/tabs-navigate.component';
+import { ListUpdatesComponent } from './pages/list-updates/list-updates.component';
 
 /*services*/
 import { UpdatesDataService } from './services/updates-data.service';

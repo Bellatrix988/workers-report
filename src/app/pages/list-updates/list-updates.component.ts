@@ -36,7 +36,9 @@ export class ListUpdatesComponent implements OnInit {
   public onHiddenForm(value: boolean): void {
     this.flagHiddenForm = value;
   }
-  public add() { }
+  public add() {
+    this.flagHiddenForm = false;
+  }
 
   public get(): void {
     this.route.params.subscribe((params: Params) => {
@@ -51,6 +53,7 @@ export class ListUpdatesComponent implements OnInit {
 
   editUpdate(item: Update) {
     this.editUpdateVar = item;
+    this.flagHiddenForm = false;
   }
 
   ngOnInit() {
