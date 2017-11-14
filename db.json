@@ -545,7 +545,7 @@
         "id": 2,
         "name": "Bob"
       },
-      "created_at": "2017-11-13T12:55:38.420Z",
+      "created_at": "2017-11-14T07:10:54.331Z",
       "have_done": [
         {
           "id": 670,
@@ -553,61 +553,13 @@
           "active": true
         },
         {
-          "id": 23,
-          "title": "TEST",
+          "id": 671,
+          "title": "sdllkds",
           "active": true
         },
         {
-          "id": 669,
-          "title": "sdklks",
-          "active": true
-        }
-      ],
-      "todo": [],
-      "deadline": true,
-      "id": 15
-    },
-    {
-      "owner": {
-        "_http": {
-          "handler": {
-            "next": {
-              "xhrFactory": {}
-            },
-            "interceptor": {
-              "tokenService": {
-                "doc": {
-                  "location": {
-                    "href": "http://localhost:4200/index/my",
-                    "ancestorOrigins": {},
-                    "origin": "http://localhost:4200",
-                    "protocol": "http:",
-                    "host": "localhost:4200",
-                    "hostname": "localhost",
-                    "port": "4200",
-                    "pathname": "/index/my",
-                    "search": "",
-                    "hash": ""
-                  }
-                },
-                "platform": "browser",
-                "cookieName": "XSRF-TOKEN",
-                "lastCookieString": "",
-                "lastToken": null,
-                "parseCount": 0
-              },
-              "headerName": "X-XSRF-TOKEN"
-            }
-          }
-        },
-        "id": 2,
-        "name": "Bob"
-      },
-      "created_at": "2017-11-13T12:55:45.307Z",
-      "have_done": [
-        {
-          "id": 670,
-          "title": "kdfkl",
+          "id": 672,
+          "title": "sdklslkd",
           "active": true
         },
         {
@@ -624,27 +576,27 @@
       "todo": [
         {
           "id": 670,
-          "title": ",mms,mx",
+          "title": "ms,m",
           "active": true
         },
         {
           "id": 671,
-          "title": "sm,dsm,",
+          "title": "dslkds",
           "active": true
         },
         {
           "id": 672,
-          "title": "msd,msd",
+          "title": "sdkdlks",
           "active": true
         },
         {
           "id": 673,
-          "title": "sd,msd,m",
+          "title": "sdlklskd",
           "active": true
         }
       ],
       "deadline": true,
-      "id": 16
+      "id": 15
     }
   ],
   "profile": {

@@ -2,23 +2,29 @@
   TODO: time line
   TODO: show more
 -->
-<div class="container">
+<div class="container content__header">
   <div class="list__update">
-    <div *ngFor=" let update of updates"
-      class="block"
-      [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
+    <div class="grid__header content">
       <div>
-        <button class="btn__delete" (click)="delete(update)">
-          <span class="tasks-list-mark"><span class="close"></span></span>
-        </button>
-        <update-view [update]="update" (click)="editUpdate(update)"></update-view>
+        <button type="button" (click)="add()">Add report</button>
       </div>
-       <hr>
+    </div>
+    <div class="content">
+      <div *ngFor=" let update of updates"
+        class="block"
+        [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
+        <div>
+          <button class="btn__delete" (click)="delete(update)">
+            <span class="tasks-list-mark"><span class="close"></span></span>
+          </button>
+          <update-view [update]="update" (click)="editUpdate(update)"></update-view>
+        </div>
+         <hr>
+      </div>
     </div>
   </div>
   <div class="form__update" [hidden]="flagHiddenForm">
-    <update-form [update]="editUpdateVar"
-    [changedModel]="changedModel"
+    <update-form
     (onHiddenForm)="onHiddenForm($event)"
     (changedForm)="get()">
     </update-form>

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UpdatesDataService } from '../../services/updates-data.service';
 import { Update } from '../../models/update.model';
 import { ActivatedRoute, Route, Params } from '@angular/router';
+
+import { UpdateFormComponent } from '../../components/update-form/update-form.component';
 
 export const SHOW_MORE = 10;
 
@@ -13,10 +15,13 @@ export const SHOW_MORE = 10;
 
 export class ListUpdatesComponent implements OnInit {
 
+
   updates: Update[];
-  editUpdateVar: Update;
+  itemForm: Update;
   flagHiddenForm: boolean;
   changedModel: boolean;
+
+  @ViewChild(UpdateFormComponent) child: UpdateFormComponent;
 
   constructor(private updateService?: UpdatesDataService,
               private route?: ActivatedRoute) { }
@@ -27,7 +32,7 @@ export class ListUpdatesComponent implements OnInit {
       .delete(item)
         .subscribe(
           successful => {
-            this.changedModel = true;
+            this.child.refreshForm();
             this.get();
           },
           error => console.log(error)
@@ -36,7 +41,9 @@ export class ListUpdatesComponent implements OnInit {
   public onHiddenForm(value: boolean): void {
     this.flagHiddenForm = value;
   }
+
   public add() {
+    this.child.refreshForm();
     this.flagHiddenForm = false;
   }
 
@@ -46,17 +53,17 @@ export class ListUpdatesComponent implements OnInit {
       .getBy(params)
         .subscribe(items => {
           this.updates = items;
-          this.changedModel = false;
        });
     });
   }
 
   editUpdate(item: Update) {
-    this.editUpdateVar = item;
+    this.child.update = item;
     this.flagHiddenForm = false;
   }
 
   ngOnInit() {
     this.get();
+    this.flagHiddenForm = true;
   }
 }

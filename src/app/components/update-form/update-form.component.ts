@@ -14,34 +14,21 @@ export class UpdateFormComponent implements OnInit, OnDestroy {
 
   private sub: any;
   private _id: number;
-
   public textDone: string;
   public textToDo: string;
-
   public deadline: boolean;
   public sucsMsg: boolean;
   public flagDelay: boolean;
   public message: string;
   public flagHaveDone: boolean;
+  public update: Update;
   private timer;
-  private _changedModel: boolean;
 
   constructor(private service: UpdatesDataService) { }
 
-  @Input() update: Update;
+
   @Output() onHiddenForm = new EventEmitter<boolean>();
-
   @Output() changedForm = new EventEmitter<boolean>();
-  @Input()
-
-  get changedModel(): boolean { return this._changedModel; }
-
-  set changedModel(value: boolean) {
-    this._changedModel = value;
-    if (value) {
-      this.getData();
-    }
-  }
 
   public hiddenForm() {
     this.onHiddenForm.emit(true);
@@ -49,9 +36,6 @@ export class UpdateFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.update === undefined) {
-      this.getData();
-    }
-    if (this.changedModel) {
       this.getData();
     }
     this.deadline = true;
@@ -93,6 +77,10 @@ export class UpdateFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  public refreshForm() {
+    this.getData();
+  }
+
 /// ------------------------- methods for handler form.
 
   public keyDownHaveDone(event) {
@@ -111,13 +99,6 @@ export class UpdateFormComponent implements OnInit, OnDestroy {
     item.active = !e.target.checked;
   }
 
-  private showMessage(text, type) {
-    clearTimeout(this.timer);
-    this.message = text;
-    this.sucsMsg = type;
-    this.timer = setTimeout(() => { this.flagDelay = true; }, 4000);
-  }
-
   private getData() {
     this.update = new Update();
     this.sub =
@@ -132,6 +113,14 @@ export class UpdateFormComponent implements OnInit, OnDestroy {
             this._id = arr[arr.length - 1].id + 1;
           });
   }
+
+  private showMessage(text, type) {
+    clearTimeout(this.timer);
+    this.message = text;
+    this.sucsMsg = type;
+    this.timer = setTimeout(() => { this.flagDelay = true; }, 4000);
+  }
+
 
   private addDone() {
     if (this.textDone == null) {

@@ -1,20 +1,24 @@
+/* TODO: rename class */
+.content__header {
+  width: calc(100% - 20px);
+  margin: 10px;
+}
+
 .form__update {
-  min-width: 40%;
+  width: calc(40% - 10px);
   min-height: 100%;
   margin-left: 10px;
   background-color: white;
 }
 
 .list__update {
-  /*min-width: calc(60% - 50px);*/
-  width: calc(100% - 50px);
-  padding: 10px 20px 0;
+  max-width: 80%;
+  min-width: 60%;
   background-color: white;
   height: 720px;
   min-height: 1px;
   overflow-y: scroll;
 }
-
 
 .verticalLine_red {
   border-left: thick solid red;

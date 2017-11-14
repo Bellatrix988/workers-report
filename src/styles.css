@@ -2,11 +2,6 @@ body {
   background: #f2f2f2;
   margin: 0;
   padding: 0;
-  /*padding-right: 30px;*/
-  /*padding-left: 30px;*/
-  /*margin-right: auto;*/
-  /*margin-left: auto;*/
-  /*width: calc(100% - 60px);*/
 }
 
 button {
@@ -19,8 +14,37 @@ button {
   width: 100%;
 }
 
-.container__list {
-  /*padding-left: 300px;*/
+.grid__header {
+  width:  100%;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.15);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  height: 60px;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: justify;
+  justify-content: flex-start;
+  position: fixed;
+  position: relative;
+  z-index: 100;
+}
+
+.content {
+  padding: 0px 20px 0;
+  width: calc(100% - 40px);
+  /*background-color: orange;*/
 }
 
 .block {
