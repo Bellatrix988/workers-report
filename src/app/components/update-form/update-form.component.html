@@ -1,9 +1,9 @@
 <div>
-  <div class="header__form">
-    <!-- <div>{{update.owner.name}}</div> -->
-    <div>
+  <div class="grid__header">
+    <div class="content">
+      <span class="temp">Other buttons & options</span>
       <button type="button" class="btn__delete" (click)="hiddenForm()">
-        <span class="tasks-list-mark"><span class="close"></span></span>
+        <span class="close"></span>
       </button>
     </div>
   </div>
@@ -19,15 +19,15 @@
       </p>
       <div class="block__focus">
         <div *ngFor="let item of update.haveDone" class="item-task">
-        <button type="button" class="btn__delete" (click)="deleteTaskHaveDone(item)">
-          <span class="tasks-list-mark"><span class="close"></span></span>
-        </button>
           <label class="tasks-list-item">
             <input type="checkbox" id="{{item.id}}"
               class="tasks-list-cb" [checked]="!item.active"
               (change)="onCheck($event, item)">
             <span class="tasks-list-mark"></span>
             <input type="text" [name]="item.id" [(ngModel)]="item.title">
+            <button type="button" class="btn__delete item_todo" (click)="deleteTaskHaveDone(item)">
+              <span class="close"></span>
+            </button>
           </label>
         </div>
         <input type="text"
@@ -41,12 +41,13 @@
     <div name="toDo" class="block">
       <p class="title">What are you doing next?</p>
       <div class="block__focus" *ngFor="let item of update.toDo" >
-        <button type="button" class="btn__delete" (click)="deleteTaskToDo(item)">
-          <span class="tasks-list-mark"><span class="close"></span></span>
-        </button>
         <label class="tasks-list-item">
             <input type="text" [name]="item.id" [(ngModel)]="item.title">
+          <button type="button" class="btn__delete item_todo" (click)="deleteTaskToDo(item)">
+            <span class="close"></span>
+          </button>
         </label>
+
       </div>
       <div>
         <input type="text"

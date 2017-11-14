@@ -6,7 +6,7 @@
   <div class="list__update">
     <div class="grid__header content">
       <div>
-        <button type="button" (click)="add()">Add report</button>
+        <button type="button" class="add" (click)="add()">Add report</button>
       </div>
     </div>
     <div class="content">
@@ -15,7 +15,7 @@
         [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
         <div>
           <button class="btn__delete" (click)="delete(update)">
-            <span class="tasks-list-mark"><span class="close"></span></span>
+            <span class="close"></span>
           </button>
           <update-view [update]="update" (click)="editUpdate(update)"></update-view>
         </div>

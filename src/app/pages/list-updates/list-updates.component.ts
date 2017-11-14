@@ -64,6 +64,6 @@ export class ListUpdatesComponent implements OnInit {
 
   ngOnInit() {
     this.get();
-    this.flagHiddenForm = true;
+    this.flagHiddenForm = false;
   }
 }

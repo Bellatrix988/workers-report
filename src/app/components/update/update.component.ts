@@ -16,11 +16,6 @@ export class UpdateComponent implements OnInit  {
 
   @Input() update: Update;
 
-  // set update(update: Update) {
-  //   this._update = update;
-  // }
-  // get update(): Update { return this._update; }
-
   ngOnInit() {
   }
 

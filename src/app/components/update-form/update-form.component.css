@@ -26,7 +26,7 @@
 }
 
 .msg__danger {
-  background-color: rgba(169, 68, 66, 0.8);
+  /*background-color: rgba(169, 68, 66, 0.8);*/
   border: #a94442;
 }
 

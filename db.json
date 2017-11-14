@@ -476,7 +476,7 @@
         "id": 2,
         "name": "Bob"
       },
-      "created_at": "2017-11-13T12:55:12.234Z",
+      "created_at": "2017-11-14T07:51:55.054Z",
       "have_done": [
         {
           "id": 23,
@@ -492,111 +492,22 @@
       "todo": [
         {
           "id": 670,
-          "title": "kdfkl",
+          "title": "sdjkjds",
           "active": true
         },
         {
           "id": 671,
-          "title": "sdllkds",
+          "title": "sdjkjdsk",
           "active": true
         },
         {
           "id": 672,
-          "title": "sdklslkd",
+          "title": "sdjsdkkds",
           "active": true
         }
       ],
       "deadline": true,
       "id": 14
-    },
-    {
-      "owner": {
-        "_http": {
-          "handler": {
-            "next": {
-              "xhrFactory": {}
-            },
-            "interceptor": {
-              "tokenService": {
-                "doc": {
-                  "location": {
-                    "href": "http://localhost:4200/index/my",
-                    "ancestorOrigins": {},
-                    "origin": "http://localhost:4200",
-                    "protocol": "http:",
-                    "host": "localhost:4200",
-                    "hostname": "localhost",
-                    "port": "4200",
-                    "pathname": "/index/my",
-                    "search": "",
-                    "hash": ""
-                  }
-                },
-                "platform": "browser",
-                "cookieName": "XSRF-TOKEN",
-                "lastCookieString": "",
-                "lastToken": null,
-                "parseCount": 0
-              },
-              "headerName": "X-XSRF-TOKEN"
-            }
-          }
-        },
-        "id": 2,
-        "name": "Bob"
-      },
-      "created_at": "2017-11-14T07:10:54.331Z",
-      "have_done": [
-        {
-          "id": 670,
-          "title": "kdfkl",
-          "active": true
-        },
-        {
-          "id": 671,
-          "title": "sdllkds",
-          "active": true
-        },
-        {
-          "id": 672,
-          "title": "sdklslkd",
-          "active": true
-        },
-        {
-          "id": 23,
-          "title": "TEST",
-          "active": true
-        },
-        {
-          "id": 669,
-          "title": "sdklks",
-          "active": true
-        }
-      ],
-      "todo": [
-        {
-          "id": 670,
-          "title": "ms,m",
-          "active": true
-        },
-        {
-          "id": 671,
-          "title": "dslkds",
-          "active": true
-        },
-        {
-          "id": 672,
-          "title": "sdkdlks",
-          "active": true
-        },
-        {
-          "id": 673,
-          "title": "sdlklskd",
-          "active": true
-        }
-      ],
-      "deadline": true,
-      "id": 15
     }
   ],
   "profile": {

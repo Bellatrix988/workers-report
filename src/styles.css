@@ -1,3 +1,8 @@
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
 body {
   background: #f2f2f2;
   margin: 0;
@@ -5,7 +10,17 @@ body {
 }
 
 button {
+  display: block;
+  background-color: #fff;
+  color: black;
   border: none;
+  padding: 5px;
+}
+
+button.add:active, button.add:hover {
+  padding: 3px;
+  border: 2px solid red;
+  border-radius: 5px;
 }
 
 .container {
@@ -44,14 +59,13 @@ button {
 .content {
   padding: 0px 20px 0;
   width: calc(100% - 40px);
-  /*background-color: orange;*/
 }
 
 .block {
   background-color: #fff;
 }
 
- .block__main {
+.block__main {
   border-radius: 2px;
   background: #fff;
   box-shadow: 0px 5px 5px 0 rgba(0,0,0,0.15);
@@ -63,14 +77,8 @@ button {
 }
 
 .item_todo {
-  width: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  top: 10px;
 }
-/*
-:active, :hover, :focus {
-  outline: 0;
-  outline-offset: 0;
-} */
 
 .item-task {
   width: 100%;
@@ -78,7 +86,7 @@ button {
 
 .tasks-list-item {
   display: block;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #f0f2f3;
   line-height: 24px;
   padding: 2px 5px;
   cursor: pointer;
@@ -86,10 +94,6 @@ button {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-.tasks-list-item + .tasks-list-item {
-  border-top: 1px solid #f0f2f3;
 }
 
 .tasks-list-cb {
@@ -109,15 +113,15 @@ button {
 
 .tasks-list-mark:before {
   content: '';
-  display: none;
+  display: block;
   position: absolute;
   top: 50%;
   left: 50%;
   margin: -5px 0 0 -6px;
   height: 4px;
   width: 8px;
-  border: solid #39ca74;
-  border-width: 0 0 4px 4px;
+  border: solid #c4cbd2;
+  border-width: 0 0 3px 3px;
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
@@ -131,6 +135,7 @@ button {
 
 .tasks-list-cb:checked ~ .tasks-list-mark:before {
   display: block;
+  border-color: #39ca74;
 }
 
 .tasks-list-desc {
@@ -150,6 +155,16 @@ button {
   height: 8px;
 }
 
+.close:hover:before, .close:hover:after {
+  position: absolute;
+  left: 50%;
+  content: '';
+  height: 16px;
+  width: 2px;
+  margin: -8px 0 0 -5px;
+  background-color:#B22222;
+}
+
 .close:before, .close:after {
   position: absolute;
   left: 50%;
@@ -157,7 +172,7 @@ button {
   height: 16px;
   width: 2px;
   margin: -8px 0 0 -5px;
-  background-color: #B22222;
+  background-color: #ccc;
 }
 
 .close:before {
@@ -169,6 +184,11 @@ button {
 }
 
 .btn__delete {
-  background-color: #fff;
+  position: relative;
   float: right;
+}
+
+.temp {
+  color: #ccc;
+  border: 1px dotted #f0f2f3;
 }
