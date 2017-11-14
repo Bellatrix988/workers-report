@@ -9,10 +9,12 @@
         <button type="button" class="add" (click)="add()">Add report</button>
       </div>
     </div>
+
     <div class="content">
+      <time-line-component></time-line-component>
       <div *ngFor=" let update of updates"
-        class="block"
-        [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
+           class="block"
+           [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
         <div>
           <button class="btn__delete" (click)="delete(update)">
             <span class="close"></span>

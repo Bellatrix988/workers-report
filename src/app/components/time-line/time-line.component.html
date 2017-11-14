@@ -1,0 +1,12 @@
+<div class="_body">
+<div class="timeline">
+  <div *ngFor="let date of timeLineData; let odd=odd; let even=even"
+        class="container__date"
+        (click)="clickOnDate(date)">
+    <div class="date">
+      <span class="top"
+      [ngClass]="{ odd: top, even: bottom }">{{date.id}}</span>
+    </div>
+  </div>
+</div>
+</div>

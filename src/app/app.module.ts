@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 /*components*/
 import { UpdateFormComponent } from './components/update-form/update-form.component';
 import { UpdateComponent } from './components/update/update.component';
+import { TimeLineComponent } from './components/time-line/time-line.component';
 
 /*pages*/
 import { TabsNavigateComponent } from './pages/tabs-navigate/tabs-navigate.component';
@@ -29,7 +30,8 @@ import { CurrentUserGuard } from './services/current-user.guard';
     ListUpdatesComponent,
     UpdateFormComponent,
     TabsNavigateComponent,
-    UpdateComponent
+    UpdateComponent,
+    TimeLineComponent
   ],
   imports: [
     RouterModule,

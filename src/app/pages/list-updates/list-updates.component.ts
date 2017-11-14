@@ -26,17 +26,16 @@ export class ListUpdatesComponent implements OnInit {
   constructor(private updateService?: UpdatesDataService,
               private route?: ActivatedRoute) { }
 
-
   public delete(item: Update): void {
     this.updateService
       .delete(item)
-        .subscribe(
-          successful => {
-            this.child.refreshForm();
-            this.get();
-          },
-          error => console.log(error)
-        );
+      .subscribe(
+        successful => {
+          this.child.refreshForm();
+          this.get();
+        },
+        error => console.log(error)
+      );
   }
   public onHiddenForm(value: boolean): void {
     this.flagHiddenForm = value;
@@ -64,6 +63,6 @@ export class ListUpdatesComponent implements OnInit {
 
   ngOnInit() {
     this.get();
-    this.flagHiddenForm = false;
+    this.flagHiddenForm = true;
   }
 }
