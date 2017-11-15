@@ -2,23 +2,22 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import 'rxjs/add/operator/map';
 
 import { Update } from '../models/update.model';
 import { User } from '../models/user.model';
 import { Task } from '../models/task.model';
 import { CurrentUserService } from './../services/current-user.service';
 
-import 'rxjs/add/operator/map';
-
 export const URL = `http://localhost:3000/updates`;
 
 @Injectable()
 export class UpdatesDataService {
 
-  _id: number;
   constructor(private http: HttpClient,
               private userService: CurrentUserService) {}
 
+  /*Get data by params*/
   getBy(routeParams?: any): Observable<Update[]> {
     let params = new HttpParams()
       .set('_order', 'desc')
@@ -46,18 +45,12 @@ export class UpdatesDataService {
   }
 
   delete(update: Update): Observable<Update> {
-    const params = new HttpParams()
-      .set(`id`, `${update.id}`);
     if (update.owner.id === this.userService.id) {
       return this.http
         .delete<Update>(`${URL}/${update.id}`);
     } else {
       return;
     }
-  }
-
-  private _getTasks(updates: Update[]): Update {
-     return updates[0];
   }
 
   private _getUpdates(res): Update[] {

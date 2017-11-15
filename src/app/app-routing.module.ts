@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListUpdatesComponent } from '../pages/list-updates/list-updates.component';
-import { CurrentUserGuard } from './../services/current-user.guard';
+import { CurrentUserGuard } from './services/current-user.guard';
+import { MainComponent } from './pages/main/main.component';
 
 const routes: Routes = [
   {
@@ -12,11 +12,11 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: ListUpdatesComponent
+            component: MainComponent
           },
           {
             path: ':id',
-            component: ListUpdatesComponent
+            component: MainComponent
           }
         ]
       }

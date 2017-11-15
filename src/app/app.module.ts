@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 /*components*/
 import { UpdateFormComponent } from './components/update-form/update-form.component';
@@ -15,7 +14,7 @@ import { TimeLineComponent } from './components/time-line/time-line.component';
 
 /*pages*/
 import { TabsNavigateComponent } from './pages/tabs-navigate/tabs-navigate.component';
-import { ListUpdatesComponent } from './pages/list-updates/list-updates.component';
+import { MainComponent } from './pages/main/main.component';
 
 /*services*/
 import { UpdatesDataService } from './services/updates-data.service';
@@ -27,7 +26,7 @@ import { CurrentUserGuard } from './services/current-user.guard';
 @NgModule({
   declarations: [
     AppComponent,
-    ListUpdatesComponent,
+    MainComponent,
     UpdateFormComponent,
     TabsNavigateComponent,
     UpdateComponent,
@@ -37,7 +36,6 @@ import { CurrentUserGuard } from './services/current-user.guard';
     RouterModule,
     BrowserModule,
     FormsModule,
-    HttpModule,
     HttpClientModule,
     AppRoutingModule
   ],

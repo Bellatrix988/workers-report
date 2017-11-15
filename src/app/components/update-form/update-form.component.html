@@ -7,7 +7,7 @@
       </button>
     </div>
   </div>
-  <div [hidden]="message == undefined || flagDelay == true"
+  <div [hidden]="!message || flagShowMessage"
     class="msg" [ngClass]="sucsMsg? 'msg__successful' : 'msg__danger'">
     <span>{{message}}</span>
   </div>
@@ -42,12 +42,11 @@
       <p class="title">What are you doing next?</p>
       <div class="block__focus" *ngFor="let item of update.toDo" >
         <label class="tasks-list-item">
-            <input type="text" [name]="item.id" [(ngModel)]="item.title">
+          <input type="text" [name]="item.id" [(ngModel)]="item.title">
           <button type="button" class="btn__delete item_todo" (click)="deleteTaskToDo(item)">
             <span class="close"></span>
           </button>
         </label>
-
       </div>
       <div>
         <input type="text"
@@ -68,15 +67,15 @@
       <p class="title">Deadline?</p>
       <div>
         <input type="radio" name="deadline"
-          [checked]="deadline" (change)="deadline = !deadline">
+          [checked]="update.deadline" (change)="changeDeadline()">
         <label for="deadline">Yes</label>
         <input type="radio" name="deadline"
-          [checked]="!deadline" (change)="deadline = !deadline">
+          [checked]="!update.deadline" (change)="changeDeadline()">
         <label for="deadline">No</label>
-        <input type="text" placeholder="Write reason" *ngIf="!deadline">
+        <input type="text" placeholder="Write reason" *ngIf="!update.deadline">
       </div>
     </div>
-    <div class="">
+    <div name="button_send">
       <input type="button" class="btn__send" (click)="addUpdate()"
         value="Send" [hidden]="!createForm.valid">
     </div>

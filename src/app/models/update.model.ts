@@ -32,22 +32,22 @@ export class Update extends AppModel {
     }
   }
 
-  public addTaskHaveDone(task: Task) {
+  public addTaskHaveDone(task: Task): void {
     this.haveDone.push(task);
   }
 
-  public addTaskToDo(task: Task) {
+  public addTaskToDo(task: Task): void {
     this.toDo.push(task);
   }
 
-  public deleteTaskHaveDone(task: Task) {
+  public deleteTaskHaveDone(task: Task): void {
     const index = this.haveDone.indexOf(task);
     if (index !== -1) {
       this.haveDone.splice(index, 1);
     }
   }
 
-  public deleteTaskToDo(task: Task) {
+  public deleteTaskToDo(task: Task): void {
     const index = this.toDo.indexOf(task);
     if (index !== -1) {
       this.toDo.splice(index, 1);

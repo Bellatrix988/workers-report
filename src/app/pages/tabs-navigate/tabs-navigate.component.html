@@ -1,4 +1,8 @@
 <div class="grid__header tab">
+  <div style="float:right;">
+    <span class="temp">Ava</span>
+    <span class="temp">USER_NAME</span>
+  </div>
   <button class="tablinks" *ngFor="let tab of tabs" [routerLink]="[tab.path]"
           [ngClass]="tab.active ? 'active' : ''" (click)="onActive(tab)">
     {{tab.title}}
@@ -8,4 +12,5 @@
     {{user.name}} - {{user.id}}
   </option>
 </select>
+
 </div>

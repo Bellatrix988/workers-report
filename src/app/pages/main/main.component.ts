@@ -8,40 +8,31 @@ import { UpdateFormComponent } from '../../components/update-form/update-form.co
 export const SHOW_MORE = 10;
 
 @Component({
-  selector: 'app-list-updates',
-  templateUrl: './list-updates.component.html',
-  styleUrls: ['./list-updates.component.css']
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css']
 })
 
-export class ListUpdatesComponent implements OnInit {
+export class MainComponent implements OnInit {
 
-
-  updates: Update[];
-  itemForm: Update;
-  flagHiddenForm: boolean;
-  changedModel: boolean;
+  public updates: Update[];
+  public flagHiddenForm: boolean;
 
   @ViewChild(UpdateFormComponent) child: UpdateFormComponent;
 
   constructor(private updateService?: UpdatesDataService,
               private route?: ActivatedRoute) { }
 
-  public delete(item: Update): void {
-    this.updateService
-      .delete(item)
-      .subscribe(
-        successful => {
-          this.child.refreshForm();
-          this.get();
-        },
-        error => console.log(error)
-      );
+  ngOnInit() {
+    this.get();
+    this.flagHiddenForm = true;
   }
+
   public onHiddenForm(value: boolean): void {
     this.flagHiddenForm = value;
   }
 
-  public add() {
+  public add(): void {
     this.child.refreshForm();
     this.flagHiddenForm = false;
   }
@@ -56,13 +47,20 @@ export class ListUpdatesComponent implements OnInit {
     });
   }
 
-  editUpdate(item: Update) {
-    this.child.update = item;
-    this.flagHiddenForm = false;
+  public delete(item: Update): void {
+    this.updateService
+      .delete(item)
+      .subscribe(
+        successful => {
+          this.child.refreshForm();
+          this.get();
+        },
+        error => console.log(error)
+      );
   }
 
-  ngOnInit() {
-    this.get();
-    this.flagHiddenForm = true;
+  public setItemForm(item: Update): void {
+    this.child.update = item;
+    this.flagHiddenForm = false;
   }
 }

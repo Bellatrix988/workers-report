@@ -13,54 +13,56 @@ import { User } from '../../models/user.model';
 export class UpdateFormComponent implements OnInit, OnDestroy {
 
   private sub: any;
-  private _id: number;
+  private _id: number; /* temp-var for id of task */
+
+  public update: Update;  /* Current update in the form */
+
+  /* The list variables for binding with form's components */
   public textDone: string;
   public textToDo: string;
-  public deadline: boolean;
-  public sucsMsg: boolean;
-  public flagDelay: boolean;
-  public message: string;
-  public flagHaveDone: boolean;
-  public update: Update;
+
+  // Variables for show message
   private timer;
+  public sucsMsg: boolean;
+  public message: string;
+  public flagShowMessage: boolean;
 
   constructor(private service: UpdatesDataService) { }
 
-
+  /* For hidden form in the Parent Component */
   @Output() onHiddenForm = new EventEmitter<boolean>();
+  /* For refresh data on the 'List of updates' after send data from form */
   @Output() changedForm = new EventEmitter<boolean>();
-
-  public hiddenForm() {
-    this.onHiddenForm.emit(true);
-  }
 
   ngOnInit() {
     if (this.update === undefined) {
       this.getData();
     }
-    this.deadline = true;
-    this.flagDelay = false;
+    this.flagShowMessage = false;
   }
 
   ngOnDestroy() {
   }
 
+  // onClick on button-hide-form
+  public hiddenForm(): void {
+    this.onHiddenForm.emit(true);
+  }
 
-  public deleteTaskHaveDone(task: Task) {
+  public deleteTaskHaveDone(task: Task): void {
     this.update.deleteTaskHaveDone(task);
   }
 
-  public deleteTaskToDo(task: Task) {
+  public deleteTaskToDo(task: Task): void {
     this.update.deleteTaskToDo(task);
   }
 
-  public addUpdate() {
-    if (this.update.haveDone.length === 0) {
+  public addUpdate(): void {
+    if (!this.update.haveDone.length) {
       this.showMessage('You must add todo', false);
       return;
     }
-    if (this.update.id === undefined) {
-    this.update.deadline = this.deadline;
+    if (!this.update.id) {
     this.service.create(this.update)
       .subscribe(
         successful => {
@@ -77,66 +79,68 @@ export class UpdateFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  public refreshForm() {
+  public refreshForm(): void {
     this.getData();
   }
 
-/// ------------------------- methods for handler form.
+/* ------Methods for handler form--------*/
 
-  public keyDownHaveDone(event) {
+  public keyDownHaveDone(event): void {
     if (event.keyCode === 13) {
       this.addDone();
     }
   }
 
-  public keyDownToDo(event) {
+  public keyDownToDo(event): void {
     if (event.keyCode === 13) {
       this.addToDo();
     }
   }
 
-  public onCheck(e, item: Task) {
+  public onCheck(e, item: Task): void {
     item.active = !e.target.checked;
   }
 
-  private getData() {
+  public changeDeadline(): void {
+    this.update.deadline = !this.update.deadline;
+  }
+
+  private getData(): void {
     this.update = new Update();
     this.sub =
       this.service
         .getBy({'id': 'my'})
           .subscribe(response => {
-            let data = response[0];
+            const data = response[0];
             const activeTasks = data.haveDone
-              .filter(item => item.active === true);
+              .filter(item => item.active);
             this.update.haveDone = data.toDo.concat(activeTasks);
-            const arr = !!this.update.toDo.length ?  this.update.toDo : this.update.haveDone;
-            this._id = arr[arr.length - 1].id + 1;
+            const arr = !this.update.toDo.length ?  data.haveDone : this.update.toDo;
+            this._id = Math.max.apply(Math, arr.map(task => task.id));
           });
   }
 
-  private showMessage(text, type) {
+  private showMessage(text, type): void {
     clearTimeout(this.timer);
+    this.flagShowMessage = false;
     this.message = text;
     this.sucsMsg = type;
-    this.timer = setTimeout(() => { this.flagDelay = true; }, 4000);
+    this.timer = setTimeout(() => { this.flagShowMessage = true; }, 4000);
   }
 
-
-  private addDone() {
-    if (this.textDone == null) {
+  private addDone(): void {
+    if (!this.textDone) {
       return;
     }
-    this.update.addTaskHaveDone({ id: this._id, title: this.textDone, active: false });
-    this._id++;
+    this.update.addTaskHaveDone({ id: this._id++, title: this.textDone, active: false });
     this.textDone = undefined;
   }
 
-  private addToDo() {
-    if (this.textToDo == null) {
+  private addToDo(): void {
+    if (this.textToDo === undefined) {
       return;
     }
-    this.update.addTaskToDo({ id: this._id, title: this.textToDo, active: true });
-    this._id++;
+    this.update.addTaskToDo({ id: this._id++, title: this.textToDo, active: true });
     this.textToDo = undefined;
   }
 }
