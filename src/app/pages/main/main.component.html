@@ -5,18 +5,16 @@
         <button type="button" class="add" (click)="add()">Add report</button>
       </div>
     </div>
-    <div class="content">
-      <time-line-component></time-line-component>
-      <div *ngFor=" let update of updates"
-           class="block"
-           [ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'">
-        <div>
+    <div class="content" id="timeline">
+       <!-- class="block"[ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'"> -->
+      <div class="demo-card-wrapper">
+        <div class="demo-card demo-card--step" *ngFor=" let update of updates">
           <button class="btn__delete" (click)="delete(update)">
             <span class="close"></span>
           </button>
-          <update-view [update]="update" (click)="setItemForm(update)"></update-view>
+          <update-view [update]="update" (click)="setItemForm(update)">
+          </update-view>
         </div>
-         <hr>
       </div>
     </div>
   </div>

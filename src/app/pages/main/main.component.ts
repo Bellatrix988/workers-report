@@ -10,7 +10,7 @@ export const SHOW_MORE = 10;
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css', './timeline.style.scss']
 })
 
 export class MainComponent implements OnInit {
@@ -42,7 +42,7 @@ export class MainComponent implements OnInit {
       this.updateService
       .getBy(params)
         .subscribe(items => {
-          this.updates = items;
+          this.updates = items;//.slice(0, 6);
        });
     });
   }

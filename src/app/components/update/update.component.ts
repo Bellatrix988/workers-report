@@ -6,6 +6,7 @@ import { UpdatesDataService } from '../../services/updates-data.service';
   selector: 'update-view',
   templateUrl: './update.component.html',
   styleUrls: ['./update.component.css']
+
 })
 
 export class UpdateComponent implements OnInit  {
@@ -15,6 +16,8 @@ export class UpdateComponent implements OnInit  {
   constructor(private service: UpdatesDataService)  { }
 
   @Input() update: Update;
+  @Input() odd: number;
+  @Input() even: number;
 
   ngOnInit() {
   }

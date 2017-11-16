@@ -1,31 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { TimeObj } from '../../models/time-line-data.model';
+import { Component, OnInit, Input} from '@angular/core';
+import { Update } from '../../models/update.model';
 
 @Component({
   selector: 'time-line-component',
   templateUrl: './time-line.component.html',
-  styleUrls: ['./time-line.component.css']
+  styleUrls: ['./time-line.component.scss']
 })
 
 export class TimeLineComponent implements OnInit {
 
-  public timeLineData: TimeObj[];
-//export const ONE_DAY = 86400000;
-  // public cur
+  @Input() data: Update[];
+
   constructor() { }
 
-  public clickOnDate(item: TimeObj): void {
-    console.log(item.date);
+  // TODO: выбранная даты
+
+  public setCurrentDate(): void {
+    // TODO: отправление в сервис выбранной даты
   }
 
   ngOnInit() {
-    this.timeLineData = [
-      { id: 1, date: new Date(2017, 10, 9) },
-      { id: 2, date: new Date(2017, 10, 10) },
-      { id: 3, date: new Date(2017, 10, 13) },
-      { id: 4, date: new Date(2017, 10, 14) },
-      { id: 5, date: new Date(2017, 10, 15) }
-    ];
+
   }
 
 
