@@ -3,10 +3,10 @@ import { Update } from '../../models/update.model';
 import { UpdatesDataService } from '../../services/updates-data.service';
 
 @Component({
-  selector: 'update-view',
+  selector: 'app-update-view',
   templateUrl: './update.component.html',
-  styleUrls: ['./update.component.css']
-
+  styleUrls: ['./update.component.css',
+   '../../sharing/timeline.style.scss']
 })
 
 export class UpdateComponent implements OnInit  {

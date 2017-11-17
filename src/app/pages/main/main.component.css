@@ -1,5 +1,6 @@
 /* TODO: rename class */
 .content__header {
+  position: relative;
   width: calc(100% - 20px);
   margin: 10px;
 }

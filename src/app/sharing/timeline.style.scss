@@ -1,7 +1,5 @@
 @import '../../variables.scss';
 
-/* Media Queries */
-
 @mixin mq-xs {
   @media (min-width: 320px) {
     @content;
@@ -34,10 +32,10 @@ $border: 1px solid rgba(191, 191, 191, 0.4);
 
 $card-height: 400px;
 $card-width: 350px;
-$inner-margin: 15px;
 $number-size: 35px;
 $stagger: 180px;
 $outer-margin: 90px;
+$inner-margin: 15px;
 $marker-size: 9px;
 
 /* Colors */
@@ -68,8 +66,10 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
     content: "";
     width: 0;
     height: 0;
+    background-color: red;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
+    z-index:2;
   }
   %marker {
     position: absolute;
@@ -79,14 +79,12 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
     background-color: $timeline;
     border-radius: $marker-size;
     box-shadow: 0px 0px 2px 8px $background;
+    z-index:2;
   }
 }
 
 #timeline {
   padding: 0;
-  background: $background;
-  // border-top: 1px solid rgba(191, 191, 191, 0.4);
-  // border-bottom: 1px solid rgba(191, 191, 191, 0.4);
   h1 {
     text-align: center;
     font-size: 3rem;
@@ -98,9 +96,8 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
     margin: auto;
     @include mq-lg {
       display: flex;
-      flex-flow: column wrap;
+      flex-flow: row wrap;
       width: $container-width;
-      // height: $container-height;
       margin: 0 auto;
     }
     &::after {
@@ -119,7 +116,8 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
   .demo-card {
     position: relative;
     display: block;
-    margin: 10px auto 80px;
+    margin: 10px auto 40px;
+    min-width: $card-width;
     max-width: 94%;
     z-index: 2;
     @include mq-sm {
@@ -132,11 +130,11 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
     @include mq-lg {
       max-width: $card-width;
       height: $card-height;
-      margin: $outer-margin;
+      // margin: $inner-margin auto $outer-margin;
       margin-top: $outer-margin/2;
       margin-bottom: $outer-margin/2;
       &:nth-child(odd) {
-        margin-right: $outer-margin/2;
+        margin-left: $outer-margin/2;
         .head::after {
           @extend %arrow;
           border-left-width: 15px;
@@ -149,7 +147,7 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
         }
       }
       &:nth-child(even) {
-        margin-left: $outer-margin/2;
+        margin-right: $outer-margin/2;
         .head::after {
           @extend %arrow;
           border-right-width: 15px;
@@ -161,6 +159,9 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
           right: $marker-dist - 1;
         }
       }
+      &:nth-child(2) {
+        margin-top: $stagger;
+      }
     }
   }
   .head {
@@ -169,6 +170,7 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
     align-items: center;
     color: white;
     font-weight: 400;
+    // background-color: red;
     .number-box {
       display: inline;
       float: left;
@@ -180,7 +182,7 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
       background: rgba(0, 0, 0, 0.17);
     }
     h2 {
-      text-transform: uppercase;
+      // text-transform: uppercase;
       font-size: 1.3rem;
       font-weight: inherit;
       letter-spacing: 2px;
@@ -203,7 +205,7 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
   }
   .body {
     background: white;
-    border: $border;
+    // border: $border;
     border-top: 0;
     padding: $inner-margin;
     @include mq-lg {

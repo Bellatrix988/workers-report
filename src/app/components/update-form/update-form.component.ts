@@ -5,7 +5,7 @@ import { Update } from '../../models/update.model';
 import { User } from '../../models/user.model';
 
 @Component({
-  selector: 'update-form',
+  selector: 'app-update-form',
   templateUrl: './update-form.component.html',
   styleUrls: ['./update-form.component.css']
 })

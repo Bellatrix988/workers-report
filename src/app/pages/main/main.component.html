@@ -1,6 +1,6 @@
 <div class="container content__header">
   <div class="list__update">
-    <div class="grid__header content">
+    <div class="grid__header content" id="list__header">
       <div>
         <button type="button" class="add" (click)="add()">Add report</button>
       </div>
@@ -9,19 +9,21 @@
        <!-- class="block"[ngClass]="update.deadline ? 'verticalLine_green' : 'verticalLine_red'"> -->
       <div class="demo-card-wrapper">
         <div class="demo-card demo-card--step" *ngFor=" let update of updates">
+        <!--
           <button class="btn__delete" (click)="delete(update)">
             <span class="close"></span>
           </button>
-          <update-view [update]="update" (click)="setItemForm(update)">
-          </update-view>
+        -->
+          <app-update-view [update]="update" (click)="setItemForm(update)">
+          </app-update-view>
         </div>
       </div>
     </div>
   </div>
   <div class="form__update" [hidden]="flagHiddenForm">
-    <update-form
+    <app-update-form
     (onHiddenForm)="onHiddenForm($event)"
     (changedForm)="get()">
-    </update-form>
+    </app-update-form>
   </div>
 </div>
