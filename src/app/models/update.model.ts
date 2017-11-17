@@ -15,14 +15,15 @@ export class Update extends AppModel {
   constructor(update?) {
     super();
     if (update) {
-      this.id = update.id;
-      this.owner = update.owner;
-      this.createdAt = update.createdAt;
-      this.haveDone = update.haveDone;
-      this.toDo = update.toDo;
-      this.problems = update.problems;
-      this.deadline = update.deadline;
-      this.reason = update.reason;
+      // this.id = update.id;
+      // this.owner = update.owner;
+      // this.createdAt = update.createdAt;
+      // this.haveDone = update.haveDone;
+      // this.toDo = update.toDo;
+      // this.problems = update.problems;
+      // this.deadline = update.deadline;
+      // this.reason = update.reason;
+      this._fromJSON(update._json);
     } else {
       this.toDo = [];
       this.haveDone = [];

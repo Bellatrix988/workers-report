@@ -1,4 +1,4 @@
-@import '../../variables.scss';
+@import './variables.scss';
 
 @mixin mq-xs {
   @media (min-width: 320px) {
@@ -96,7 +96,7 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
     margin: auto;
     @include mq-lg {
       display: flex;
-      flex-flow: row wrap;
+      flex-flow: column;
       width: $container-width;
       margin: 0 auto;
     }
@@ -116,7 +116,10 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
   .demo-card {
     position: relative;
     display: block;
-    margin: 10px auto 40px;
+    // margin: auto $outer-margin auto;
+    margin: $outer-margin/2 $outer-margin;
+    margin-left: $outer-margin;
+    margin-right: $outer-margin;
     min-width: $card-width;
     max-width: 94%;
     z-index: 2;
@@ -130,11 +133,11 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
     @include mq-lg {
       max-width: $card-width;
       height: $card-height;
-      // margin: $inner-margin auto $outer-margin;
-      margin-top: $outer-margin/2;
-      margin-bottom: $outer-margin/2;
+      // margin-top: $outer-margin/2;
+      // margin-bottom: $outer-margin/2;
       &:nth-child(odd) {
-        margin-left: $outer-margin/2;
+        // margin-left: $outer-margin/2;
+        // left: $outer-margin;
         .head::after {
           @extend %arrow;
           border-left-width: 15px;
@@ -147,7 +150,11 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
         }
       }
       &:nth-child(even) {
-        margin-right: $outer-margin/2;
+        // margin-left: $outer-margin/2;
+        // transform: translate(160%, -50%);
+        // right: $outer-margin;
+        margin-left: 50%;
+        margin-top: -30%;
         .head::after {
           @extend %arrow;
           border-right-width: 15px;
@@ -159,9 +166,9 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
           right: $marker-dist - 1;
         }
       }
-      &:nth-child(2) {
-        margin-top: $stagger;
-      }
+      // &:nth-child(2) {
+      //   margin-top: $stagger;
+      // }
     }
   }
   .head {

@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 /*components*/
 import { UpdateFormComponent } from './components/update-form/update-form.component';
 import { UpdateComponent } from './components/update/update.component';
-import { TimeLineComponent } from './components/time-line/time-line.component';
+// import { TimeLineComponent } from './components/time-line/time-line.component';
 
 /*pages*/
 import { TabsNavigateComponent } from './pages/tabs-navigate/tabs-navigate.component';
@@ -29,8 +29,7 @@ import { CurrentUserGuard } from './services/current-user.guard';
     MainComponent,
     UpdateFormComponent,
     TabsNavigateComponent,
-    UpdateComponent,
-    TimeLineComponent
+    UpdateComponent
   ],
   imports: [
     RouterModule,
